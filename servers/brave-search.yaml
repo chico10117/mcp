@@ -1,16 +1,17 @@
 id: brave-search
 name: Brave Search MCP Server
 description: >
-  Provides web and local search capabilities through the Brave Search API via the
-  Model Context Protocol. Enables AI agents to perform web searches, find local
-  businesses, and retrieve current information from the internet. Supports both
-  general web search and location-based local search with rich result metadata.
+  Provides comprehensive search capabilities through the Brave Search API via the
+  Model Context Protocol. Enables AI agents to perform web searches, local business
+  searches, image searches, video searches, news searches, and AI-powered
+  summarization. Supports both STDIO and HTTP transports.
 author:
-  name: Anthropic
-  github: anthropics
-repository: https://github.com/modelcontextprotocol/servers
+  name: Brave
+  github: brave
+repository: https://github.com/brave/brave-search-mcp-server
 transport:
   - stdio
+  - http-streaming
 category: Research
 tags:
   - search
@@ -18,8 +19,9 @@ tags:
   - brave
   - information-retrieval
   - local-search
+  - news
 created_at: "2024-11-25T00:00:00.000Z"
-updated_at: "2025-06-01T00:00:00.000Z"
+updated_at: "2026-05-09T00:00:00.000Z"
 tools:
   - name: brave_web_search
     description: Perform a web search using the Brave Search API and return relevant results with titles, URLs, and descriptions.
@@ -28,13 +30,16 @@ tools:
       properties:
         query:
           type: string
-          description: Search query string
+          description: Search query string (max 400 chars, 50 words)
         count:
           type: integer
-          description: Number of results to return (max 20, default 10)
+          description: Number of results to return (1-20, default 10)
         offset:
           type: integer
-          description: Pagination offset for results
+          description: Pagination offset (max 9, default 0)
+        freshness:
+          type: string
+          description: "Time filter (pd, pw, pm, py, or date range)"
       required:
         - query
   - name: brave_local_search
@@ -50,16 +55,68 @@ tools:
           description: Number of results to return (max 20, default 5)
       required:
         - query
+  - name: brave_image_search
+    description: Search for images with metadata and thumbnail information.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Search query string (max 400 chars, 50 words)
+        count:
+          type: integer
+          description: Number of results to return (1-200, default 50)
+      required:
+        - query
+  - name: brave_video_search
+    description: Search for videos with comprehensive metadata and thumbnail information.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Search query string (max 400 chars, 50 words)
+        count:
+          type: integer
+          description: Number of results to return (1-50, default 20)
+      required:
+        - query
+  - name: brave_news_search
+    description: Search for current news articles with freshness controls and breaking news indicators.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Search query string (max 400 chars, 50 words)
+        count:
+          type: integer
+          description: Number of results to return (1-50, default 20)
+        freshness:
+          type: string
+          description: "Time filter (default: pd for last 24 hours)"
+      required:
+        - query
+  - name: brave_summarizer
+    description: Generate AI-powered summaries from web search results using Brave's summarization API.
+    input_schema:
+      type: object
+      properties:
+        key:
+          type: string
+          description: Summary key from web search results (use summary=true in web search first)
+      required:
+        - key
 install:
-  npm: "@modelcontextprotocol/server-brave-search"
+  npm: "@brave/brave-search-mcp-server"
   command: npx
   args:
     - "-y"
-    - "@modelcontextprotocol/server-brave-search"
+    - "@brave/brave-search-mcp-server"
 env_vars:
   - name: BRAVE_API_KEY
     description: Brave Search API key for authentication
     required: true
 license: MIT
-version: "0.6.2"
-stars: 18500
+version: "2.0.82"
+stars: 1100

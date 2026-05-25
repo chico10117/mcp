@@ -4,11 +4,12 @@ description: >
   Provides access to the Slack API through the Model Context Protocol. Enables AI
   agents to read and send messages, manage channels, search conversation history,
   and interact with Slack workspaces. Supports listing channels, reading threads,
-  posting messages, and adding reactions programmatically.
+  posting messages, and adding reactions programmatically. Originally maintained by
+  Anthropic, now maintained by Zencoder.
 author:
-  name: Anthropic
-  github: anthropics
-repository: https://github.com/modelcontextprotocol/servers
+  name: Zencoder
+  github: zencoderai
+repository: https://github.com/zencoderai/slack-mcp-server
 transport:
   - stdio
 category: Communication
@@ -19,7 +20,7 @@ tags:
   - chat
   - notifications
 created_at: "2024-11-25T00:00:00.000Z"
-updated_at: "2025-06-01T00:00:00.000Z"
+updated_at: "2026-01-27T00:00:00.000Z"
 tools:
   - name: send_message
     description: Send a message to a Slack channel or direct message conversation.
@@ -108,4 +109,4 @@ env_vars:
     required: true
 license: MIT
 version: "0.6.2"
-stars: 18500
+stars: 86200

@@ -4,7 +4,8 @@ description: >
   Provides access to AWS documentation and service information through the Model
   Context Protocol. Enables AI agents to search AWS documentation, retrieve service
   descriptions, look up API references, and find best practices for AWS services.
-  Useful for answering questions about AWS architecture and configuration.
+  Part of the official AWS Labs MCP servers collection with multiple AWS-focused
+  servers available.
 author:
   name: AWS
   github: awslabs
@@ -19,7 +20,7 @@ tags:
   - infrastructure
   - devops
 created_at: "2025-01-15T00:00:00.000Z"
-updated_at: "2025-06-01T00:00:00.000Z"
+updated_at: "2026-05-17T00:00:00.000Z"
 tools:
   - name: search_documentation
     description: Search AWS documentation for information about services, APIs, and best practices.
@@ -62,12 +63,11 @@ tools:
         - service
         - action
 install:
-  npm: "@awslabs/mcp-server-aws-docs"
-  command: npx
+  npm: "awslabs.aws-documentation-mcp-server@latest"
+  command: uvx
   args:
-    - "-y"
-    - "@awslabs/mcp-server-aws-docs"
+    - "awslabs.aws-documentation-mcp-server@latest"
 env_vars: []
 license: Apache-2.0
-version: "0.3.0"
-stars: 4200
+version: "0.4.0"
+stars: 5300

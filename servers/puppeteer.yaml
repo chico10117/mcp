@@ -4,11 +4,12 @@ description: >
   Provides browser automation capabilities through the Model Context Protocol using
   Puppeteer. Enables AI agents to navigate web pages, take screenshots, click elements,
   fill forms, and execute JavaScript in a browser context. Useful for web scraping,
-  testing, and interacting with web applications programmatically.
+  testing, and interacting with web applications programmatically. Originally part of
+  the reference servers, now archived and available in servers-archived.
 author:
   name: Anthropic
-  github: anthropics
-repository: https://github.com/modelcontextprotocol/servers
+  github: modelcontextprotocol
+repository: https://github.com/modelcontextprotocol/servers-archived
 transport:
   - stdio
 category: Browser Automation
@@ -20,7 +21,7 @@ tags:
   - screenshots
   - testing
 created_at: "2024-11-25T00:00:00.000Z"
-updated_at: "2025-06-01T00:00:00.000Z"
+updated_at: "2026-01-27T00:00:00.000Z"
 tools:
   - name: puppeteer_navigate
     description: Navigate the browser to a specified URL and wait for the page to load.
@@ -94,4 +95,4 @@ install:
 env_vars: []
 license: MIT
 version: "0.6.2"
-stars: 18500
+stars: 86200

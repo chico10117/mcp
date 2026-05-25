@@ -1,16 +1,17 @@
 id: github
 name: GitHub MCP Server
 description: >
-  Provides access to the GitHub API through the Model Context Protocol. Enables AI
-  agents to manage repositories, issues, pull requests, branches, and files. Supports
-  operations like creating issues, reviewing pull requests, searching code, and
-  managing repository content programmatically.
+  GitHub's official MCP Server that connects AI tools directly to GitHub's platform.
+  Enables AI agents to manage repositories, issues, pull requests, branches, files,
+  actions workflows, and code security. Supports both remote (OAuth) and local
+  (Docker/binary) modes with fine-grained toolset configuration.
 author:
   name: GitHub
   github: github
-repository: https://github.com/modelcontextprotocol/servers
+repository: https://github.com/github/github-mcp-server
 transport:
   - stdio
+  - http-streaming
 category: Development
 tags:
   - github
@@ -20,7 +21,7 @@ tags:
   - issues
   - pull-requests
 created_at: "2024-11-25T00:00:00.000Z"
-updated_at: "2025-06-01T00:00:00.000Z"
+updated_at: "2026-05-21T00:00:00.000Z"
 tools:
   - name: create_issue
     description: Create a new issue in a GitHub repository with a title, body, labels, and assignees.
@@ -153,15 +154,19 @@ tools:
         - message
         - files
 install:
-  npm: "@modelcontextprotocol/server-github"
-  command: npx
+  npm: "@github/github-mcp-server"
+  command: docker
   args:
-    - "-y"
-    - "@modelcontextprotocol/server-github"
+    - "run"
+    - "-i"
+    - "--rm"
+    - "-e"
+    - "GITHUB_PERSONAL_ACCESS_TOKEN"
+    - "ghcr.io/github/github-mcp-server"
 env_vars:
   - name: GITHUB_PERSONAL_ACCESS_TOKEN
     description: GitHub personal access token for API authentication
     required: true
 license: MIT
-version: "0.6.2"
-stars: 18500
+version: "1.0.5"
+stars: 30200

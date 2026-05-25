@@ -7,7 +7,7 @@ description: >
   various content types including JSON, text, and binary data.
 author:
   name: Anthropic
-  github: anthropics
+  github: modelcontextprotocol
 repository: https://github.com/modelcontextprotocol/servers
 transport:
   - stdio
@@ -19,7 +19,7 @@ tags:
   - api-client
   - networking
 created_at: "2024-11-25T00:00:00.000Z"
-updated_at: "2025-06-01T00:00:00.000Z"
+updated_at: "2026-01-27T00:00:00.000Z"
 tools:
   - name: fetch
     description: Fetch a URL and return its content. HTML is converted to Markdown by default for readability.
@@ -47,6 +47,6 @@ install:
     - "-y"
     - "@modelcontextprotocol/server-fetch"
 env_vars: []
-license: MIT
-version: "0.6.2"
-stars: 18500
+license: Apache-2.0
+version: "2026.1.26"
+stars: 86200

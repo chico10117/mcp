@@ -7,7 +7,7 @@ description: >
   preferences, and building structured knowledge bases that persist between sessions.
 author:
   name: Anthropic
-  github: anthropics
+  github: modelcontextprotocol
 repository: https://github.com/modelcontextprotocol/servers
 transport:
   - stdio
@@ -19,7 +19,7 @@ tags:
   - context
   - entities
 created_at: "2024-11-25T00:00:00.000Z"
-updated_at: "2025-06-01T00:00:00.000Z"
+updated_at: "2026-01-27T00:00:00.000Z"
 tools:
   - name: create_entities
     description: Create multiple new entities in the knowledge graph with their types and observations.
@@ -102,6 +102,6 @@ install:
     - "-y"
     - "@modelcontextprotocol/server-memory"
 env_vars: []
-license: MIT
-version: "0.6.2"
-stars: 18500
+license: Apache-2.0
+version: "2026.1.26"
+stars: 86200

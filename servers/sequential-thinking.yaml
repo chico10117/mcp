@@ -8,7 +8,7 @@ description: >
   analysis tasks that benefit from explicit step-by-step thinking.
 author:
   name: Anthropic
-  github: anthropics
+  github: modelcontextprotocol
 repository: https://github.com/modelcontextprotocol/servers
 transport:
   - stdio
@@ -20,7 +20,7 @@ tags:
   - problem-solving
   - chain-of-thought
 created_at: "2024-12-10T00:00:00.000Z"
-updated_at: "2025-06-01T00:00:00.000Z"
+updated_at: "2026-01-27T00:00:00.000Z"
 tools:
   - name: sequentialthinking
     description: Record a sequential thinking step for structured problem-solving. Supports revising previous thoughts and branching into alternative reasoning paths.
@@ -63,6 +63,6 @@ install:
     - "-y"
     - "@modelcontextprotocol/server-sequential-thinking"
 env_vars: []
-license: MIT
-version: "0.6.2"
-stars: 18500
+license: Apache-2.0
+version: "2026.1.26"
+stars: 86200
