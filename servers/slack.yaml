@@ -1,0 +1,111 @@
+id: slack
+name: Slack MCP Server
+description: >
+  Provides access to the Slack API through the Model Context Protocol. Enables AI
+  agents to read and send messages, manage channels, search conversation history,
+  and interact with Slack workspaces. Supports listing channels, reading threads,
+  posting messages, and adding reactions programmatically.
+author:
+  name: Anthropic
+  github: anthropics
+repository: https://github.com/modelcontextprotocol/servers
+transport:
+  - stdio
+category: Communication
+tags:
+  - slack
+  - messaging
+  - team-collaboration
+  - chat
+  - notifications
+created_at: "2024-11-25T00:00:00.000Z"
+updated_at: "2025-06-01T00:00:00.000Z"
+tools:
+  - name: send_message
+    description: Send a message to a Slack channel or direct message conversation.
+    input_schema:
+      type: object
+      properties:
+        channel_id:
+          type: string
+          description: Slack channel or conversation ID
+        text:
+          type: string
+          description: Message text to send (supports Slack markdown)
+        thread_ts:
+          type: string
+          description: Thread timestamp to reply in a thread
+      required:
+        - channel_id
+        - text
+  - name: list_channels
+    description: List all public channels in the Slack workspace with their names and topics.
+    input_schema:
+      type: object
+      properties:
+        limit:
+          type: integer
+          description: Maximum number of channels to return (default 100)
+        cursor:
+          type: string
+          description: Pagination cursor for next page of results
+  - name: get_channel_history
+    description: Retrieve recent messages from a Slack channel.
+    input_schema:
+      type: object
+      properties:
+        channel_id:
+          type: string
+          description: Slack channel ID
+        limit:
+          type: integer
+          description: Number of messages to retrieve (default 10)
+      required:
+        - channel_id
+  - name: search_messages
+    description: Search for messages across the Slack workspace matching a query.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Search query string
+        count:
+          type: integer
+          description: Number of results to return
+      required:
+        - query
+  - name: add_reaction
+    description: Add an emoji reaction to a message in a Slack channel.
+    input_schema:
+      type: object
+      properties:
+        channel_id:
+          type: string
+          description: Channel containing the message
+        timestamp:
+          type: string
+          description: Timestamp of the message to react to
+        reaction:
+          type: string
+          description: Emoji name without colons (e.g., thumbsup)
+      required:
+        - channel_id
+        - timestamp
+        - reaction
+install:
+  npm: "@modelcontextprotocol/server-slack"
+  command: npx
+  args:
+    - "-y"
+    - "@modelcontextprotocol/server-slack"
+env_vars:
+  - name: SLACK_BOT_TOKEN
+    description: Slack Bot User OAuth Token (xoxb-...) for API authentication
+    required: true
+  - name: SLACK_TEAM_ID
+    description: Slack workspace team ID
+    required: true
+license: MIT
+version: "0.6.2"
+stars: 18500

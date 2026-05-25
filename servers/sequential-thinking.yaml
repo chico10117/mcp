@@ -1,0 +1,68 @@
+id: sequential-thinking
+name: Sequential Thinking MCP Server
+description: >
+  Provides a structured sequential thinking tool through the Model Context Protocol.
+  Enables AI agents to break down complex problems into numbered thought steps,
+  revise previous thoughts, branch into alternative paths, and adjust the total
+  number of steps dynamically. Useful for multi-step reasoning, planning, and
+  analysis tasks that benefit from explicit step-by-step thinking.
+author:
+  name: Anthropic
+  github: anthropics
+repository: https://github.com/modelcontextprotocol/servers
+transport:
+  - stdio
+category: AI
+tags:
+  - thinking
+  - reasoning
+  - planning
+  - problem-solving
+  - chain-of-thought
+created_at: "2024-12-10T00:00:00.000Z"
+updated_at: "2025-06-01T00:00:00.000Z"
+tools:
+  - name: sequentialthinking
+    description: Record a sequential thinking step for structured problem-solving. Supports revising previous thoughts and branching into alternative reasoning paths.
+    input_schema:
+      type: object
+      properties:
+        thought:
+          type: string
+          description: The content of the current thinking step
+        thoughtNumber:
+          type: integer
+          description: Current thought number in the sequence
+        totalThoughts:
+          type: integer
+          description: Estimated total number of thoughts needed (can be adjusted)
+        nextThoughtNeeded:
+          type: boolean
+          description: Whether another thought step is needed after this one
+        isRevision:
+          type: boolean
+          description: Whether this revises a previous thought
+        revisesThought:
+          type: integer
+          description: Which thought number this revises (if isRevision is true)
+        branchFromThought:
+          type: integer
+          description: Which thought to branch from for alternative reasoning
+        branchId:
+          type: string
+          description: Identifier for the alternative reasoning branch
+      required:
+        - thought
+        - thoughtNumber
+        - totalThoughts
+        - nextThoughtNeeded
+install:
+  npm: "@modelcontextprotocol/server-sequential-thinking"
+  command: npx
+  args:
+    - "-y"
+    - "@modelcontextprotocol/server-sequential-thinking"
+env_vars: []
+license: MIT
+version: "0.6.2"
+stars: 18500

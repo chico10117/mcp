@@ -1,0 +1,52 @@
+id: fetch
+name: Fetch MCP Server
+description: >
+  Provides HTTP request capabilities through the Model Context Protocol. Enables AI
+  agents to fetch web content, retrieve API responses, and download resources from
+  URLs. Supports converting HTML to Markdown for easier consumption and can handle
+  various content types including JSON, text, and binary data.
+author:
+  name: Anthropic
+  github: anthropics
+repository: https://github.com/modelcontextprotocol/servers
+transport:
+  - stdio
+category: Development
+tags:
+  - http
+  - fetch
+  - web
+  - api-client
+  - networking
+created_at: "2024-11-25T00:00:00.000Z"
+updated_at: "2025-06-01T00:00:00.000Z"
+tools:
+  - name: fetch
+    description: Fetch a URL and return its content. HTML is converted to Markdown by default for readability.
+    input_schema:
+      type: object
+      properties:
+        url:
+          type: string
+          description: URL to fetch
+        max_length:
+          type: integer
+          description: Maximum number of characters to return (default 5000)
+        start_index:
+          type: integer
+          description: Start content from this character index for pagination
+        raw:
+          type: boolean
+          description: Return raw content without HTML-to-Markdown conversion
+      required:
+        - url
+install:
+  npm: "@modelcontextprotocol/server-fetch"
+  command: npx
+  args:
+    - "-y"
+    - "@modelcontextprotocol/server-fetch"
+env_vars: []
+license: MIT
+version: "0.6.2"
+stars: 18500

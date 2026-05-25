@@ -1,0 +1,65 @@
+id: brave-search
+name: Brave Search MCP Server
+description: >
+  Provides web and local search capabilities through the Brave Search API via the
+  Model Context Protocol. Enables AI agents to perform web searches, find local
+  businesses, and retrieve current information from the internet. Supports both
+  general web search and location-based local search with rich result metadata.
+author:
+  name: Anthropic
+  github: anthropics
+repository: https://github.com/modelcontextprotocol/servers
+transport:
+  - stdio
+category: Research
+tags:
+  - search
+  - web-search
+  - brave
+  - information-retrieval
+  - local-search
+created_at: "2024-11-25T00:00:00.000Z"
+updated_at: "2025-06-01T00:00:00.000Z"
+tools:
+  - name: brave_web_search
+    description: Perform a web search using the Brave Search API and return relevant results with titles, URLs, and descriptions.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Search query string
+        count:
+          type: integer
+          description: Number of results to return (max 20, default 10)
+        offset:
+          type: integer
+          description: Pagination offset for results
+      required:
+        - query
+  - name: brave_local_search
+    description: Search for local businesses and places using Brave Search with location-aware results.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Local search query (e.g., restaurants near me)
+        count:
+          type: integer
+          description: Number of results to return (max 20, default 5)
+      required:
+        - query
+install:
+  npm: "@modelcontextprotocol/server-brave-search"
+  command: npx
+  args:
+    - "-y"
+    - "@modelcontextprotocol/server-brave-search"
+env_vars:
+  - name: BRAVE_API_KEY
+    description: Brave Search API key for authentication
+    required: true
+license: MIT
+version: "0.6.2"
+stars: 18500

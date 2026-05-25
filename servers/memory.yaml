@@ -1,0 +1,107 @@
+id: memory
+name: Memory MCP Server
+description: >
+  Provides persistent memory capabilities through a knowledge graph stored in a local
+  JSON file. Enables AI agents to create, read, update, and delete entities and their
+  relationships. Useful for maintaining context across conversations, storing user
+  preferences, and building structured knowledge bases that persist between sessions.
+author:
+  name: Anthropic
+  github: anthropics
+repository: https://github.com/modelcontextprotocol/servers
+transport:
+  - stdio
+category: AI
+tags:
+  - memory
+  - knowledge-graph
+  - persistence
+  - context
+  - entities
+created_at: "2024-11-25T00:00:00.000Z"
+updated_at: "2025-06-01T00:00:00.000Z"
+tools:
+  - name: create_entities
+    description: Create multiple new entities in the knowledge graph with their types and observations.
+    input_schema:
+      type: object
+      properties:
+        entities:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              entityType:
+                type: string
+              observations:
+                type: array
+                items:
+                  type: string
+          description: Array of entities to create
+      required:
+        - entities
+  - name: create_relations
+    description: Create relationships between existing entities in the knowledge graph.
+    input_schema:
+      type: object
+      properties:
+        relations:
+          type: array
+          items:
+            type: object
+            properties:
+              from:
+                type: string
+              to:
+                type: string
+              relationType:
+                type: string
+          description: Array of relations to create
+      required:
+        - relations
+  - name: search_nodes
+    description: Search for entities in the knowledge graph by name or observation content.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Search query to match against entity names and observations
+      required:
+        - query
+  - name: open_nodes
+    description: Retrieve specific entities by their exact names from the knowledge graph.
+    input_schema:
+      type: object
+      properties:
+        names:
+          type: array
+          items:
+            type: string
+          description: Array of entity names to retrieve
+      required:
+        - names
+  - name: delete_entities
+    description: Remove entities and their associated relations from the knowledge graph.
+    input_schema:
+      type: object
+      properties:
+        entityNames:
+          type: array
+          items:
+            type: string
+          description: Names of entities to delete
+      required:
+        - entityNames
+install:
+  npm: "@modelcontextprotocol/server-memory"
+  command: npx
+  args:
+    - "-y"
+    - "@modelcontextprotocol/server-memory"
+env_vars: []
+license: MIT
+version: "0.6.2"
+stars: 18500

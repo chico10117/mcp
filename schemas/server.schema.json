@@ -1,0 +1,255 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://openmodels.run/schemas/mcp/server.schema.json",
+  "title": "MCP Server Definition",
+  "description": "Schema for defining an MCP (Model Context Protocol) server in the OpenModels registry.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "name",
+    "description",
+    "author",
+    "repository",
+    "transport",
+    "category",
+    "tags",
+    "created_at",
+    "updated_at"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "maxLength": 128,
+      "description": "Unique kebab-case identifier for the MCP server. Must match the filename (without .yaml extension)."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255,
+      "description": "Human-readable display name of the MCP server."
+    },
+    "description": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 2000,
+      "description": "Detailed description of what this MCP server does, what tools it provides, and when to use it."
+    },
+    "author": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "github"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "description": "Author's display name."
+        },
+        "github": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64,
+          "pattern": "^[a-zA-Z0-9]([a-zA-Z0-9-]*[a-zA-Z0-9])?$",
+          "description": "Author's GitHub username."
+        }
+      },
+      "description": "Author information."
+    },
+    "repository": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL of the source code repository."
+    },
+    "transport": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["stdio", "sse", "http-streaming"]
+      },
+      "minItems": 1,
+      "maxItems": 3,
+      "uniqueItems": true,
+      "description": "Supported transport protocols."
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "Development",
+        "Productivity",
+        "Database",
+        "DevOps",
+        "AI",
+        "Research",
+        "Browser Automation",
+        "Communication",
+        "Filesystem",
+        "Cloud",
+        "Security"
+      ],
+      "description": "Primary category classification."
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+        "maxLength": 64
+      },
+      "minItems": 1,
+      "maxItems": 20,
+      "uniqueItems": true,
+      "description": "Kebab-case tags for discovery and filtering."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 datetime when the server was first added to the registry."
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 datetime when the server entry was last updated."
+    },
+    "tools": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "description", "input_schema"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "description": "Tool name."
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000,
+            "description": "What this tool does."
+          },
+          "input_schema": {
+            "type": "object",
+            "description": "JSON Schema describing the tool's input parameters."
+          }
+        }
+      },
+      "maxItems": 200,
+      "description": "Tools exposed by this MCP server."
+    },
+    "resources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["uri_template", "description"],
+        "properties": {
+          "uri_template": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2048,
+            "description": "URI template for accessing this resource."
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000,
+            "description": "What this resource provides."
+          }
+        }
+      },
+      "maxItems": 100,
+      "description": "Resources exposed by this MCP server."
+    },
+    "prompts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "description", "arguments"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "description": "Prompt name."
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000,
+            "description": "What this prompt does."
+          },
+          "arguments": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["name", "description"],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 128,
+                  "description": "Argument name."
+                },
+                "description": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 500,
+                  "description": "What this argument is for."
+                }
+              }
+            },
+            "description": "Arguments accepted by this prompt."
+          }
+        }
+      },
+      "maxItems": 100,
+      "description": "Prompts exposed by this MCP server."
+    },
+    "install": {
+      "type": "object",
+      "description": "Installation configuration for the MCP server."
+    },
+    "env_vars": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "description", "required"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Environment variable name."
+          },
+          "description": {
+            "type": "string",
+            "description": "What this environment variable is used for."
+          },
+          "required": {
+            "type": "boolean",
+            "description": "Whether this environment variable is required."
+          }
+        }
+      },
+      "description": "Environment variables needed by this MCP server."
+    },
+    "license": {
+      "type": "string",
+      "description": "SPDX license identifier."
+    },
+    "version": {
+      "type": "string",
+      "description": "Current version of the MCP server."
+    },
+    "stars": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "GitHub star count."
+    }
+  }
+}

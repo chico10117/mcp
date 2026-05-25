@@ -1,0 +1,71 @@
+id: postgres
+name: PostgreSQL MCP Server
+description: >
+  Provides read-only access to PostgreSQL databases through the Model Context Protocol.
+  Enables AI agents to inspect database schemas, run SELECT queries, and explore table
+  structures. Designed for safe database exploration with read-only transaction isolation
+  to prevent accidental data modification.
+author:
+  name: Anthropic
+  github: anthropics
+repository: https://github.com/modelcontextprotocol/servers
+transport:
+  - stdio
+category: Database
+tags:
+  - postgresql
+  - database
+  - sql
+  - data-exploration
+  - schema-inspection
+created_at: "2024-11-25T00:00:00.000Z"
+updated_at: "2025-06-01T00:00:00.000Z"
+tools:
+  - name: query
+    description: Execute a read-only SQL query against the connected PostgreSQL database and return results.
+    input_schema:
+      type: object
+      properties:
+        sql:
+          type: string
+          description: SQL query to execute (SELECT statements only)
+      required:
+        - sql
+  - name: list_tables
+    description: List all tables in the connected PostgreSQL database with their schemas.
+    input_schema:
+      type: object
+      properties:
+        schema:
+          type: string
+          description: Schema name to filter tables (defaults to public)
+  - name: describe_table
+    description: Get the column definitions, types, and constraints for a specific table.
+    input_schema:
+      type: object
+      properties:
+        table_name:
+          type: string
+          description: Name of the table to describe
+        schema:
+          type: string
+          description: Schema name (defaults to public)
+      required:
+        - table_name
+resources:
+  - uri_template: "postgres://{host}/{database}/schema"
+    description: Access to the database schema information including tables, columns, and relationships.
+install:
+  npm: "@modelcontextprotocol/server-postgres"
+  command: npx
+  args:
+    - "-y"
+    - "@modelcontextprotocol/server-postgres"
+    - "postgresql://localhost/mydb"
+env_vars:
+  - name: POSTGRES_CONNECTION_STRING
+    description: PostgreSQL connection string (e.g., postgresql://user:pass@host:5432/dbname)
+    required: true
+license: MIT
+version: "0.6.2"
+stars: 18500

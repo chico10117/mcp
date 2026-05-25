@@ -1,0 +1,97 @@
+id: puppeteer
+name: Puppeteer MCP Server
+description: >
+  Provides browser automation capabilities through the Model Context Protocol using
+  Puppeteer. Enables AI agents to navigate web pages, take screenshots, click elements,
+  fill forms, and execute JavaScript in a browser context. Useful for web scraping,
+  testing, and interacting with web applications programmatically.
+author:
+  name: Anthropic
+  github: anthropics
+repository: https://github.com/modelcontextprotocol/servers
+transport:
+  - stdio
+category: Browser Automation
+tags:
+  - browser
+  - puppeteer
+  - web-scraping
+  - automation
+  - screenshots
+  - testing
+created_at: "2024-11-25T00:00:00.000Z"
+updated_at: "2025-06-01T00:00:00.000Z"
+tools:
+  - name: puppeteer_navigate
+    description: Navigate the browser to a specified URL and wait for the page to load.
+    input_schema:
+      type: object
+      properties:
+        url:
+          type: string
+          description: URL to navigate to
+      required:
+        - url
+  - name: puppeteer_screenshot
+    description: Take a screenshot of the current page or a specific element.
+    input_schema:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name for the screenshot
+        selector:
+          type: string
+          description: CSS selector of element to screenshot (captures full page if omitted)
+        width:
+          type: integer
+          description: Viewport width in pixels
+        height:
+          type: integer
+          description: Viewport height in pixels
+      required:
+        - name
+  - name: puppeteer_click
+    description: Click on an element identified by a CSS selector.
+    input_schema:
+      type: object
+      properties:
+        selector:
+          type: string
+          description: CSS selector of the element to click
+      required:
+        - selector
+  - name: puppeteer_fill
+    description: Fill a form input field with the specified value.
+    input_schema:
+      type: object
+      properties:
+        selector:
+          type: string
+          description: CSS selector of the input field
+        value:
+          type: string
+          description: Value to fill into the field
+      required:
+        - selector
+        - value
+  - name: puppeteer_evaluate
+    description: Execute JavaScript code in the browser page context and return the result.
+    input_schema:
+      type: object
+      properties:
+        script:
+          type: string
+          description: JavaScript code to execute in the browser
+      required:
+        - script
+install:
+  npm: "@modelcontextprotocol/server-puppeteer"
+  command: npx
+  args:
+    - "-y"
+    - "@modelcontextprotocol/server-puppeteer"
+env_vars: []
+license: MIT
+version: "0.6.2"
+stars: 18500

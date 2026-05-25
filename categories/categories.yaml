@@ -1,0 +1,46 @@
+# MCP Server Categories
+
+categories:
+  - id: development
+    name: Development
+    description: Code generation, testing, debugging, and software development tools.
+
+  - id: productivity
+    name: Productivity
+    description: Task management, note-taking, workflow automation, and time tracking.
+
+  - id: database
+    name: Database
+    description: Database querying, schema management, and data manipulation.
+
+  - id: devops
+    name: DevOps
+    description: CI/CD, infrastructure management, monitoring, and deployment.
+
+  - id: ai
+    name: AI
+    description: Machine learning, model management, and AI-powered utilities.
+
+  - id: research
+    name: Research
+    description: Web search, knowledge retrieval, and information gathering.
+
+  - id: browser-automation
+    name: Browser Automation
+    description: Web scraping, browser control, and automated testing.
+
+  - id: communication
+    name: Communication
+    description: Messaging, email, notifications, and team collaboration.
+
+  - id: filesystem
+    name: Filesystem
+    description: File operations, directory management, and local storage access.
+
+  - id: cloud
+    name: Cloud
+    description: Cloud provider APIs, serverless functions, and cloud storage.
+
+  - id: security
+    name: Security
+    description: Authentication, encryption, vulnerability scanning, and access control.

@@ -1,0 +1,108 @@
+id: filesystem
+name: Filesystem MCP Server
+description: >
+  Provides secure access to the local filesystem through the Model Context Protocol.
+  Enables AI agents to read, write, search, and manage files and directories with
+  configurable access controls. Supports operations like reading file contents,
+  creating directories, moving files, and searching with glob patterns.
+author:
+  name: Anthropic
+  github: anthropics
+repository: https://github.com/modelcontextprotocol/servers
+transport:
+  - stdio
+category: Filesystem
+tags:
+  - filesystem
+  - file-management
+  - local-storage
+  - file-operations
+created_at: "2024-11-25T00:00:00.000Z"
+updated_at: "2025-06-01T00:00:00.000Z"
+tools:
+  - name: read_file
+    description: Read the complete contents of a file from the filesystem. Returns the file content as UTF-8 text.
+    input_schema:
+      type: object
+      properties:
+        path:
+          type: string
+          description: Absolute path to the file to read
+      required:
+        - path
+  - name: write_file
+    description: Write content to a file, creating it if it does not exist or overwriting if it does.
+    input_schema:
+      type: object
+      properties:
+        path:
+          type: string
+          description: Absolute path to the file to write
+        content:
+          type: string
+          description: Content to write to the file
+      required:
+        - path
+        - content
+  - name: list_directory
+    description: List the contents of a directory, returning file and subdirectory names.
+    input_schema:
+      type: object
+      properties:
+        path:
+          type: string
+          description: Absolute path to the directory to list
+      required:
+        - path
+  - name: create_directory
+    description: Create a new directory, including any necessary parent directories.
+    input_schema:
+      type: object
+      properties:
+        path:
+          type: string
+          description: Absolute path of the directory to create
+      required:
+        - path
+  - name: move_file
+    description: Move or rename a file or directory from one location to another.
+    input_schema:
+      type: object
+      properties:
+        source:
+          type: string
+          description: Source path of the file or directory
+        destination:
+          type: string
+          description: Destination path
+      required:
+        - source
+        - destination
+  - name: search_files
+    description: Search for files matching a glob pattern within a directory tree.
+    input_schema:
+      type: object
+      properties:
+        path:
+          type: string
+          description: Base directory to search from
+        pattern:
+          type: string
+          description: Glob pattern to match files against
+      required:
+        - path
+        - pattern
+resources:
+  - uri_template: "file:///{path}"
+    description: Access to files on the local filesystem within allowed directories.
+install:
+  npm: "@modelcontextprotocol/server-filesystem"
+  command: npx
+  args:
+    - "-y"
+    - "@modelcontextprotocol/server-filesystem"
+    - "/path/to/allowed/directory"
+env_vars: []
+license: MIT
+version: "0.6.2"
+stars: 18500

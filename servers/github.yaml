@@ -1,0 +1,167 @@
+id: github
+name: GitHub MCP Server
+description: >
+  Provides access to the GitHub API through the Model Context Protocol. Enables AI
+  agents to manage repositories, issues, pull requests, branches, and files. Supports
+  operations like creating issues, reviewing pull requests, searching code, and
+  managing repository content programmatically.
+author:
+  name: GitHub
+  github: github
+repository: https://github.com/modelcontextprotocol/servers
+transport:
+  - stdio
+category: Development
+tags:
+  - github
+  - git
+  - version-control
+  - code-review
+  - issues
+  - pull-requests
+created_at: "2024-11-25T00:00:00.000Z"
+updated_at: "2025-06-01T00:00:00.000Z"
+tools:
+  - name: create_issue
+    description: Create a new issue in a GitHub repository with a title, body, labels, and assignees.
+    input_schema:
+      type: object
+      properties:
+        owner:
+          type: string
+          description: Repository owner (user or organization)
+        repo:
+          type: string
+          description: Repository name
+        title:
+          type: string
+          description: Issue title
+        body:
+          type: string
+          description: Issue body in Markdown
+        labels:
+          type: array
+          items:
+            type: string
+          description: Labels to apply to the issue
+        assignees:
+          type: array
+          items:
+            type: string
+          description: GitHub usernames to assign
+      required:
+        - owner
+        - repo
+        - title
+  - name: create_pull_request
+    description: Create a new pull request in a GitHub repository.
+    input_schema:
+      type: object
+      properties:
+        owner:
+          type: string
+          description: Repository owner
+        repo:
+          type: string
+          description: Repository name
+        title:
+          type: string
+          description: Pull request title
+        body:
+          type: string
+          description: Pull request description
+        head:
+          type: string
+          description: Branch containing changes
+        base:
+          type: string
+          description: Branch to merge into
+      required:
+        - owner
+        - repo
+        - title
+        - head
+        - base
+  - name: search_repositories
+    description: Search for GitHub repositories matching a query string.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Search query using GitHub search syntax
+        page:
+          type: integer
+          description: Page number for pagination
+        per_page:
+          type: integer
+          description: Results per page (max 100)
+      required:
+        - query
+  - name: get_file_contents
+    description: Get the contents of a file or directory from a GitHub repository.
+    input_schema:
+      type: object
+      properties:
+        owner:
+          type: string
+          description: Repository owner
+        repo:
+          type: string
+          description: Repository name
+        path:
+          type: string
+          description: Path to the file or directory
+        branch:
+          type: string
+          description: Branch name (defaults to default branch)
+      required:
+        - owner
+        - repo
+        - path
+  - name: push_files
+    description: Push one or more files to a GitHub repository in a single commit.
+    input_schema:
+      type: object
+      properties:
+        owner:
+          type: string
+          description: Repository owner
+        repo:
+          type: string
+          description: Repository name
+        branch:
+          type: string
+          description: Branch to push to
+        message:
+          type: string
+          description: Commit message
+        files:
+          type: array
+          items:
+            type: object
+            properties:
+              path:
+                type: string
+              content:
+                type: string
+          description: Files to push with path and content
+      required:
+        - owner
+        - repo
+        - branch
+        - message
+        - files
+install:
+  npm: "@modelcontextprotocol/server-github"
+  command: npx
+  args:
+    - "-y"
+    - "@modelcontextprotocol/server-github"
+env_vars:
+  - name: GITHUB_PERSONAL_ACCESS_TOKEN
+    description: GitHub personal access token for API authentication
+    required: true
+license: MIT
+version: "0.6.2"
+stars: 18500
