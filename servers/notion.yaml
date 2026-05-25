@@ -1,0 +1,101 @@
+id: notion
+name: Notion MCP Server
+description: >
+  Official Notion MCP server for workspace integration. Enables AI agents to search pages,
+  read content, create new pages, update existing pages, and manage databases in Notion.
+  Supports rich text content, database queries with filters, and page property management
+  for seamless knowledge base interaction from AI-powered tools.
+author:
+  name: Notion
+  github: makenotion
+repository: https://github.com/makenotion/notion-mcp-server
+transport:
+  - stdio
+category: Productivity
+tags:
+  - notion
+  - knowledge-base
+  - wiki
+  - notes
+  - databases
+  - documentation
+created_at: "2025-03-15T00:00:00.000Z"
+updated_at: "2026-05-25T00:00:00.000Z"
+tools:
+  - name: search_pages
+    description: Search for pages in the Notion workspace by title or content.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Search query string
+        filter:
+          type: object
+          properties:
+            property:
+              type: string
+            value:
+              type: string
+          description: Optional filter criteria
+      required:
+        - query
+  - name: read_page
+    description: Read the content of a Notion page by its ID.
+    input_schema:
+      type: object
+      properties:
+        pageId:
+          type: string
+          description: Notion page ID
+      required:
+        - pageId
+  - name: create_page
+    description: Create a new page in a Notion database or as a child of another page.
+    input_schema:
+      type: object
+      properties:
+        parentId:
+          type: string
+          description: Parent page or database ID
+        title:
+          type: string
+          description: Page title
+        content:
+          type: string
+          description: Page content in Markdown
+        properties:
+          type: object
+          description: Database properties to set
+      required:
+        - parentId
+        - title
+  - name: update_page
+    description: Update an existing Notion page's content or properties.
+    input_schema:
+      type: object
+      properties:
+        pageId:
+          type: string
+          description: Page ID to update
+        content:
+          type: string
+          description: New content in Markdown
+        properties:
+          type: object
+          description: Properties to update
+      required:
+        - pageId
+install:
+  npm: "@notionhq/notion-mcp-server"
+  command: npx
+  args:
+    - "-y"
+    - "@notionhq/notion-mcp-server"
+env_vars:
+  - name: NOTION_API_KEY
+    description: Notion integration API key
+    required: true
+license: MIT
+version: "1.5.0"
+stars: 5800

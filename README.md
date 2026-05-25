@@ -6,7 +6,7 @@ A community-maintained registry of MCP (Model Context Protocol) servers — stru
 
 | Metric | Count |
 |--------|-------|
-| Servers | 10 |
+| Servers | 23 |
 | Categories | 11 |
 | Transport types | 3 (stdio, sse, http-streaming) |
 
@@ -28,14 +28,27 @@ mcp/
 │   ├── _template.yaml      # Template for contributors
 │   ├── aws-docs.yaml
 │   ├── brave-search.yaml
+│   ├── cloudflare.yaml
+│   ├── context7.yaml
+│   ├── docker.yaml
+│   ├── exa.yaml
 │   ├── fetch.yaml
 │   ├── filesystem.yaml
+│   ├── git.yaml
 │   ├── github.yaml
+│   ├── linear.yaml
 │   ├── memory.yaml
+│   ├── notion.yaml
+│   ├── playwright.yaml
 │   ├── postgres.yaml
 │   ├── puppeteer.yaml
+│   ├── redis.yaml
+│   ├── sentry.yaml
 │   ├── sequential-thinking.yaml
-│   └── slack.yaml
+│   ├── slack.yaml
+│   ├── sqlite.yaml
+│   ├── supabase.yaml
+│   └── time.yaml
 ├── categories/
 │   └── categories.yaml     # Category definitions
 ├── schemas/
@@ -46,7 +59,7 @@ mcp/
 ├── CHANGELOG.md             # Version history
 ├── LICENSE                  # MIT
 ├── README.md                # This file
-└── VERSION                  # Current version (0.1.0)
+└── VERSION                  # Current version (0.2.0)
 ```
 
 ## Quick Start
@@ -56,6 +69,10 @@ mcp/
 Visit [openmodels.run/mcp](https://openmodels.run/mcp) to search, filter, and compare MCP servers with a web UI.
 
 Or explore the YAML files directly in the [`servers/`](servers/) directory.
+
+### Install a server
+
+Each server detail page at `openmodels.run/mcp/{server-id}` includes an **Install MCP server** button that copies the install command to your clipboard and provides IDE-specific configuration snippets.
 
 ### Add a new server
 
@@ -77,9 +94,10 @@ description: >
 author:
   name: GitHub
   github: github
-repository: https://github.com/modelcontextprotocol/servers
+repository: https://github.com/github/github-mcp-server
 transport:
   - stdio
+  - http-streaming
 category: Development
 tags:
   - github
@@ -99,19 +117,47 @@ tools:
           type: string
       required: [owner, repo, title]
 install:
-  npm: "@modelcontextprotocol/server-github"
-  command: npx
-  args: ["-y", "@modelcontextprotocol/server-github"]
+  npm: "@github/github-mcp-server"
+  command: docker
+  args: ["run", "-i", "--rm", "-e", "GITHUB_PERSONAL_ACCESS_TOKEN", "ghcr.io/github/github-mcp-server"]
 env_vars:
   - name: GITHUB_PERSONAL_ACCESS_TOKEN
     description: GitHub personal access token for API authentication
     required: true
 license: MIT
-version: "0.6.2"
-stars: 18500
+version: "1.0.5"
+stars: 30200
 created_at: "2024-11-25T00:00:00.000Z"
-updated_at: "2025-06-01T00:00:00.000Z"
+updated_at: "2026-05-21T00:00:00.000Z"
 ```
+
+## Servers
+
+| Server | Category | Author | Transport |
+|--------|----------|--------|-----------|
+| [AWS Docs](servers/aws-docs.yaml) | Development | AWS Labs | stdio |
+| [Brave Search](servers/brave-search.yaml) | Research | Brave | stdio |
+| [Cloudflare](servers/cloudflare.yaml) | Cloud | Cloudflare | stdio |
+| [Context7](servers/context7.yaml) | Development | Upstash | stdio, http-streaming |
+| [Docker](servers/docker.yaml) | DevOps | Docker | stdio |
+| [Exa](servers/exa.yaml) | Research | Exa Labs | stdio |
+| [Fetch](servers/fetch.yaml) | Development | Anthropic | stdio |
+| [Filesystem](servers/filesystem.yaml) | Filesystem | Anthropic | stdio |
+| [Git](servers/git.yaml) | Development | Anthropic | stdio |
+| [GitHub](servers/github.yaml) | Development | GitHub | stdio, http-streaming |
+| [Linear](servers/linear.yaml) | Productivity | Linear | stdio |
+| [Memory](servers/memory.yaml) | AI | Anthropic | stdio |
+| [Notion](servers/notion.yaml) | Productivity | Notion | stdio |
+| [Playwright](servers/playwright.yaml) | Browser Automation | Microsoft | stdio |
+| [PostgreSQL](servers/postgres.yaml) | Database | Anthropic | stdio |
+| [Puppeteer](servers/puppeteer.yaml) | Browser Automation | Anthropic | stdio |
+| [Redis](servers/redis.yaml) | Database | Anthropic | stdio |
+| [Sentry](servers/sentry.yaml) | DevOps | Sentry | stdio |
+| [Sequential Thinking](servers/sequential-thinking.yaml) | AI | Anthropic | stdio |
+| [Slack](servers/slack.yaml) | Communication | Anthropic | stdio |
+| [SQLite](servers/sqlite.yaml) | Database | Anthropic | stdio |
+| [Supabase](servers/supabase.yaml) | Database | Supabase | stdio |
+| [Time](servers/time.yaml) | Productivity | Anthropic | stdio |
 
 ## Categories
 
@@ -166,6 +212,7 @@ MCP servers are ingested into the OpenModels platform and available via:
 - **Web UI** — browse, filter, search, and compare at [openmodels.run/mcp](https://openmodels.run/mcp)
 - **API** — query programmatically via `/api/v1/mcp/servers`
 - **IDE configs** — generate connection snippets for Claude Code, Cursor, Windsurf, Gemini CLI, Kiro, and VS Code
+- **Install button** — one-click copy of install commands on each server detail page
 
 ## License
 

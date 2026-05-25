@@ -1,0 +1,117 @@
+id: cloudflare
+name: Cloudflare MCP Server
+description: >
+  Official Cloudflare MCP server for managing Cloudflare services. Enables AI agents to
+  interact with Workers, KV namespaces, R2 storage, D1 databases, and DNS records.
+  Supports deploying Workers scripts, managing environment variables, querying analytics,
+  and configuring security settings across Cloudflare's edge network.
+author:
+  name: Cloudflare
+  github: cloudflare
+repository: https://github.com/cloudflare/mcp-server-cloudflare
+transport:
+  - stdio
+category: Cloud
+tags:
+  - cloudflare
+  - workers
+  - edge
+  - cdn
+  - dns
+  - serverless
+created_at: "2025-02-15T00:00:00.000Z"
+updated_at: "2026-05-25T00:00:00.000Z"
+tools:
+  - name: list_workers
+    description: List all Workers scripts in the Cloudflare account.
+    input_schema:
+      type: object
+      properties: {}
+  - name: deploy_worker
+    description: Deploy or update a Cloudflare Worker script.
+    input_schema:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Worker script name
+        script:
+          type: string
+          description: Worker script content (JavaScript/TypeScript)
+        bindings:
+          type: object
+          description: Environment variable and resource bindings
+      required:
+        - name
+        - script
+  - name: kv_get
+    description: Get a value from a KV namespace by key.
+    input_schema:
+      type: object
+      properties:
+        namespace_id:
+          type: string
+          description: KV namespace ID
+        key:
+          type: string
+          description: Key to retrieve
+      required:
+        - namespace_id
+        - key
+  - name: d1_query
+    description: Execute a SQL query against a D1 database.
+    input_schema:
+      type: object
+      properties:
+        database_id:
+          type: string
+          description: D1 database ID
+        query:
+          type: string
+          description: SQL query to execute
+        params:
+          type: array
+          description: Query parameters
+      required:
+        - database_id
+        - query
+  - name: manage_dns
+    description: Create, update, or delete DNS records for a zone.
+    input_schema:
+      type: object
+      properties:
+        zone_id:
+          type: string
+          description: Cloudflare zone ID
+        action:
+          type: string
+          description: Action (create, update, delete, list)
+        record:
+          type: object
+          properties:
+            type:
+              type: string
+            name:
+              type: string
+            content:
+              type: string
+          description: DNS record details
+      required:
+        - zone_id
+        - action
+install:
+  npm: "@cloudflare/mcp-server-cloudflare"
+  command: npx
+  args:
+    - "-y"
+    - "@cloudflare/mcp-server-cloudflare"
+env_vars:
+  - name: CLOUDFLARE_API_TOKEN
+    description: Cloudflare API token with appropriate permissions
+    required: true
+  - name: CLOUDFLARE_ACCOUNT_ID
+    description: Cloudflare account ID
+    required: true
+license: Apache-2.0
+version: "0.6.0"
+stars: 3200

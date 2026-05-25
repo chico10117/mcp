@@ -1,0 +1,61 @@
+id: time
+name: Time MCP Server
+description: >
+  Reference MCP server providing time and timezone conversion capabilities. Enables AI
+  agents to get the current time in any timezone, convert between timezones, calculate
+  time differences, and format dates. Useful for scheduling, international coordination,
+  and any task requiring accurate time awareness.
+author:
+  name: Anthropic
+  github: modelcontextprotocol
+repository: https://github.com/modelcontextprotocol/servers
+transport:
+  - stdio
+category: Productivity
+tags:
+  - time
+  - timezone
+  - date
+  - scheduling
+  - conversion
+created_at: "2024-11-25T00:00:00.000Z"
+updated_at: "2026-01-27T00:00:00.000Z"
+tools:
+  - name: get_current_time
+    description: Get the current time in a specified timezone.
+    input_schema:
+      type: object
+      properties:
+        timezone:
+          type: string
+          description: IANA timezone name (e.g. America/New_York, Europe/London, Asia/Tokyo)
+      required:
+        - timezone
+  - name: convert_time
+    description: Convert a time from one timezone to another.
+    input_schema:
+      type: object
+      properties:
+        time:
+          type: string
+          description: Time to convert (ISO 8601 format)
+        from_timezone:
+          type: string
+          description: Source timezone
+        to_timezone:
+          type: string
+          description: Target timezone
+      required:
+        - time
+        - from_timezone
+        - to_timezone
+install:
+  command: uvx
+  args:
+    - "mcp-server-time"
+    - "--local-timezone"
+    - "UTC"
+env_vars: []
+license: Apache-2.0
+version: "2026.1.26"
+stars: 86200

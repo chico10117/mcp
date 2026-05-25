@@ -1,0 +1,95 @@
+id: redis
+name: Redis MCP Server
+description: >
+  MCP server for Redis key-value store interaction. Enables AI agents to read and write
+  data in Redis, manage keys, work with data structures (strings, hashes, lists, sets),
+  and perform pub/sub operations. Useful for caching, session management, real-time data,
+  and inter-service communication in distributed systems.
+author:
+  name: Anthropic
+  github: modelcontextprotocol
+repository: https://github.com/modelcontextprotocol/servers
+transport:
+  - stdio
+category: Database
+tags:
+  - redis
+  - cache
+  - key-value
+  - pub-sub
+  - real-time
+created_at: "2024-11-25T00:00:00.000Z"
+updated_at: "2026-01-27T00:00:00.000Z"
+tools:
+  - name: get
+    description: Get the value of a key from Redis.
+    input_schema:
+      type: object
+      properties:
+        key:
+          type: string
+          description: Redis key to retrieve
+      required:
+        - key
+  - name: set
+    description: Set a key-value pair in Redis with optional expiration.
+    input_schema:
+      type: object
+      properties:
+        key:
+          type: string
+          description: Redis key
+        value:
+          type: string
+          description: Value to store
+        ttl:
+          type: integer
+          description: Time-to-live in seconds (optional)
+      required:
+        - key
+        - value
+  - name: keys
+    description: Find all keys matching a pattern.
+    input_schema:
+      type: object
+      properties:
+        pattern:
+          type: string
+          description: Glob-style pattern to match keys (e.g. user:*)
+      required:
+        - pattern
+  - name: hgetall
+    description: Get all fields and values of a hash stored at key.
+    input_schema:
+      type: object
+      properties:
+        key:
+          type: string
+          description: Redis hash key
+      required:
+        - key
+  - name: delete
+    description: Delete one or more keys from Redis.
+    input_schema:
+      type: object
+      properties:
+        keys:
+          type: array
+          items:
+            type: string
+          description: Keys to delete
+      required:
+        - keys
+install:
+  command: npx
+  args:
+    - "-y"
+    - "@modelcontextprotocol/server-redis"
+    - "redis://localhost:6379"
+env_vars:
+  - name: REDIS_URL
+    description: Redis connection URL (default redis://localhost:6379)
+    required: false
+license: Apache-2.0
+version: "2026.1.26"
+stars: 86200

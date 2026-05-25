@@ -1,0 +1,78 @@
+id: sqlite
+name: SQLite MCP Server
+description: >
+  MCP server for SQLite database interaction and business intelligence. Enables AI agents
+  to query SQLite databases, create and modify tables, run analytical queries, and generate
+  insights from data. Supports read-write operations with transaction safety and provides
+  schema introspection for understanding database structure.
+author:
+  name: Anthropic
+  github: modelcontextprotocol
+repository: https://github.com/modelcontextprotocol/servers
+transport:
+  - stdio
+category: Database
+tags:
+  - sqlite
+  - database
+  - sql
+  - analytics
+  - business-intelligence
+created_at: "2024-11-25T00:00:00.000Z"
+updated_at: "2026-01-27T00:00:00.000Z"
+tools:
+  - name: read_query
+    description: Execute a SELECT query against the SQLite database.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: SQL SELECT query to execute
+      required:
+        - query
+  - name: write_query
+    description: Execute an INSERT, UPDATE, or DELETE query against the database.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: SQL write query to execute
+      required:
+        - query
+  - name: create_table
+    description: Create a new table in the SQLite database.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: CREATE TABLE SQL statement
+      required:
+        - query
+  - name: list_tables
+    description: List all tables in the SQLite database.
+    input_schema:
+      type: object
+      properties: {}
+  - name: describe_table
+    description: Get the schema of a specific table including columns and types.
+    input_schema:
+      type: object
+      properties:
+        table_name:
+          type: string
+          description: Name of the table to describe
+      required:
+        - table_name
+install:
+  command: uvx
+  args:
+    - "mcp-server-sqlite"
+    - "--db-path"
+    - "./database.db"
+env_vars: []
+license: Apache-2.0
+version: "2026.1.26"
+stars: 86200

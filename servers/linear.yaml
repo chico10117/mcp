@@ -1,0 +1,96 @@
+id: linear
+name: Linear MCP Server
+description: >
+  Official Linear MCP server for project management integration. Enables AI agents to
+  find, create, and update issues, projects, and comments in Linear. Supports searching
+  issues by status, assignee, or label, creating new issues with full metadata, and
+  managing project workflows directly from AI-powered development environments.
+author:
+  name: Linear
+  github: linear
+repository: https://github.com/linear/linear-mcp-server
+transport:
+  - stdio
+category: Productivity
+tags:
+  - linear
+  - project-management
+  - issues
+  - task-tracking
+  - agile
+created_at: "2025-05-01T00:00:00.000Z"
+updated_at: "2026-05-25T00:00:00.000Z"
+tools:
+  - name: search_issues
+    description: Search for issues in Linear by query string, status, or assignee.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Search query to find issues
+        status:
+          type: string
+          description: Filter by issue status
+        assignee:
+          type: string
+          description: Filter by assignee username
+      required:
+        - query
+  - name: create_issue
+    description: Create a new issue in a Linear team with title, description, and metadata.
+    input_schema:
+      type: object
+      properties:
+        teamId:
+          type: string
+          description: Team ID to create the issue in
+        title:
+          type: string
+          description: Issue title
+        description:
+          type: string
+          description: Issue description in Markdown
+        priority:
+          type: integer
+          description: Priority level (0=none, 1=urgent, 2=high, 3=medium, 4=low)
+        labelIds:
+          type: array
+          items:
+            type: string
+          description: Label IDs to apply
+      required:
+        - teamId
+        - title
+  - name: update_issue
+    description: Update an existing issue's properties.
+    input_schema:
+      type: object
+      properties:
+        issueId:
+          type: string
+          description: Issue ID to update
+        title:
+          type: string
+          description: New title
+        status:
+          type: string
+          description: New status name
+        priority:
+          type: integer
+          description: New priority level
+      required:
+        - issueId
+install:
+  npm: "@linear/mcp-server"
+  command: npx
+  args:
+    - "-y"
+    - "@linear/mcp-server"
+env_vars:
+  - name: LINEAR_API_KEY
+    description: Linear API key for authentication
+    required: true
+license: MIT
+version: "0.5.0"
+stars: 4200
