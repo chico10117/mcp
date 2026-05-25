@@ -8,7 +8,7 @@ description: >
 author:
   name: Supabase
   github: supabase
-repository: https://github.com/supabase/supabase-mcp
+repository: https://github.com/supabase-community/supabase-mcp
 transport:
   - stdio
 category: Database
@@ -88,4 +88,4 @@ env_vars:
     required: true
 license: Apache-2.0
 version: "0.3.0"
-stars: 4100
+stars: 2706

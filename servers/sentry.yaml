@@ -8,7 +8,7 @@ description: >
 author:
   name: Sentry
   github: getsentry
-repository: https://github.com/getsentry/sentry-mcp-server
+repository: https://github.com/getsentry/sentry-mcp
 transport:
   - stdio
 category: DevOps
@@ -78,4 +78,4 @@ env_vars:
     required: true
 license: MIT
 version: "0.4.0"
-stars: 2900
+stars: 704

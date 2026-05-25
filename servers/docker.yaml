@@ -8,7 +8,7 @@ description: >
 author:
   name: Docker
   github: docker
-repository: https://github.com/docker/docker-mcp
+repository: https://github.com/docker/mcp-gateway
 transport:
   - stdio
 category: DevOps
@@ -97,4 +97,4 @@ install:
 env_vars: []
 license: Apache-2.0
 version: "0.3.0"
-stars: 3400
+stars: 1410

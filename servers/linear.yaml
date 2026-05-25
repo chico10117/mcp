@@ -8,7 +8,7 @@ description: >
 author:
   name: Linear
   github: linear
-repository: https://github.com/linear/linear-mcp-server
+repository: https://github.com/jerhadf/linear-mcp-server
 transport:
   - stdio
 category: Productivity
@@ -93,4 +93,4 @@ env_vars:
     required: true
 license: MIT
 version: "0.5.0"
-stars: 4200
+stars: 344
