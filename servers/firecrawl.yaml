@@ -1,0 +1,98 @@
+id: firecrawl
+name: Firecrawl MCP Server
+description: >
+  MCP server for Firecrawl's web scraping and crawling API. Converts any website into
+  clean, LLM-ready markdown or structured data. Supports single page scraping, multi-page
+  crawling with depth control, sitemap-based extraction, and batch operations. Handles
+  JavaScript-rendered pages, bypasses common anti-bot measures, and returns structured
+  content suitable for RAG pipelines and knowledge base construction.
+author:
+  name: Mendable
+  github: mendableai
+repository: https://github.com/mendableai/firecrawl-mcp-server
+transport:
+  - stdio
+category: Research
+tags:
+  - web-scraping
+  - crawling
+  - markdown
+  - rag
+  - content-extraction
+  - data-pipeline
+created_at: "2025-03-10T00:00:00.000Z"
+updated_at: "2026-05-26T00:00:00.000Z"
+tools:
+  - name: firecrawl_scrape
+    description: Scrape a single URL and return clean markdown or structured content.
+    input_schema:
+      type: object
+      properties:
+        url:
+          type: string
+          description: URL to scrape
+        formats:
+          type: array
+          items:
+            type: string
+          description: Output formats (markdown, html, rawHtml, links, screenshot)
+        onlyMainContent:
+          type: boolean
+          description: Extract only the main content, removing nav/footer/ads
+        waitFor:
+          type: integer
+          description: Milliseconds to wait for JavaScript rendering
+      required:
+        - url
+  - name: firecrawl_crawl
+    description: Crawl a website starting from a URL, following links up to a specified depth.
+    input_schema:
+      type: object
+      properties:
+        url:
+          type: string
+          description: Starting URL for the crawl
+        maxDepth:
+          type: integer
+          description: Maximum link depth to crawl (default 2)
+        limit:
+          type: integer
+          description: Maximum number of pages to crawl
+        includePaths:
+          type: array
+          items:
+            type: string
+          description: Only crawl URLs matching these glob patterns
+        excludePaths:
+          type: array
+          items:
+            type: string
+          description: Skip URLs matching these glob patterns
+      required:
+        - url
+  - name: firecrawl_map
+    description: Discover all URLs on a website using its sitemap or by crawling.
+    input_schema:
+      type: object
+      properties:
+        url:
+          type: string
+          description: Website URL to map
+        limit:
+          type: integer
+          description: Maximum number of URLs to return
+      required:
+        - url
+install:
+  npm: "firecrawl-mcp"
+  command: npx
+  args:
+    - "-y"
+    - "firecrawl-mcp"
+env_vars:
+  - name: FIRECRAWL_API_KEY
+    description: Firecrawl API key for authentication
+    required: true
+license: MIT
+version: "1.6.0"
+stars: 3250

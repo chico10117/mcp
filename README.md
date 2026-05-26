@@ -6,7 +6,7 @@ A community-maintained registry of MCP (Model Context Protocol) servers — stru
 
 | Metric | Count |
 |--------|-------|
-| Servers | 23 |
+| Servers | 32 |
 | Categories | 11 |
 | Transport types | 3 (stdio, sse, http-streaming) |
 
@@ -26,6 +26,7 @@ This registry catalogs MCP servers that extend AI agents with tools, resources, 
 mcp/
 ├── servers/                 # One YAML file per MCP server
 │   ├── _template.yaml      # Template for contributors
+│   ├── arxiv.yaml
 │   ├── aws-docs.yaml
 │   ├── brave-search.yaml
 │   ├── cloudflare.yaml
@@ -33,21 +34,29 @@ mcp/
 │   ├── docker.yaml
 │   ├── exa.yaml
 │   ├── fetch.yaml
+│   ├── firecrawl.yaml
 │   ├── filesystem.yaml
 │   ├── git.yaml
 │   ├── github.yaml
+│   ├── grafana.yaml
 │   ├── linear.yaml
 │   ├── memory.yaml
+│   ├── mongodb.yaml
+│   ├── neon.yaml
 │   ├── notion.yaml
+│   ├── perplexity.yaml
 │   ├── playwright.yaml
 │   ├── postgres.yaml
 │   ├── puppeteer.yaml
+│   ├── qdrant.yaml
 │   ├── redis.yaml
 │   ├── sentry.yaml
 │   ├── sequential-thinking.yaml
 │   ├── slack.yaml
 │   ├── sqlite.yaml
+│   ├── stripe.yaml
 │   ├── supabase.yaml
+│   ├── tavily.yaml
 │   └── time.yaml
 ├── categories/
 │   └── categories.yaml     # Category definitions
@@ -59,7 +68,7 @@ mcp/
 ├── CHANGELOG.md             # Version history
 ├── LICENSE                  # MIT
 ├── README.md                # This file
-└── VERSION                  # Current version (0.2.0)
+└── VERSION                  # Current version (0.3.0)
 ```
 
 ## Quick Start
@@ -135,6 +144,7 @@ updated_at: "2026-05-21T00:00:00.000Z"
 
 | Server | Category | Author | Transport |
 |--------|----------|--------|-----------|
+| [ArXiv](servers/arxiv.yaml) | Research | Joe Blazick | stdio, http-streaming |
 | [AWS Docs](servers/aws-docs.yaml) | Development | AWS Labs | stdio |
 | [Brave Search](servers/brave-search.yaml) | Research | Brave | stdio |
 | [Cloudflare](servers/cloudflare.yaml) | Cloud | Cloudflare | stdio |
@@ -142,21 +152,29 @@ updated_at: "2026-05-21T00:00:00.000Z"
 | [Docker](servers/docker.yaml) | DevOps | Docker | stdio |
 | [Exa](servers/exa.yaml) | Research | Exa Labs | stdio |
 | [Fetch](servers/fetch.yaml) | Development | Anthropic | stdio |
+| [Firecrawl](servers/firecrawl.yaml) | Research | Mendable | stdio |
 | [Filesystem](servers/filesystem.yaml) | Filesystem | Anthropic | stdio |
 | [Git](servers/git.yaml) | Development | Anthropic | stdio |
 | [GitHub](servers/github.yaml) | Development | GitHub | stdio, http-streaming |
+| [Grafana](servers/grafana.yaml) | DevOps | Grafana Labs | stdio, sse |
 | [Linear](servers/linear.yaml) | Productivity | Linear | stdio |
 | [Memory](servers/memory.yaml) | AI | Anthropic | stdio |
+| [MongoDB](servers/mongodb.yaml) | Database | MongoDB | stdio, http-streaming |
+| [Neon](servers/neon.yaml) | Database | Neon | stdio |
 | [Notion](servers/notion.yaml) | Productivity | Notion | stdio |
+| [Perplexity](servers/perplexity.yaml) | Research | Perplexity AI | stdio, http-streaming |
 | [Playwright](servers/playwright.yaml) | Browser Automation | Microsoft | stdio |
 | [PostgreSQL](servers/postgres.yaml) | Database | Anthropic | stdio |
 | [Puppeteer](servers/puppeteer.yaml) | Browser Automation | Anthropic | stdio |
+| [Qdrant](servers/qdrant.yaml) | Database | Qdrant | stdio, sse, http-streaming |
 | [Redis](servers/redis.yaml) | Database | Anthropic | stdio |
 | [Sentry](servers/sentry.yaml) | DevOps | Sentry | stdio |
 | [Sequential Thinking](servers/sequential-thinking.yaml) | AI | Anthropic | stdio |
 | [Slack](servers/slack.yaml) | Communication | Anthropic | stdio |
 | [SQLite](servers/sqlite.yaml) | Database | Anthropic | stdio |
+| [Stripe](servers/stripe.yaml) | Development | Stripe | stdio |
 | [Supabase](servers/supabase.yaml) | Database | Supabase | stdio |
+| [Tavily](servers/tavily.yaml) | Research | Tavily | stdio |
 | [Time](servers/time.yaml) | Productivity | Anthropic | stdio |
 
 ## Categories

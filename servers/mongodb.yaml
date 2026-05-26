@@ -1,0 +1,138 @@
+id: mongodb
+name: MongoDB MCP Server
+description: >
+  Official MCP server for interacting with MongoDB databases and MongoDB Atlas. Enables
+  AI agents to query collections, run aggregations, manage indexes, inspect schemas,
+  and perform CRUD operations. Also supports Atlas cloud management including cluster
+  provisioning, database user management, performance advisor, and stream processing.
+  Supports read-only mode for safe exploration.
+author:
+  name: MongoDB
+  github: mongodb-js
+repository: https://github.com/mongodb-js/mongodb-mcp-server
+transport:
+  - stdio
+  - http-streaming
+category: Database
+tags:
+  - mongodb
+  - nosql
+  - atlas
+  - database
+  - aggregation
+  - document-db
+  - cloud
+created_at: "2025-01-10T00:00:00.000Z"
+updated_at: "2026-05-22T00:00:00.000Z"
+tools:
+  - name: find
+    description: Run a find query against a MongoDB collection with optional filter, projection, sort, and limit.
+    input_schema:
+      type: object
+      properties:
+        database:
+          type: string
+          description: Database name
+        collection:
+          type: string
+          description: Collection name
+        filter:
+          type: object
+          description: MongoDB query filter document
+        projection:
+          type: object
+          description: Fields to include or exclude
+        limit:
+          type: integer
+          description: Maximum number of documents to return
+        sort:
+          type: object
+          description: Sort specification
+      required:
+        - database
+        - collection
+  - name: aggregate
+    description: Run an aggregation pipeline against a MongoDB collection.
+    input_schema:
+      type: object
+      properties:
+        database:
+          type: string
+          description: Database name
+        collection:
+          type: string
+          description: Collection name
+        pipeline:
+          type: array
+          description: Array of aggregation pipeline stages
+      required:
+        - database
+        - collection
+        - pipeline
+  - name: list-databases
+    description: List all databases on the connected MongoDB instance.
+    input_schema:
+      type: object
+      properties: {}
+  - name: list-collections
+    description: List all collections in a given database.
+    input_schema:
+      type: object
+      properties:
+        database:
+          type: string
+          description: Database name
+      required:
+        - database
+  - name: collection-schema
+    description: Infer and describe the schema for a MongoDB collection by sampling documents.
+    input_schema:
+      type: object
+      properties:
+        database:
+          type: string
+          description: Database name
+        collection:
+          type: string
+          description: Collection name
+      required:
+        - database
+        - collection
+  - name: insert-many
+    description: Insert an array of documents into a MongoDB collection.
+    input_schema:
+      type: object
+      properties:
+        database:
+          type: string
+          description: Database name
+        collection:
+          type: string
+          description: Collection name
+        documents:
+          type: array
+          description: Array of documents to insert
+      required:
+        - database
+        - collection
+        - documents
+install:
+  npm: "mongodb-mcp-server"
+  command: npx
+  args:
+    - "-y"
+    - "mongodb-mcp-server"
+    - "--readOnly"
+env_vars:
+  - name: MDB_MCP_CONNECTION_STRING
+    description: MongoDB connection string (e.g., mongodb://localhost:27017 or Atlas URI)
+    required: false
+  - name: MDB_MCP_API_CLIENT_ID
+    description: Atlas API service account client ID (for Atlas management tools)
+    required: false
+  - name: MDB_MCP_API_CLIENT_SECRET
+    description: Atlas API service account client secret
+    required: false
+license: Apache-2.0
+version: "1.11.0"
+stars: 1000

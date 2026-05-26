@@ -1,0 +1,95 @@
+id: neon
+name: Neon MCP Server
+description: >
+  MCP server for Neon's serverless PostgreSQL platform. Enables AI agents to manage
+  Neon projects, branches, databases, and roles. Supports creating database branches
+  for development and testing, running SQL queries, managing connection strings, and
+  performing schema migrations. Leverages Neon's instant branching for safe experimentation
+  without affecting production data.
+author:
+  name: Neon
+  github: neondatabase
+repository: https://github.com/neondatabase/mcp-server-neon
+transport:
+  - stdio
+category: Database
+tags:
+  - postgres
+  - serverless
+  - database
+  - branching
+  - sql
+  - migrations
+created_at: "2025-03-01T00:00:00.000Z"
+updated_at: "2026-05-26T00:00:00.000Z"
+tools:
+  - name: list_projects
+    description: List all Neon projects in the account.
+    input_schema:
+      type: object
+      properties: {}
+  - name: create_branch
+    description: Create a new database branch from an existing one for safe development.
+    input_schema:
+      type: object
+      properties:
+        project_id:
+          type: string
+          description: Neon project ID
+        parent_branch_id:
+          type: string
+          description: Branch to create from (defaults to main)
+        name:
+          type: string
+          description: Name for the new branch
+      required:
+        - project_id
+  - name: run_sql
+    description: Execute a SQL query against a Neon database branch.
+    input_schema:
+      type: object
+      properties:
+        project_id:
+          type: string
+          description: Neon project ID
+        branch_id:
+          type: string
+          description: Branch to run the query on
+        query:
+          type: string
+          description: SQL query to execute
+        database:
+          type: string
+          description: Database name (defaults to neondb)
+      required:
+        - project_id
+        - query
+  - name: get_connection_string
+    description: Get the connection string for a Neon database branch.
+    input_schema:
+      type: object
+      properties:
+        project_id:
+          type: string
+          description: Neon project ID
+        branch_id:
+          type: string
+          description: Branch ID
+        database:
+          type: string
+          description: Database name
+      required:
+        - project_id
+install:
+  npm: "@neondatabase/mcp-server-neon"
+  command: npx
+  args:
+    - "-y"
+    - "@neondatabase/mcp-server-neon"
+env_vars:
+  - name: NEON_API_KEY
+    description: Neon API key for authentication
+    required: true
+license: MIT
+version: "0.3.0"
+stars: 1540

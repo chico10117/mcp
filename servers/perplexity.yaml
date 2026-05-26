@@ -1,0 +1,89 @@
+id: perplexity
+name: Perplexity MCP Server
+description: >
+  Official MCP server for the Perplexity API Platform. Provides AI agents with real-time
+  web search, deep research, and advanced reasoning capabilities through Sonar models.
+  Includes tools for quick web search, conversational Q&A with citations, comprehensive
+  deep research reports, and complex analytical reasoning. Returns answers with source
+  attribution and supports configurable timeouts for long research queries.
+author:
+  name: Perplexity AI
+  github: perplexityai
+repository: https://github.com/perplexityai/modelcontextprotocol
+transport:
+  - stdio
+  - http-streaming
+category: Research
+tags:
+  - search
+  - web-search
+  - research
+  - reasoning
+  - citations
+  - deep-research
+  - ai-search
+created_at: "2025-01-05T00:00:00.000Z"
+updated_at: "2026-04-26T00:00:00.000Z"
+tools:
+  - name: perplexity_search
+    description: Direct web search using the Perplexity Search API. Returns ranked results with metadata.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Search query
+      required:
+        - query
+  - name: perplexity_ask
+    description: Conversational AI with real-time web search using sonar-pro model. Great for quick questions.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Question or topic to search and answer
+      required:
+        - query
+  - name: perplexity_research
+    description: Deep comprehensive research using sonar-deep-research model. Ideal for thorough analysis.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Research topic or question for in-depth analysis
+        strip_thinking:
+          type: boolean
+          description: Remove thinking tags from response to save tokens (default false)
+      required:
+        - query
+  - name: perplexity_reason
+    description: Advanced reasoning and problem-solving using sonar-reasoning-pro model.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Complex question or problem requiring analytical reasoning
+        strip_thinking:
+          type: boolean
+          description: Remove thinking tags from response to save tokens (default false)
+      required:
+        - query
+install:
+  npm: "@perplexity-ai/mcp-server"
+  command: npx
+  args:
+    - "-y"
+    - "@perplexity-ai/mcp-server"
+env_vars:
+  - name: PERPLEXITY_API_KEY
+    description: Perplexity API key for authentication
+    required: true
+  - name: PERPLEXITY_TIMEOUT_MS
+    description: Request timeout in milliseconds (default 300000 = 5 minutes)
+    required: false
+license: MIT
+version: "0.9.0"
+stars: 2200

@@ -1,0 +1,99 @@
+id: stripe
+name: Stripe MCP Server
+description: >
+  Official MCP server for the Stripe API. Enables AI agents to interact with Stripe's
+  payment infrastructure including creating and managing customers, payment intents,
+  subscriptions, invoices, and products. Supports reading transaction data, handling
+  refunds, and querying balance information. Useful for building payment integrations,
+  debugging billing issues, and automating financial operations.
+author:
+  name: Stripe
+  github: stripe
+repository: https://github.com/stripe/agent-toolkit
+transport:
+  - stdio
+category: Development
+tags:
+  - payments
+  - billing
+  - subscriptions
+  - fintech
+  - api
+  - e-commerce
+created_at: "2025-04-05T00:00:00.000Z"
+updated_at: "2026-05-26T00:00:00.000Z"
+tools:
+  - name: create_customer
+    description: Create a new Stripe customer with email, name, and metadata.
+    input_schema:
+      type: object
+      properties:
+        email:
+          type: string
+          description: Customer email address
+        name:
+          type: string
+          description: Customer full name
+        metadata:
+          type: object
+          description: Key-value metadata to attach to the customer
+      required:
+        - email
+  - name: create_payment_intent
+    description: Create a payment intent for processing a charge.
+    input_schema:
+      type: object
+      properties:
+        amount:
+          type: integer
+          description: Amount in smallest currency unit (e.g., cents)
+        currency:
+          type: string
+          description: Three-letter ISO currency code (e.g., usd)
+        customer:
+          type: string
+          description: Stripe customer ID
+      required:
+        - amount
+        - currency
+  - name: list_payments
+    description: List recent payment intents with optional filters.
+    input_schema:
+      type: object
+      properties:
+        customer:
+          type: string
+          description: Filter by customer ID
+        limit:
+          type: integer
+          description: Number of results to return (max 100)
+        status:
+          type: string
+          description: Filter by payment status
+  - name: create_refund
+    description: Create a refund for a payment intent.
+    input_schema:
+      type: object
+      properties:
+        payment_intent:
+          type: string
+          description: Payment intent ID to refund
+        amount:
+          type: integer
+          description: Amount to refund (partial refund if less than original)
+      required:
+        - payment_intent
+install:
+  npm: "@stripe/agent-toolkit"
+  command: npx
+  args:
+    - "-y"
+    - "@stripe/agent-toolkit"
+    - "mcp"
+env_vars:
+  - name: STRIPE_SECRET_KEY
+    description: Stripe secret API key
+    required: true
+license: MIT
+version: "0.5.0"
+stars: 2890

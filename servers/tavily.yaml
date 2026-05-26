@@ -1,0 +1,81 @@
+id: tavily
+name: Tavily MCP Server
+description: >
+  MCP server for Tavily's AI-optimized search engine. Designed specifically for LLM
+  agents and RAG applications, providing concise, factual search results with source
+  attribution. Supports general web search, news search, and direct Q&A extraction.
+  Returns pre-processed content optimized for AI consumption with relevance scoring
+  and content deduplication.
+author:
+  name: Tavily
+  github: tavily-ai
+repository: https://github.com/tavily-ai/tavily-mcp
+transport:
+  - stdio
+category: Research
+tags:
+  - search
+  - web-search
+  - ai-search
+  - rag
+  - news
+  - research
+created_at: "2025-02-20T00:00:00.000Z"
+updated_at: "2026-05-26T00:00:00.000Z"
+tools:
+  - name: tavily_search
+    description: Perform an AI-optimized web search and return relevant results with content.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Search query
+        search_depth:
+          type: string
+          enum: ["basic", "advanced"]
+          description: Search depth (basic is faster, advanced is more thorough)
+        max_results:
+          type: integer
+          description: Maximum number of results to return (default 5)
+        include_domains:
+          type: array
+          items:
+            type: string
+          description: Only include results from these domains
+        exclude_domains:
+          type: array
+          items:
+            type: string
+          description: Exclude results from these domains
+        topic:
+          type: string
+          enum: ["general", "news"]
+          description: Search topic category
+      required:
+        - query
+  - name: tavily_extract
+    description: Extract and parse content from one or more URLs into clean text.
+    input_schema:
+      type: object
+      properties:
+        urls:
+          type: array
+          items:
+            type: string
+          description: URLs to extract content from
+      required:
+        - urls
+install:
+  npm: "tavily-mcp"
+  command: npx
+  args:
+    - "-y"
+    - "tavily-mcp"
+env_vars:
+  - name: TAVILY_API_KEY
+    description: Tavily API key for authentication
+    required: true
+license: MIT
+version: "0.3.1"
+stars: 1820

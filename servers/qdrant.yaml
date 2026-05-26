@@ -1,0 +1,76 @@
+id: qdrant
+name: Qdrant MCP Server
+description: >
+  Official MCP server for Qdrant vector search engine. Acts as a semantic memory layer
+  enabling AI agents to store and retrieve information using vector similarity search.
+  Supports storing text with metadata, semantic querying, configurable embedding models
+  via FastEmbed, and both cloud-hosted and local Qdrant instances. Useful for building
+  RAG pipelines, code search, knowledge bases, and long-term agent memory.
+author:
+  name: Qdrant
+  github: qdrant
+repository: https://github.com/qdrant/mcp-server-qdrant
+transport:
+  - stdio
+  - sse
+  - http-streaming
+category: Database
+tags:
+  - vector-database
+  - semantic-search
+  - embeddings
+  - rag
+  - memory
+  - similarity-search
+created_at: "2025-01-20T00:00:00.000Z"
+updated_at: "2026-05-20T00:00:00.000Z"
+tools:
+  - name: qdrant-store
+    description: Store information in the Qdrant database with optional metadata.
+    input_schema:
+      type: object
+      properties:
+        information:
+          type: string
+          description: Text information to store and index
+        metadata:
+          type: object
+          description: Optional key-value metadata to attach to the stored entry
+        collection_name:
+          type: string
+          description: Name of the collection to store in (required if no default set)
+      required:
+        - information
+  - name: qdrant-find
+    description: Retrieve relevant information from Qdrant using semantic similarity search.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Natural language query to search for
+        collection_name:
+          type: string
+          description: Name of the collection to search in (required if no default set)
+      required:
+        - query
+install:
+  command: uvx
+  args:
+    - "mcp-server-qdrant"
+env_vars:
+  - name: QDRANT_URL
+    description: URL of the Qdrant server (e.g., http://localhost:6333 or Qdrant Cloud URL)
+    required: false
+  - name: QDRANT_API_KEY
+    description: API key for Qdrant Cloud authentication
+    required: false
+  - name: COLLECTION_NAME
+    description: Default collection name to use
+    required: false
+  - name: EMBEDDING_MODEL
+    description: FastEmbed model for encoding (default sentence-transformers/all-MiniLM-L6-v2)
+    required: false
+license: Apache-2.0
+version: "0.8.1"
+stars: 1400
