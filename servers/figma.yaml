@@ -1,0 +1,189 @@
+id: figma
+name: Figma MCP Server
+description: >
+  Official Figma MCP server that brings design context directly into AI coding workflows.
+  Provides tools for extracting design information, generating code from Figma selections,
+  taking screenshots, creating and editing Figma files, generating diagrams from Mermaid
+  syntax, searching design systems, managing Code Connect mappings, and uploading assets.
+  Supports both remote (OAuth) and local (desktop app) server modes.
+author:
+  name: Figma
+  github: figma
+repository: https://github.com/figma/figma-mcp
+transport:
+  - http-streaming
+  - stdio
+category: Development
+tags:
+  - figma
+  - design
+  - ui
+  - design-to-code
+  - components
+  - design-system
+  - prototyping
+  - collaboration
+  - figjam
+created_at: "2025-06-08T00:00:00.000Z"
+updated_at: "2026-05-27T00:00:00.000Z"
+tools:
+  - name: get_design_context
+    description: >
+      Get the design context for a layer or selection in Figma. Returns code output
+      (React + Tailwind by default) that can be customized through prompts.
+    input_schema:
+      type: object
+      properties:
+        nodeId:
+          type: string
+          description: Figma node ID to get design context for
+        fileKey:
+          type: string
+          description: Figma file key
+        clientFrameworks:
+          type: string
+          description: Target framework (e.g. React, Vue, SwiftUI)
+      required:
+        - nodeId
+  - name: get_metadata
+    description: >
+      Returns a sparse XML representation of a selection containing basic properties
+      such as layer IDs, names, types, position and sizes.
+    input_schema:
+      type: object
+      properties:
+        nodeId:
+          type: string
+          description: Figma node ID (omit to get top-level pages list)
+        fileKey:
+          type: string
+          description: Figma file key
+  - name: get_screenshot
+    description: >
+      Take a screenshot of a selection in Figma to help preserve layout fidelity
+      in generated code.
+    input_schema:
+      type: object
+      properties:
+        nodeId:
+          type: string
+          description: Figma node ID to screenshot
+        fileKey:
+          type: string
+          description: Figma file key
+      required:
+        - nodeId
+  - name: get_variable_defs
+    description: >
+      Returns the variables and styles used in a Figma selection including colors,
+      spacing, and typography tokens.
+    input_schema:
+      type: object
+      properties:
+        nodeId:
+          type: string
+          description: Figma node ID
+        fileKey:
+          type: string
+          description: Figma file key
+      required:
+        - nodeId
+  - name: use_figma
+    description: >
+      General-purpose tool for creating, editing, deleting, or inspecting any object
+      in a Figma Design file, FigJam board, or Figma Slides deck.
+    input_schema:
+      type: object
+      properties:
+        fileKey:
+          type: string
+          description: Figma file key
+        action:
+          type: string
+          description: Action to perform on the Figma file
+      required:
+        - fileKey
+        - action
+  - name: create_new_file
+    description: >
+      Creates a new blank Figma Design, FigJam, or Figma Slides file in the
+      authenticated user's drafts.
+    input_schema:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name for the new file
+        fileType:
+          type: string
+          description: Type of file (design, figjam, slides)
+      required:
+        - name
+  - name: generate_diagram
+    description: >
+      Generates a FigJam diagram from Mermaid syntax or natural language descriptions.
+      Supports flowcharts, Gantt charts, state diagrams, sequence diagrams, architecture
+      diagrams, and ERDs.
+    input_schema:
+      type: object
+      properties:
+        mermaidSyntax:
+          type: string
+          description: Mermaid diagram syntax
+        fileKey:
+          type: string
+          description: Optional file key to add diagram to existing file
+      required:
+        - mermaidSyntax
+  - name: search_design_system
+    description: >
+      Searches across connected design libraries to find components, variables, and
+      styles matching a text query.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Search query for design system assets
+        fileKey:
+          type: string
+          description: Figma file key
+      required:
+        - query
+  - name: upload_assets
+    description: >
+      Uploads assets (PNG, JPG, GIF, WebP) into a Figma file. Max 10MB per asset.
+    input_schema:
+      type: object
+      properties:
+        fileKey:
+          type: string
+          description: Figma file key
+        assets:
+          type: array
+          description: Array of asset URLs or paths to upload
+      required:
+        - fileKey
+        - assets
+  - name: get_code_connect_suggestions
+    description: >
+      Detect and suggest mappings of Figma components to code components in your
+      codebase using Code Connect.
+    input_schema:
+      type: object
+      properties:
+        nodeId:
+          type: string
+          description: Figma node ID to get suggestions for
+        fileKey:
+          type: string
+          description: Figma file key
+      required:
+        - nodeId
+env_vars:
+  - name: FIGMA_ACCESS_TOKEN
+    description: Figma personal access token for authentication
+    required: true
+license: MIT
+version: "1.0.0"
+stars: 5200

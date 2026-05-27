@@ -1,0 +1,204 @@
+id: expo
+name: Expo MCP Server
+description: >
+  Official Expo MCP server that connects AI coding assistants to Expo projects and EAS
+  services. Enables searching and reading Expo documentation, managing EAS builds and
+  workflows, installing compatible libraries, inspecting TestFlight crashes and feedback,
+  and automating visual verification through simulator screenshots and interactions.
+  Supports both remote server capabilities and local development server features for
+  advanced automation.
+author:
+  name: Expo
+  github: expo
+repository: https://github.com/expo/expo
+transport:
+  - http-streaming
+category: Development
+tags:
+  - expo
+  - react-native
+  - mobile
+  - ios
+  - android
+  - eas
+  - builds
+  - workflows
+  - testflight
+  - documentation
+created_at: "2025-02-21T00:00:00.000Z"
+updated_at: "2026-05-27T00:00:00.000Z"
+tools:
+  - name: search_documentation
+    description: >
+      Search the official Expo documentation and return page URLs ranked by relevance
+      for a user query.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Search query for Expo documentation
+      required:
+        - query
+  - name: read_documentation
+    description: >
+      Fetch a single Expo documentation page and return its content as markdown.
+      Returns up to ~5000 tokens per call with offset-based pagination.
+    input_schema:
+      type: object
+      properties:
+        url:
+          type: string
+          description: URL of the Expo documentation page to read
+        offset:
+          type: integer
+          description: Offset for paginating through long pages
+      required:
+        - url
+  - name: add_library
+    description: >
+      Add an Expo library to the project using expo install and attach usage
+      instructions when available.
+    input_schema:
+      type: object
+      properties:
+        library:
+          type: string
+          description: Library name to install
+      required:
+        - library
+  - name: learn
+    description: >
+      Learn Expo how-to for a specific topic and remember it for future conversations.
+    input_schema:
+      type: object
+      properties:
+        topic:
+          type: string
+          description: Topic to learn about
+      required:
+        - topic
+  - name: build_list
+    description: >
+      Lists EAS builds for a project with status and available artifacts.
+    input_schema:
+      type: object
+      properties:
+        appId:
+          type: string
+          description: App ID from app.json extra.eas.projectId
+        appFullName:
+          type: string
+          description: Full app name (e.g. @owner/my-app)
+  - name: build_info
+    description: >
+      Fetches status and detailed information about a specific EAS build by ID.
+    input_schema:
+      type: object
+      properties:
+        buildId:
+          type: string
+          description: EAS build ID
+      required:
+        - buildId
+  - name: build_logs
+    description: >
+      Fetches the logs for a specific completed EAS build.
+    input_schema:
+      type: object
+      properties:
+        buildId:
+          type: string
+          description: EAS build ID
+      required:
+        - buildId
+  - name: workflow_create
+    description: >
+      Creates a new EAS workflow YAML file for Expo projects or fetches workflow
+      syntax documentation.
+    input_schema:
+      type: object
+      properties:
+        description:
+          type: string
+          description: Description of the workflow to create
+      required:
+        - description
+  - name: workflow_run
+    description: >
+      Triggers an EAS workflow run from a git reference.
+    input_schema:
+      type: object
+      properties:
+        appId:
+          type: string
+          description: App ID from app.json extra.eas.projectId
+        workflowFile:
+          type: string
+          description: Path to the workflow file
+        gitRef:
+          type: string
+          description: Git reference to run from
+      required:
+        - workflowFile
+  - name: testflight_crashes
+    description: >
+      Fetch TestFlight crash data. Lists recent crashes or returns full crash log
+      with stack trace for a specific crash ID.
+    input_schema:
+      type: object
+      properties:
+        crashId:
+          type: string
+          description: Optional crash ID for detailed crash log
+  - name: testflight_feedback
+    description: >
+      Fetch screenshot feedback from TestFlight including device info, user comments,
+      and screenshot URLs.
+    input_schema:
+      type: object
+      properties:
+        appId:
+          type: string
+          description: App ID to fetch feedback for
+  - name: automation_take_screenshot
+    description: >
+      Take screenshot of the full app or a specific view by react-native testID.
+      Requires local development server.
+    input_schema:
+      type: object
+      properties:
+        testID:
+          type: string
+          description: Optional testID to screenshot a specific view
+  - name: automation_tap
+    description: >
+      Tap on the device at given coordinates or by react-native testID.
+      Requires local development server.
+    input_schema:
+      type: object
+      properties:
+        x:
+          type: number
+          description: X coordinate to tap
+        y:
+          type: number
+          description: Y coordinate to tap
+        testID:
+          type: string
+          description: React Native testID to tap
+install:
+  npm: "expo-mcp"
+  command: npx
+  args:
+    - "expo"
+    - "install"
+    - "expo-mcp"
+    - "--dev"
+env_vars:
+  - name: EXPO_TOKEN
+    description: Expo personal access token for authentication
+    required: true
+license: MIT
+version: "1.0.0"
+stars: 39800
