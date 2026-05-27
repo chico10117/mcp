@@ -8,11 +8,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.4.0] - 2026-05-27
 
 ### Added
-- 3 new MCP server definitions:
+- 4 new MCP server definitions:
   - `expo` — official Expo MCP server for React Native development, EAS builds/workflows, TestFlight crashes, documentation, and visual automation (Development)
   - `vercel` — official Vercel MCP server for deployment management, project configuration, logs, and documentation search (DevOps)
   - `figma` — official Figma MCP server for design-to-code workflows, screenshots, design system search, Code Connect, and file creation (Development)
-- Total server count now 35 across 11 categories
+  - `xcode` — official Apple Xcode MCP server (xcrun mcpbridge) with 20 native IDE tools for building, testing, previewing, code editing, and documentation search (Development)
+- Total server count now 36 across 11 categories
 
 ## [0.3.0] - 2026-05-26
 
