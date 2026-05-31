@@ -9,7 +9,7 @@ description: >
 author:
   name: Figma
   github: figma
-repository: https://github.com/figma/figma-mcp
+repository: https://github.com/figma/mcp-server-guide
 transport:
   - http-streaming
   - stdio

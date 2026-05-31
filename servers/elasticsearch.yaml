@@ -1,0 +1,120 @@
+id: elasticsearch
+name: Elasticsearch MCP Server
+description: >
+  Official Elastic MCP server that connects AI agents to Elasticsearch data using the
+  Model Context Protocol. Enables natural language interactions with Elasticsearch indices
+  — querying, analyzing, and retrieving data without custom APIs. Supports both stdio and
+  streamable-HTTP transports, and works with Elasticsearch 8.x/9.x clusters including
+  Elasticsearch Serverless. Distributed as a Docker container image from the Elastic registry.
+author:
+  name: Elastic
+  github: elastic
+repository: https://github.com/elastic/mcp-server-elasticsearch
+transport:
+  - stdio
+  - http-streaming
+category: Database
+tags:
+  - elasticsearch
+  - search
+  - full-text-search
+  - analytics
+  - vector-search
+  - observability
+  - data
+created_at: "2025-03-01T00:00:00.000Z"
+updated_at: "2026-05-31T00:00:00.000Z"
+tools:
+  - name: search
+    description: >
+      Execute a search query against one or more Elasticsearch indices using
+      Query DSL or natural language. Returns matching documents with scores.
+    input_schema:
+      type: object
+      properties:
+        index:
+          type: string
+          description: Index name or pattern to search (e.g. "logs-*")
+        query:
+          type: object
+          description: Elasticsearch Query DSL object
+        size:
+          type: integer
+          description: Maximum number of results to return (default 10)
+      required:
+        - index
+        - query
+  - name: get_mappings
+    description: >
+      Retrieve the field mappings for one or more Elasticsearch indices,
+      showing field names, types, and analyzer configurations.
+    input_schema:
+      type: object
+      properties:
+        index:
+          type: string
+          description: Index name or pattern
+      required:
+        - index
+  - name: list_indices
+    description: >
+      List all available Elasticsearch indices with their health status,
+      document count, and storage size.
+    input_schema:
+      type: object
+      properties:
+        pattern:
+          type: string
+          description: Optional index name pattern filter (e.g. "logs-*")
+  - name: get_cluster_info
+    description: >
+      Retrieve Elasticsearch cluster health, node count, and version information.
+    input_schema:
+      type: object
+      properties: {}
+  - name: index_document
+    description: >
+      Index a new document or update an existing document in an Elasticsearch index.
+    input_schema:
+      type: object
+      properties:
+        index:
+          type: string
+          description: Target index name
+        id:
+          type: string
+          description: Optional document ID (auto-generated if omitted)
+        document:
+          type: object
+          description: Document body to index
+      required:
+        - index
+        - document
+install:
+  command: docker
+  args:
+    - "run"
+    - "-i"
+    - "--rm"
+    - "-e"
+    - "ES_URL"
+    - "-e"
+    - "ES_API_KEY"
+    - "docker.elastic.co/mcp/elasticsearch"
+    - "stdio"
+env_vars:
+  - name: ES_URL
+    description: URL of your Elasticsearch cluster (e.g. https://your-cluster.es.amazonaws.com:9200)
+    required: true
+  - name: ES_API_KEY
+    description: Elasticsearch API key for authentication
+    required: false
+  - name: ES_USERNAME
+    description: Elasticsearch username (alternative to API key)
+    required: false
+  - name: ES_PASSWORD
+    description: Elasticsearch password (used with ES_USERNAME)
+    required: false
+license: Apache-2.0
+version: "0.4.0"
+stars: 320

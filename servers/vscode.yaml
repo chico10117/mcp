@@ -1,0 +1,149 @@
+id: vscode
+name: VSCode as MCP Server
+description: >
+  A VSCode extension that turns your running VS Code instance into an MCP server,
+  giving external AI agents (Claude Desktop, Claude Code, and others) direct access
+  to VS Code's editing, navigation, and debugging capabilities. Supports reviewing
+  code changes through diffs, real-time diagnostic streaming (type errors, lint warnings),
+  terminal command execution, URL preview in the built-in browser, debug session
+  management, and multi-window instance switching. Also relays built-in MCP servers
+  introduced in VS Code 1.99, including GitHub Copilot tools.
+author:
+  name: acomagu
+  github: acomagu
+repository: https://github.com/acomagu/vscode-as-mcp-server
+transport:
+  - stdio
+category: Development
+tags:
+  - vscode
+  - ide
+  - editor
+  - debugging
+  - code-editing
+  - diagnostics
+  - developer-tools
+  - terminal
+created_at: "2025-04-01T00:00:00.000Z"
+updated_at: "2026-05-31T00:00:00.000Z"
+tools:
+  - name: text_editor
+    description: >
+      View, create, replace, insert, or undo file operations directly in the
+      active VS Code workspace. Changes are shown as diffs for user review.
+    input_schema:
+      type: object
+      properties:
+        command:
+          type: string
+          description: Operation to perform (view, create, str_replace, insert, undo_edit)
+        path:
+          type: string
+          description: File path relative to the workspace root
+        old_str:
+          type: string
+          description: String to replace (for str_replace command)
+        new_str:
+          type: string
+          description: Replacement string (for str_replace command)
+      required:
+        - command
+        - path
+  - name: code_checker
+    description: >
+      Retrieve current diagnostics (errors, warnings, hints) for files in the
+      workspace as reported by VS Code's language servers.
+    input_schema:
+      type: object
+      properties:
+        path:
+          type: string
+          description: Optional file path to scope diagnostics to a specific file
+  - name: execute_command
+    description: >
+      Execute a shell command in VS Code's integrated terminal. Supports
+      foreground and background execution with configurable timeout.
+    input_schema:
+      type: object
+      properties:
+        command:
+          type: string
+          description: Shell command to execute
+        background:
+          type: boolean
+          description: Run in background without waiting for completion
+        timeout:
+          type: integer
+          description: Timeout in seconds (default 30)
+      required:
+        - command
+  - name: list_directory
+    description: >
+      List the contents of a directory in the workspace as a tree structure.
+    input_schema:
+      type: object
+      properties:
+        path:
+          type: string
+          description: Directory path relative to workspace root
+      required:
+        - path
+  - name: focus_editor
+    description: >
+      Open and focus a specific file at a given line and column in the VS Code editor.
+    input_schema:
+      type: object
+      properties:
+        path:
+          type: string
+          description: File path to open
+        line:
+          type: integer
+          description: Line number to scroll to (1-indexed)
+        column:
+          type: integer
+          description: Column number
+      required:
+        - path
+  - name: preview_url
+    description: >
+      Open a URL in VS Code's built-in browser preview panel. Useful for
+      previewing local dev servers after starting them.
+    input_schema:
+      type: object
+      properties:
+        url:
+          type: string
+          description: URL to preview (e.g. http://localhost:5173)
+      required:
+        - url
+  - name: start_debug_session
+    description: >
+      Start a VS Code debug session using a named launch configuration
+      defined in .vscode/launch.json.
+    input_schema:
+      type: object
+      properties:
+        configName:
+          type: string
+          description: Name of the launch configuration to start
+      required:
+        - configName
+  - name: get_terminal_output
+    description: >
+      Fetch the current output from a specific VS Code integrated terminal.
+    input_schema:
+      type: object
+      properties:
+        terminalName:
+          type: string
+          description: Terminal name or index
+install:
+  npm: "vscode-as-mcp-server"
+  command: npx
+  args:
+    - "-y"
+    - "vscode-as-mcp-server"
+license: MIT
+version: "0.9.0"
+stars: 640

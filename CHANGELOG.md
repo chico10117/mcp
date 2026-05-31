@@ -5,6 +5,25 @@ All notable changes to the OpenModels MCP Server Registry will be documented in 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.1] - 2026-05-31
+
+### Added
+
+- 5 new MCP server definitions:
+  - `elasticsearch` — official Elastic MCP server for natural language queries against Elasticsearch 8.x/9.x clusters, index management, and document indexing via Docker (Database)
+  - `kubernetes` — native Go Kubernetes/OpenShift MCP server with direct API access, pod exec/logs, Helm, Tekton, and multi-cluster support — no kubectl wrapper (DevOps)
+  - `jira` — official Atlassian Rovo MCP server for Jira, Confluence, and Compass via OAuth 2.1 or API token; remote HTTP-streaming at mcp.atlassian.com (Productivity)
+  - `huggingface` — official Hugging Face MCP server for model/dataset/paper search, Hub inference, and Gradio Spaces; remote endpoint at huggingface.co/mcp (AI)
+  - `vscode` — VSCode-as-MCP-server extension exposing editor, terminal, diagnostics, debug sessions, and URL preview to external AI agents (Development)
+
+### Fixed
+
+- `figma` — corrected repository URL from `figma/figma-mcp` to `figma/mcp-server-guide`
+
+### Changed
+
+- Total server count now 41 across 11 categories
+
 ## [0.4.0] - 2026-05-27
 
 ### Added

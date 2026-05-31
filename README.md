@@ -6,7 +6,7 @@ A community-maintained registry of MCP (Model Context Protocol) servers — stru
 
 | Metric | Count |
 |--------|-------|
-| Servers | 32 |
+| Servers | 41 |
 | Categories | 11 |
 | Transport types | 3 (stdio, sse, http-streaming) |
 
@@ -32,13 +32,19 @@ mcp/
 │   ├── cloudflare.yaml
 │   ├── context7.yaml
 │   ├── docker.yaml
+│   ├── elasticsearch.yaml
 │   ├── exa.yaml
+│   ├── expo.yaml
 │   ├── fetch.yaml
+│   ├── figma.yaml
 │   ├── firecrawl.yaml
 │   ├── filesystem.yaml
 │   ├── git.yaml
 │   ├── github.yaml
 │   ├── grafana.yaml
+│   ├── huggingface.yaml
+│   ├── jira.yaml
+│   ├── kubernetes.yaml
 │   ├── linear.yaml
 │   ├── memory.yaml
 │   ├── mongodb.yaml
@@ -57,7 +63,10 @@ mcp/
 │   ├── stripe.yaml
 │   ├── supabase.yaml
 │   ├── tavily.yaml
-│   └── time.yaml
+│   ├── time.yaml
+│   ├── vercel.yaml
+│   ├── vscode.yaml
+│   └── xcode.yaml
 ├── categories/
 │   └── categories.yaml     # Category definitions
 ├── schemas/
@@ -68,7 +77,7 @@ mcp/
 ├── CHANGELOG.md             # Version history
 ├── LICENSE                  # MIT
 ├── README.md                # This file
-└── VERSION                  # Current version (0.3.0)
+└── VERSION                  # Current version (0.4.1)
 ```
 
 ## Quick Start
@@ -150,13 +159,19 @@ updated_at: "2026-05-21T00:00:00.000Z"
 | [Cloudflare](servers/cloudflare.yaml) | Cloud | Cloudflare | stdio |
 | [Context7](servers/context7.yaml) | Development | Upstash | stdio, http-streaming |
 | [Docker](servers/docker.yaml) | DevOps | Docker | stdio |
+| [Elasticsearch](servers/elasticsearch.yaml) | Database | Elastic | stdio, http-streaming |
 | [Exa](servers/exa.yaml) | Research | Exa Labs | stdio |
+| [Expo](servers/expo.yaml) | Development | Expo | stdio, http-streaming |
 | [Fetch](servers/fetch.yaml) | Development | Anthropic | stdio |
+| [Figma](servers/figma.yaml) | Development | Figma | stdio, http-streaming |
 | [Firecrawl](servers/firecrawl.yaml) | Research | Mendable | stdio |
 | [Filesystem](servers/filesystem.yaml) | Filesystem | Anthropic | stdio |
 | [Git](servers/git.yaml) | Development | Anthropic | stdio |
 | [GitHub](servers/github.yaml) | Development | GitHub | stdio, http-streaming |
 | [Grafana](servers/grafana.yaml) | DevOps | Grafana Labs | stdio, sse |
+| [Hugging Face](servers/huggingface.yaml) | AI | Hugging Face | stdio, http-streaming |
+| [Jira (Atlassian)](servers/jira.yaml) | Productivity | Atlassian | stdio, http-streaming |
+| [Kubernetes](servers/kubernetes.yaml) | DevOps | Marc Nuri | stdio, http-streaming |
 | [Linear](servers/linear.yaml) | Productivity | Linear | stdio |
 | [Memory](servers/memory.yaml) | AI | Anthropic | stdio |
 | [MongoDB](servers/mongodb.yaml) | Database | MongoDB | stdio, http-streaming |
@@ -176,6 +191,9 @@ updated_at: "2026-05-21T00:00:00.000Z"
 | [Supabase](servers/supabase.yaml) | Database | Supabase | stdio |
 | [Tavily](servers/tavily.yaml) | Research | Tavily | stdio |
 | [Time](servers/time.yaml) | Productivity | Anthropic | stdio |
+| [Vercel](servers/vercel.yaml) | DevOps | Vercel | stdio, http-streaming |
+| [VSCode](servers/vscode.yaml) | Development | acomagu | stdio |
+| [Xcode](servers/xcode.yaml) | Development | Apple | stdio |
 
 ## Categories
 

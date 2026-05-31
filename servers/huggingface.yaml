@@ -1,0 +1,146 @@
+id: huggingface
+name: Hugging Face MCP Server
+description: >
+  Official Hugging Face MCP Server that connects AI assistants directly to the Hugging
+  Face Hub ecosystem. Provides tools for searching and retrieving models, datasets, and
+  research papers, running inference on thousands of Gradio-powered AI applications
+  (Spaces), and accessing the full Hub API. Supports remote HTTP-streaming via
+  https://huggingface.co/mcp with OAuth or Bearer token auth, as well as local stdio
+  deployment. Works with Claude, Gemini CLI, VS Code, Cursor, and any MCP-compatible client.
+author:
+  name: Hugging Face
+  github: huggingface
+repository: https://github.com/huggingface/hf-mcp-server
+transport:
+  - http-streaming
+  - stdio
+category: AI
+tags:
+  - huggingface
+  - models
+  - datasets
+  - inference
+  - ai
+  - machine-learning
+  - nlp
+  - spaces
+  - hub
+created_at: "2025-05-01T00:00:00.000Z"
+updated_at: "2026-05-31T00:00:00.000Z"
+tools:
+  - name: search_models
+    description: >
+      Search the Hugging Face Hub for models by task, library, language, or
+      free-text query. Returns model IDs, download counts, and metadata.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Search query (e.g. "text classification", "llama", "whisper")
+        task:
+          type: string
+          description: Filter by ML task (e.g. text-generation, image-classification)
+        library:
+          type: string
+          description: Filter by framework (e.g. transformers, diffusers)
+        language:
+          type: string
+          description: Filter by language code (e.g. en, fr, zh)
+        limit:
+          type: integer
+          description: Maximum number of results (default 10)
+      required:
+        - query
+  - name: get_model
+    description: >
+      Retrieve detailed information about a specific Hugging Face model including
+      its model card, tags, pipeline tag, and download statistics.
+    input_schema:
+      type: object
+      properties:
+        modelId:
+          type: string
+          description: Model ID in the format "owner/model-name" (e.g. "meta-llama/Llama-3.1-8B")
+      required:
+        - modelId
+  - name: search_datasets
+    description: >
+      Search the Hugging Face Hub for datasets by task, modality, or keyword.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Search query
+        task:
+          type: string
+          description: Filter by task category
+        limit:
+          type: integer
+          description: Maximum number of results (default 10)
+      required:
+        - query
+  - name: search_papers
+    description: >
+      Search Hugging Face Papers (daily ML paper summaries) by keyword or topic.
+      Returns paper titles, abstracts, and links to associated models.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Search query (e.g. "mixture of experts", "RLHF")
+        limit:
+          type: integer
+          description: Maximum number of results (default 10)
+      required:
+        - query
+  - name: run_inference
+    description: >
+      Run inference on a Hugging Face model using the Inference API. Supports
+      text generation, classification, embeddings, image generation, and more.
+    input_schema:
+      type: object
+      properties:
+        modelId:
+          type: string
+          description: Model ID to run inference on
+        inputs:
+          type: string
+          description: Input text, prompt, or data for the model
+        parameters:
+          type: object
+          description: Optional model-specific parameters (e.g. max_new_tokens, temperature)
+      required:
+        - modelId
+        - inputs
+  - name: list_spaces
+    description: >
+      List or search Hugging Face Spaces (Gradio/Streamlit AI applications)
+      by keyword, SDK, or author.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Search query for spaces
+        sdk:
+          type: string
+          description: Filter by SDK (gradio, streamlit, docker)
+        limit:
+          type: integer
+          description: Maximum number of results (default 10)
+install:
+  command: npx
+  args:
+    - "-y"
+    - "mcp-remote"
+    - "https://huggingface.co/mcp"
+env_vars:
+  - name: HF_TOKEN
+    description: Hugging Face access token for authenticated API access and private models
+    required: false
+license: Apache-2.0
+version: "1.0.0"
+stars: 1200
