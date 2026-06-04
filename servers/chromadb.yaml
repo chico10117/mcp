@@ -1,0 +1,109 @@
+id: chromadb
+name: ChromaDB MCP Server
+description: >
+  Connects AI agents to ChromaDB vector databases for semantic search and retrieval
+  augmented generation (RAG) workflows. Supports creating collections, upserting
+  documents with embeddings, querying by semantic similarity, and managing metadata
+  filters. Ideal for knowledge base and document retrieval applications.
+author:
+  name: Chroma
+  github: chroma-core
+repository: https://github.com/chroma-core/chroma-mcp-server
+transport:
+  - stdio
+category: Database
+tags:
+  - chromadb
+  - vector-database
+  - embeddings
+  - rag
+  - semantic-search
+  - ai
+created_at: "2026-03-05T00:00:00.000Z"
+updated_at: "2026-05-18T00:00:00.000Z"
+tools:
+  - name: create_collection
+    description: Create a new ChromaDB collection with optional embedding function configuration.
+    input_schema:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Collection name
+        metadata:
+          type: object
+          description: Optional collection metadata
+        embedding_function:
+          type: string
+          description: Embedding function to use (openai, cohere, sentence-transformers)
+      required:
+        - name
+  - name: upsert_documents
+    description: Add or update documents in a collection with automatic embedding generation.
+    input_schema:
+      type: object
+      properties:
+        collection:
+          type: string
+          description: Collection name
+        documents:
+          type: array
+          items:
+            type: string
+          description: Text documents to embed and store
+        ids:
+          type: array
+          items:
+            type: string
+          description: Unique IDs for each document
+        metadatas:
+          type: array
+          items:
+            type: object
+          description: Metadata for each document
+      required:
+        - collection
+        - documents
+        - ids
+  - name: query
+    description: Query a collection by semantic similarity and return the most relevant documents.
+    input_schema:
+      type: object
+      properties:
+        collection:
+          type: string
+          description: Collection name
+        query_text:
+          type: string
+          description: Text to search for
+        n_results:
+          type: integer
+          description: Number of results to return
+        where:
+          type: object
+          description: Metadata filter conditions
+      required:
+        - collection
+        - query_text
+  - name: list_collections
+    description: List all collections in the ChromaDB instance with their metadata and document counts.
+    input_schema:
+      type: object
+      properties: {}
+install:
+  command: uvx
+  args:
+    - "chroma-mcp-server@latest"
+env_vars:
+  - name: CHROMA_HOST
+    description: ChromaDB server host (default localhost)
+    required: false
+  - name: CHROMA_PORT
+    description: ChromaDB server port (default 8000)
+    required: false
+  - name: CHROMA_AUTH_TOKEN
+    description: Authentication token for ChromaDB Cloud
+    required: false
+license: Apache-2.0
+version: "0.6.2"
+stars: 2150

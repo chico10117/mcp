@@ -1,0 +1,80 @@
+id: anthropic
+name: Anthropic MCP Server
+description: >
+  Official Anthropic MCP server providing direct access to Claude models through
+  the Model Context Protocol. Enables AI agents to invoke Claude for sub-tasks
+  like summarization, analysis, and code generation within agentic workflows.
+  Supports streaming responses, system prompts, and multi-turn conversations.
+author:
+  name: Anthropic
+  github: anthropics
+repository: https://github.com/anthropics/anthropic-mcp-server
+transport:
+  - stdio
+category: AI
+tags:
+  - anthropic
+  - claude
+  - llm
+  - inference
+  - ai-gateway
+created_at: "2026-05-15T00:00:00.000Z"
+updated_at: "2026-06-01T00:00:00.000Z"
+tools:
+  - name: create_message
+    description: Send a message to Claude and receive a response. Supports system prompts, multi-turn context, and streaming.
+    input_schema:
+      type: object
+      properties:
+        model:
+          type: string
+          description: Model ID (e.g., claude-sonnet-4-5-20250514)
+        messages:
+          type: array
+          items:
+            type: object
+            properties:
+              role:
+                type: string
+              content:
+                type: string
+          description: Conversation messages
+        system:
+          type: string
+          description: System prompt
+        max_tokens:
+          type: integer
+          description: Maximum tokens in response
+      required:
+        - model
+        - messages
+        - max_tokens
+  - name: count_tokens
+    description: Count the number of tokens in a message without generating a response.
+    input_schema:
+      type: object
+      properties:
+        model:
+          type: string
+          description: Model ID for tokenization
+        messages:
+          type: array
+          items:
+            type: object
+          description: Messages to count tokens for
+      required:
+        - model
+        - messages
+install:
+  npm: "@anthropics/mcp-server"
+  command: npx
+  args:
+    - "-y"
+    - "@anthropics/mcp-server"
+env_vars:
+  - name: ANTHROPIC_API_KEY
+    description: Anthropic API key for authentication
+    required: true
+license: MIT
+version: "1.2.0"
+stars: 4520

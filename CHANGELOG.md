@@ -5,6 +5,26 @@ All notable changes to the OpenModels MCP Server Registry will be documented in 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.0] - 2026-06-04
+
+### Added
+
+- 10 new MCP server definitions:
+  - `aws` — AWS MCP server for S3, Lambda, DynamoDB, and CloudWatch access (Cloud)
+  - `terraform` — HashiCorp Terraform MCP server for plan, validate, state inspection, and module discovery (Cloud)
+  - `anthropic` — official Anthropic MCP server for Claude model invocation within agentic workflows (AI)
+  - `openai` — official OpenAI MCP server for GPT, DALL-E, Whisper, and embeddings (AI)
+  - `datadog` — Datadog MCP server for metrics, logs, traces, and monitor management (DevOps)
+  - `posthog` — PostHog MCP server for product analytics, funnels, and feature flags (Productivity)
+  - `resend` — Resend MCP server for transactional email delivery and template management (Communication)
+  - `twilio` — Twilio MCP server for SMS, voice calls, and phone number lookup (Communication)
+  - `clickhouse` — ClickHouse MCP server for OLAP analytics and query profiling (Database)
+  - `chromadb` — ChromaDB MCP server for vector search and RAG workflows (Database)
+
+### Changed
+
+- Total server count now 51 across 11 categories
+
 ## [0.4.1] - 2026-05-31
 
 ### Added

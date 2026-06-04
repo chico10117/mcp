@@ -1,0 +1,90 @@
+id: clickhouse
+name: ClickHouse MCP Server
+description: >
+  Provides AI agents with access to ClickHouse analytical databases through the Model
+  Context Protocol. Enables running analytical queries, exploring table schemas,
+  inspecting materialized views, and monitoring query performance. Designed for
+  OLAP workloads with support for large result sets and query profiling.
+author:
+  name: ClickHouse
+  github: ClickHouse
+repository: https://github.com/ClickHouse/clickhouse-mcp-server
+transport:
+  - stdio
+category: Database
+tags:
+  - clickhouse
+  - database
+  - analytics
+  - olap
+  - sql
+  - data-warehouse
+created_at: "2026-03-20T00:00:00.000Z"
+updated_at: "2026-05-15T00:00:00.000Z"
+tools:
+  - name: run_query
+    description: Execute a ClickHouse SQL query and return results. Supports SELECT, SHOW, DESCRIBE, and EXPLAIN statements.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: ClickHouse SQL query to execute
+        format:
+          type: string
+          description: Output format (JSON, TabSeparated, CSV, Pretty)
+        max_rows:
+          type: integer
+          description: Maximum rows to return
+      required:
+        - query
+  - name: list_databases
+    description: List all databases in the ClickHouse instance.
+    input_schema:
+      type: object
+      properties: {}
+  - name: describe_table
+    description: Show the schema of a ClickHouse table including column types, codecs, and TTL rules.
+    input_schema:
+      type: object
+      properties:
+        database:
+          type: string
+          description: Database name
+        table:
+          type: string
+          description: Table name
+      required:
+        - database
+        - table
+  - name: query_profile
+    description: Analyze query execution plan and performance metrics for optimization.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Query to analyze
+      required:
+        - query
+install:
+  command: npx
+  args:
+    - "-y"
+    - "@clickhouse/mcp-server"
+env_vars:
+  - name: CLICKHOUSE_HOST
+    description: ClickHouse server host
+    required: true
+  - name: CLICKHOUSE_PORT
+    description: ClickHouse HTTP port (default 8123)
+    required: false
+  - name: CLICKHOUSE_USER
+    description: ClickHouse username
+    required: false
+  - name: CLICKHOUSE_PASSWORD
+    description: ClickHouse password
+    required: false
+license: Apache-2.0
+version: "0.4.0"
+stars: 1560

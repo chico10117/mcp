@@ -6,7 +6,7 @@ A community-maintained registry of MCP (Model Context Protocol) servers — stru
 
 | Metric | Count |
 |--------|-------|
-| Servers | 41 |
+| Servers | 51 |
 | Categories | 11 |
 | Transport types | 3 (stdio, sse, http-streaming) |
 
@@ -66,7 +66,17 @@ mcp/
 │   ├── time.yaml
 │   ├── vercel.yaml
 │   ├── vscode.yaml
-│   └── xcode.yaml
+│   ├── xcode.yaml
+│   ├── aws.yaml
+│   ├── terraform.yaml
+│   ├── anthropic.yaml
+│   ├── openai.yaml
+│   ├── datadog.yaml
+│   ├── posthog.yaml
+│   ├── resend.yaml
+│   ├── twilio.yaml
+│   ├── clickhouse.yaml
+│   └── chromadb.yaml
 ├── categories/
 │   └── categories.yaml     # Category definitions
 ├── schemas/
@@ -77,7 +87,7 @@ mcp/
 ├── CHANGELOG.md             # Version history
 ├── LICENSE                  # MIT
 ├── README.md                # This file
-└── VERSION                  # Current version (0.4.1)
+└── VERSION                  # Current version (0.5.0)
 ```
 
 ## Quick Start
@@ -194,6 +204,16 @@ updated_at: "2026-05-21T00:00:00.000Z"
 | [Vercel](servers/vercel.yaml) | DevOps | Vercel | stdio, http-streaming |
 | [VSCode](servers/vscode.yaml) | Development | acomagu | stdio |
 | [Xcode](servers/xcode.yaml) | Development | Apple | stdio |
+| [AWS](servers/aws.yaml) | Cloud | AWS Labs | stdio |
+| [Anthropic](servers/anthropic.yaml) | AI | Anthropic | stdio |
+| [ChromaDB](servers/chromadb.yaml) | Database | Chroma | stdio |
+| [ClickHouse](servers/clickhouse.yaml) | Database | ClickHouse | stdio |
+| [Datadog](servers/datadog.yaml) | DevOps | Datadog | stdio |
+| [OpenAI](servers/openai.yaml) | AI | OpenAI | stdio |
+| [PostHog](servers/posthog.yaml) | Productivity | PostHog | stdio |
+| [Resend](servers/resend.yaml) | Communication | Resend | stdio |
+| [Terraform](servers/terraform.yaml) | Cloud | HashiCorp | stdio |
+| [Twilio](servers/twilio.yaml) | Communication | Twilio | stdio |
 
 ## Categories
 

@@ -1,0 +1,118 @@
+id: datadog
+name: Datadog MCP Server
+description: >
+  Connects AI agents to Datadog for monitoring, observability, and incident management.
+  Enables querying metrics, viewing traces, searching logs, and managing monitors
+  programmatically. Supports dashboard creation, alert configuration, and SLO
+  tracking through the Model Context Protocol.
+author:
+  name: Datadog
+  github: DataDog
+repository: https://github.com/DataDog/datadog-mcp-server
+transport:
+  - stdio
+category: DevOps
+tags:
+  - datadog
+  - monitoring
+  - observability
+  - metrics
+  - logs
+  - traces
+  - apm
+created_at: "2026-03-10T00:00:00.000Z"
+updated_at: "2026-05-28T00:00:00.000Z"
+tools:
+  - name: query_metrics
+    description: Query Datadog metrics using the metrics query language. Returns time series data for visualization or analysis.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Datadog metrics query (e.g., avg:system.cpu.user{env:production})
+        from:
+          type: integer
+          description: Start time as UNIX timestamp
+        to:
+          type: integer
+          description: End time as UNIX timestamp
+      required:
+        - query
+        - from
+        - to
+  - name: search_logs
+    description: Search and retrieve log entries from Datadog Log Management.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Log search query
+        from:
+          type: string
+          description: Start time (ISO 8601)
+        to:
+          type: string
+          description: End time (ISO 8601)
+        limit:
+          type: integer
+          description: Maximum number of logs to return
+      required:
+        - query
+  - name: list_monitors
+    description: List all active monitors and their current status.
+    input_schema:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Filter monitors by name
+        tags:
+          type: array
+          items:
+            type: string
+          description: Filter by tags
+  - name: create_monitor
+    description: Create a new Datadog monitor with alerting thresholds and notification targets.
+    input_schema:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Monitor name
+        type:
+          type: string
+          description: Monitor type (metric, query, service, etc.)
+        query:
+          type: string
+          description: Monitor query
+        message:
+          type: string
+          description: Notification message with @mentions
+        thresholds:
+          type: object
+          description: Alert thresholds (critical, warning, ok)
+      required:
+        - name
+        - type
+        - query
+        - message
+install:
+  command: npx
+  args:
+    - "-y"
+    - "@datadog/mcp-server"
+env_vars:
+  - name: DD_API_KEY
+    description: Datadog API key
+    required: true
+  - name: DD_APP_KEY
+    description: Datadog application key
+    required: true
+  - name: DD_SITE
+    description: Datadog site (e.g., datadoghq.com, datadoghq.eu)
+    required: false
+license: Apache-2.0
+version: "0.8.1"
+stars: 2840

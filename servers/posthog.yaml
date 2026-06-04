@@ -1,0 +1,94 @@
+id: posthog
+name: PostHog MCP Server
+description: >
+  Provides AI agents with access to PostHog product analytics through the Model
+  Context Protocol. Enables querying events, analyzing funnels, inspecting feature
+  flags, and reviewing session recordings metadata. Supports HogQL queries for
+  advanced analytics and cohort analysis for user segmentation.
+author:
+  name: PostHog
+  github: PostHog
+repository: https://github.com/PostHog/posthog-mcp-server
+transport:
+  - stdio
+category: Productivity
+tags:
+  - posthog
+  - analytics
+  - product-analytics
+  - feature-flags
+  - events
+  - funnels
+created_at: "2026-04-15T00:00:00.000Z"
+updated_at: "2026-05-30T00:00:00.000Z"
+tools:
+  - name: query_events
+    description: Query PostHog events using HogQL with filters, aggregations, and time ranges.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: HogQL query string
+        limit:
+          type: integer
+          description: Maximum results to return
+      required:
+        - query
+  - name: get_funnel
+    description: Retrieve funnel analysis results showing conversion rates between defined steps.
+    input_schema:
+      type: object
+      properties:
+        steps:
+          type: array
+          items:
+            type: object
+            properties:
+              event:
+                type: string
+          description: Funnel step events in order
+        date_from:
+          type: string
+          description: Start date (ISO 8601 or relative like -7d)
+        date_to:
+          type: string
+          description: End date
+      required:
+        - steps
+  - name: list_feature_flags
+    description: List all feature flags with their current status, rollout percentage, and conditions.
+    input_schema:
+      type: object
+      properties:
+        active:
+          type: boolean
+          description: Filter by active/inactive flags
+  - name: get_insights
+    description: Retrieve a saved PostHog insight by ID with its results and configuration.
+    input_schema:
+      type: object
+      properties:
+        insight_id:
+          type: integer
+          description: PostHog insight ID
+      required:
+        - insight_id
+install:
+  command: npx
+  args:
+    - "-y"
+    - "@posthog/mcp-server"
+env_vars:
+  - name: POSTHOG_API_KEY
+    description: PostHog personal API key
+    required: true
+  - name: POSTHOG_HOST
+    description: PostHog instance URL (default https://app.posthog.com)
+    required: false
+  - name: POSTHOG_PROJECT_ID
+    description: PostHog project ID
+    required: true
+license: MIT
+version: "0.5.0"
+stars: 1240

@@ -1,0 +1,94 @@
+id: openai
+name: OpenAI MCP Server
+description: >
+  Official OpenAI MCP server for integrating GPT models, DALL-E, and Whisper into
+  agentic workflows. Provides tools for chat completion, image generation, audio
+  transcription, and embeddings through the Model Context Protocol. Supports
+  function calling, structured outputs, and streaming responses.
+author:
+  name: OpenAI
+  github: openai
+repository: https://github.com/openai/openai-mcp-server
+transport:
+  - stdio
+category: AI
+tags:
+  - openai
+  - gpt
+  - dall-e
+  - whisper
+  - llm
+  - inference
+  - embeddings
+created_at: "2026-02-20T00:00:00.000Z"
+updated_at: "2026-05-30T00:00:00.000Z"
+tools:
+  - name: chat_completion
+    description: Generate a chat completion using OpenAI models. Supports system messages, function calling, and structured outputs.
+    input_schema:
+      type: object
+      properties:
+        model:
+          type: string
+          description: Model ID (e.g., gpt-5, gpt-5-4-mini)
+        messages:
+          type: array
+          items:
+            type: object
+            properties:
+              role:
+                type: string
+              content:
+                type: string
+          description: Conversation messages
+        temperature:
+          type: number
+          description: Sampling temperature (0-2)
+        max_tokens:
+          type: integer
+          description: Maximum tokens in response
+      required:
+        - model
+        - messages
+  - name: create_image
+    description: Generate an image using DALL-E from a text prompt.
+    input_schema:
+      type: object
+      properties:
+        prompt:
+          type: string
+          description: Text description of the desired image
+        size:
+          type: string
+          description: Image size (1024x1024, 1792x1024, 1024x1792)
+        quality:
+          type: string
+          description: Quality level (standard, hd)
+      required:
+        - prompt
+  - name: create_embedding
+    description: Generate embeddings for input text using OpenAI embedding models.
+    input_schema:
+      type: object
+      properties:
+        input:
+          type: string
+          description: Text to embed
+        model:
+          type: string
+          description: Embedding model ID
+      required:
+        - input
+        - model
+install:
+  command: npx
+  args:
+    - "-y"
+    - "@openai/mcp-server"
+env_vars:
+  - name: OPENAI_API_KEY
+    description: OpenAI API key for authentication
+    required: true
+license: MIT
+version: "1.0.3"
+stars: 8920

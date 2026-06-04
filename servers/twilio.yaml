@@ -1,0 +1,88 @@
+id: twilio
+name: Twilio MCP Server
+description: >
+  Integrates Twilio communication APIs with AI agents through the Model Context
+  Protocol. Enables sending SMS messages, making voice calls, managing phone numbers,
+  and querying message history. Supports programmable messaging, conversation management,
+  and webhook configuration for real-time communication workflows.
+author:
+  name: Twilio
+  github: twilio
+repository: https://github.com/twilio/twilio-mcp-server
+transport:
+  - stdio
+category: Communication
+tags:
+  - twilio
+  - sms
+  - voice
+  - messaging
+  - communication
+  - phone
+created_at: "2026-04-01T00:00:00.000Z"
+updated_at: "2026-05-20T00:00:00.000Z"
+tools:
+  - name: send_sms
+    description: Send an SMS message using Twilio's Programmable SMS API.
+    input_schema:
+      type: object
+      properties:
+        to:
+          type: string
+          description: Recipient phone number in E.164 format
+        body:
+          type: string
+          description: Message content (max 1600 characters)
+        from:
+          type: string
+          description: Twilio phone number to send from (E.164 format)
+      required:
+        - to
+        - body
+  - name: list_messages
+    description: List recent messages sent or received on the account.
+    input_schema:
+      type: object
+      properties:
+        to:
+          type: string
+          description: Filter by recipient number
+        from:
+          type: string
+          description: Filter by sender number
+        limit:
+          type: integer
+          description: Maximum messages to return (default 20)
+        date_sent_after:
+          type: string
+          description: Filter messages sent after this ISO 8601 datetime
+  - name: lookup_phone
+    description: Look up information about a phone number including carrier and type.
+    input_schema:
+      type: object
+      properties:
+        phone_number:
+          type: string
+          description: Phone number to look up in E.164 format
+        fields:
+          type: array
+          items:
+            type: string
+          description: Information fields to retrieve (carrier, caller_name, line_type)
+      required:
+        - phone_number
+install:
+  command: npx
+  args:
+    - "-y"
+    - "@twilio/mcp-server"
+env_vars:
+  - name: TWILIO_ACCOUNT_SID
+    description: Twilio Account SID
+    required: true
+  - name: TWILIO_AUTH_TOKEN
+    description: Twilio Auth Token
+    required: true
+license: MIT
+version: "0.3.5"
+stars: 890

@@ -1,0 +1,105 @@
+id: aws
+name: AWS MCP Server
+description: >
+  Enables AI agents to interact with Amazon Web Services through the Model Context
+  Protocol. Provides access to core AWS services including S3, Lambda, DynamoDB,
+  CloudWatch, and IAM. Supports resource discovery, log analysis, and infrastructure
+  management with proper credential handling and region awareness.
+author:
+  name: AWS Labs
+  github: awslabs
+repository: https://github.com/awslabs/aws-mcp-server
+transport:
+  - stdio
+category: Cloud
+tags:
+  - aws
+  - s3
+  - lambda
+  - dynamodb
+  - cloudwatch
+  - cloud
+  - infrastructure
+created_at: "2026-02-01T00:00:00.000Z"
+updated_at: "2026-05-25T00:00:00.000Z"
+tools:
+  - name: s3_list_objects
+    description: List objects in an S3 bucket with optional prefix filtering.
+    input_schema:
+      type: object
+      properties:
+        bucket:
+          type: string
+          description: S3 bucket name
+        prefix:
+          type: string
+          description: Key prefix to filter objects
+        max_keys:
+          type: integer
+          description: Maximum number of objects to return
+      required:
+        - bucket
+  - name: s3_get_object
+    description: Retrieve an object from S3 and return its contents.
+    input_schema:
+      type: object
+      properties:
+        bucket:
+          type: string
+          description: S3 bucket name
+        key:
+          type: string
+          description: Object key
+      required:
+        - bucket
+        - key
+  - name: cloudwatch_query_logs
+    description: Query CloudWatch Logs using Logs Insights query syntax.
+    input_schema:
+      type: object
+      properties:
+        log_group:
+          type: string
+          description: CloudWatch log group name
+        query:
+          type: string
+          description: Logs Insights query string
+        start_time:
+          type: integer
+          description: Start time as UNIX timestamp
+        end_time:
+          type: integer
+          description: End time as UNIX timestamp
+      required:
+        - log_group
+        - query
+  - name: lambda_invoke
+    description: Invoke an AWS Lambda function and return its response.
+    input_schema:
+      type: object
+      properties:
+        function_name:
+          type: string
+          description: Lambda function name or ARN
+        payload:
+          type: object
+          description: JSON payload to send to the function
+      required:
+        - function_name
+install:
+  command: uvx
+  args:
+    - "awslabs.aws-mcp-server@latest"
+env_vars:
+  - name: AWS_ACCESS_KEY_ID
+    description: AWS access key ID
+    required: true
+  - name: AWS_SECRET_ACCESS_KEY
+    description: AWS secret access key
+    required: true
+  - name: AWS_REGION
+    description: Default AWS region (e.g., us-east-1)
+    required: false
+license: Apache-2.0
+version: "0.9.2"
+stars: 5430

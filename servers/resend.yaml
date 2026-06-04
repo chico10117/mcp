@@ -1,0 +1,103 @@
+id: resend
+name: Resend MCP Server
+description: >
+  Integrates Resend email delivery service with AI agents through the Model Context
+  Protocol. Enables sending transactional emails, managing email templates, tracking
+  delivery status, and handling domains. Supports HTML and React Email templates for
+  building beautiful transactional and marketing emails programmatically.
+author:
+  name: Resend
+  github: resend
+repository: https://github.com/resend/resend-mcp-server
+transport:
+  - stdio
+category: Communication
+tags:
+  - resend
+  - email
+  - transactional
+  - smtp
+  - templates
+  - communication
+created_at: "2026-04-10T00:00:00.000Z"
+updated_at: "2026-05-25T00:00:00.000Z"
+tools:
+  - name: send_email
+    description: Send a transactional email through Resend with HTML content or a template.
+    input_schema:
+      type: object
+      properties:
+        from:
+          type: string
+          description: Sender email address (must be from a verified domain)
+        to:
+          type: array
+          items:
+            type: string
+          description: Recipient email addresses
+        subject:
+          type: string
+          description: Email subject line
+        html:
+          type: string
+          description: HTML content of the email
+        text:
+          type: string
+          description: Plain text fallback content
+        reply_to:
+          type: string
+          description: Reply-to email address
+      required:
+        - from
+        - to
+        - subject
+  - name: get_email
+    description: Retrieve the status and details of a sent email by its ID.
+    input_schema:
+      type: object
+      properties:
+        email_id:
+          type: string
+          description: Resend email ID
+      required:
+        - email_id
+  - name: list_domains
+    description: List all verified domains configured in the Resend account.
+    input_schema:
+      type: object
+      properties: {}
+  - name: create_batch
+    description: Send a batch of up to 100 emails in a single API call.
+    input_schema:
+      type: object
+      properties:
+        emails:
+          type: array
+          items:
+            type: object
+            properties:
+              from:
+                type: string
+              to:
+                type: array
+                items:
+                  type: string
+              subject:
+                type: string
+              html:
+                type: string
+          description: Array of email objects to send
+      required:
+        - emails
+install:
+  command: npx
+  args:
+    - "-y"
+    - "@resend/mcp-server"
+env_vars:
+  - name: RESEND_API_KEY
+    description: Resend API key for authentication
+    required: true
+license: MIT
+version: "0.4.1"
+stars: 1680
