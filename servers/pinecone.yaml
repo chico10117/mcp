@@ -1,0 +1,68 @@
+id: pinecone
+name: Pinecone Developer MCP Server
+description: >
+  Pinecone's official MCP server connects AI assistants to Pinecone vector databases for
+  retrieval-augmented generation (RAG) workflows. Lets agents create and configure indexes,
+  upsert and embed documents, and run semantic searches over vector data — all from natural
+  language, without leaving the editor or chat.
+author:
+  name: Pinecone
+  github: pinecone-io
+repository: https://github.com/pinecone-io/pinecone-mcp
+transport:
+  - stdio
+category: Database
+tags:
+  - vector-database
+  - rag
+  - embeddings
+  - semantic-search
+  - retrieval
+  - ai
+created_at: "2026-06-12T00:00:00.000Z"
+updated_at: "2026-06-12T00:00:00.000Z"
+tools:
+  - name: search-records
+    description: Run a semantic search over a Pinecone index and return the most relevant records.
+    input_schema:
+      type: object
+      properties:
+        index_name:
+          type: string
+          description: Name of the Pinecone index to query
+        query:
+          type: string
+          description: Natural-language query to search for
+        top_k:
+          type: integer
+          description: Number of results to return
+      required:
+        - index_name
+        - query
+  - name: upsert-records
+    description: Insert or update records (with text to embed) into a Pinecone index.
+    input_schema:
+      type: object
+      properties:
+        index_name:
+          type: string
+          description: Name of the target Pinecone index
+        records:
+          type: array
+          items:
+            type: object
+          description: Records to upsert, each with an id and text/metadata
+      required:
+        - index_name
+        - records
+install:
+  npm: "@pinecone-database/mcp"
+  command: npx
+  args:
+    - "-y"
+    - "@pinecone-database/mcp"
+env_vars:
+  - name: PINECONE_API_KEY
+    description: Pinecone API key for authenticating index operations
+    required: true
+license: MIT

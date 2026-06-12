@@ -5,6 +5,22 @@ All notable changes to the OpenModels MCP Server Registry will be documented in 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6.0] - 2026-06-12
+
+### Added
+
+- 6 new MCP server definitions:
+  - `e2b` — E2B MCP server for running code in secure isolated cloud sandboxes (Development)
+  - `pinecone` — official Pinecone Developer MCP server for vector search and RAG workflows (Database)
+  - `azure` — official Microsoft Azure MCP server for Storage, Cosmos DB, Monitor/KQL, and Azure CLI (Cloud)
+  - `shopify` — official Shopify Dev MCP server for docs search, GraphQL schema introspection, and Functions (Development)
+  - `google-drive` — Google Drive MCP server for listing, searching, and reading Drive files via OAuth (Filesystem)
+  - `discord` — Discord MCP server for sending and reading channel messages via a bot (Communication)
+
+### Changed
+
+- Total server count now 57 across 11 categories
+
 ## [0.5.0] - 2026-06-04
 
 ### Added

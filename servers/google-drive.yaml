@@ -1,0 +1,55 @@
+id: google-drive
+name: Google Drive MCP Server
+description: >
+  A Model Context Protocol server for Google Drive that lets AI assistants list, search, and read
+  files stored in Drive, with automatic export of Google Docs, Sheets, Slides, and Drawings to
+  readable formats. Authenticates via OAuth 2.0 and exposes Drive files as MCP resources so agents
+  can ground their answers in your documents without copying data into chat first.
+author:
+  name: Anthropic
+  github: modelcontextprotocol
+repository: https://github.com/modelcontextprotocol/servers
+transport:
+  - stdio
+category: Filesystem
+tags:
+  - google-drive
+  - documents
+  - file-storage
+  - search
+  - workspace
+  - oauth
+created_at: "2026-06-12T00:00:00.000Z"
+updated_at: "2026-06-12T00:00:00.000Z"
+tools:
+  - name: gdrive_search
+    description: Search for files in Google Drive matching a query string.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Full-text search query for Drive files
+      required:
+        - query
+  - name: gdrive_read_file
+    description: Read the contents of a Google Drive file, exporting Google-native formats to text.
+    input_schema:
+      type: object
+      properties:
+        file_id:
+          type: string
+          description: The Google Drive file ID to read
+      required:
+        - file_id
+install:
+  npm: "@modelcontextprotocol/server-gdrive"
+  command: npx
+  args:
+    - "-y"
+    - "@modelcontextprotocol/server-gdrive"
+env_vars:
+  - name: GDRIVE_CREDENTIALS_PATH
+    description: Path to the OAuth credentials file for Google Drive access
+    required: true
+license: MIT

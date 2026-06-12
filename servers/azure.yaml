@@ -1,0 +1,66 @@
+id: azure
+name: Azure MCP Server
+description: >
+  The official Azure MCP Server brings Microsoft Azure to AI agents. It lets models query and
+  manage Azure resources through natural language — Storage blobs and tables, Cosmos DB, Azure
+  SQL, Key Vault, Monitor/Log Analytics (KQL), App Configuration, and more — and run Azure CLI
+  commands, enabling cloud automation and infrastructure workflows directly from your tools.
+author:
+  name: Microsoft
+  github: Azure
+repository: https://github.com/Azure/azure-mcp
+transport:
+  - stdio
+category: Cloud
+tags:
+  - azure
+  - cloud
+  - microsoft
+  - storage
+  - cosmos-db
+  - monitoring
+  - infrastructure
+created_at: "2026-06-12T00:00:00.000Z"
+updated_at: "2026-06-12T00:00:00.000Z"
+tools:
+  - name: azmcp-storage-blob-list
+    description: List blobs in an Azure Storage container.
+    input_schema:
+      type: object
+      properties:
+        account_name:
+          type: string
+          description: Azure Storage account name
+        container_name:
+          type: string
+          description: Blob container name
+      required:
+        - account_name
+        - container_name
+  - name: azmcp-monitor-log-query
+    description: Run a KQL query against an Azure Monitor / Log Analytics workspace.
+    input_schema:
+      type: object
+      properties:
+        workspace_id:
+          type: string
+          description: Log Analytics workspace ID
+        query:
+          type: string
+          description: KQL query to execute
+      required:
+        - workspace_id
+        - query
+install:
+  npm: "@azure/mcp"
+  command: npx
+  args:
+    - "-y"
+    - "@azure/mcp@latest"
+    - "server"
+    - "start"
+env_vars:
+  - name: AZURE_SUBSCRIPTION_ID
+    description: Azure subscription ID to target for resource operations
+    required: false
+license: MIT
