@@ -1,0 +1,72 @@
+id: bigquery
+name: BigQuery MCP Server
+description: >
+  MCP server for Google BigQuery that lets AI agents explore datasets, inspect table schemas,
+  and run SQL analytics queries with dry-run cost estimation. Useful for natural-language data
+  analysis, ad-hoc reporting, and pipeline debugging against large-scale BigQuery warehouses.
+author:
+  name: Google Cloud Community
+  github: googleapis
+repository: https://github.com/googleapis/genai-toolbox
+transport:
+  - stdio
+category: Database
+tags:
+  - bigquery
+  - google-cloud
+  - sql
+  - analytics
+  - data-warehouse
+  - reporting
+created_at: "2026-06-19T00:00:00.000Z"
+updated_at: "2026-06-19T00:00:00.000Z"
+tools:
+  - name: execute_query
+    description: Run a SQL query against BigQuery and return the result rows.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Standard SQL query to execute
+        dry_run:
+          type: boolean
+          description: If true, estimate bytes processed without running the query
+      required:
+        - query
+  - name: list_datasets
+    description: List datasets available in the configured GCP project.
+    input_schema:
+      type: object
+      properties:
+        project_id:
+          type: string
+          description: GCP project ID (defaults to configured project)
+  - name: get_table_schema
+    description: Return the schema of a BigQuery table.
+    input_schema:
+      type: object
+      properties:
+        dataset:
+          type: string
+          description: Dataset name
+        table:
+          type: string
+          description: Table name
+      required:
+        - dataset
+        - table
+install:
+  command: uvx
+  args:
+    - "bigquery-mcp"
+env_vars:
+  - name: GOOGLE_APPLICATION_CREDENTIALS
+    description: Path to a GCP service account key JSON file
+    required: true
+  - name: BIGQUERY_PROJECT
+    description: Default GCP project ID
+    required: true
+license: Apache-2.0
+version: "0.9.0"
+stars: 1500

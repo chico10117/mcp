@@ -1,0 +1,87 @@
+id: asana
+name: Asana MCP Server
+description: >
+  Official Asana MCP server that connects AI tools to the Asana Work Graph. Enables agents to
+  create and update tasks, manage projects and sections, add comments, search work, and
+  summarize project status via a remote OAuth-secured endpoint.
+author:
+  name: Asana
+  github: Asana
+repository: https://github.com/Asana/mcp-server
+transport:
+  - http-streaming
+  - sse
+category: Productivity
+tags:
+  - asana
+  - project-management
+  - tasks
+  - collaboration
+  - workflow
+  - planning
+created_at: "2026-06-19T00:00:00.000Z"
+updated_at: "2026-06-19T00:00:00.000Z"
+tools:
+  - name: create_task
+    description: Create a task in a project with assignee, due date, and notes.
+    input_schema:
+      type: object
+      properties:
+        project_id:
+          type: string
+          description: Asana project GID
+        name:
+          type: string
+          description: Task name
+        notes:
+          type: string
+          description: Task description
+        assignee:
+          type: string
+          description: Assignee user GID or email
+        due_on:
+          type: string
+          description: Due date in YYYY-MM-DD format
+      required:
+        - project_id
+        - name
+  - name: search_tasks
+    description: Search for tasks across a workspace using text and filters.
+    input_schema:
+      type: object
+      properties:
+        workspace_id:
+          type: string
+          description: Asana workspace GID
+        query:
+          type: string
+          description: Search text
+        completed:
+          type: boolean
+          description: Filter by completion status
+      required:
+        - workspace_id
+        - query
+  - name: update_task
+    description: Update fields on an existing task such as status, assignee, or due date.
+    input_schema:
+      type: object
+      properties:
+        task_id:
+          type: string
+          description: Task GID
+        completed:
+          type: boolean
+          description: Mark task complete or incomplete
+        notes:
+          type: string
+          description: Updated task notes
+      required:
+        - task_id
+env_vars:
+  - name: ASANA_ACCESS_TOKEN
+    description: Asana personal access token (for local/stdio bridges)
+    required: false
+license: Apache-2.0
+version: "1.0.0"
+stars: 760

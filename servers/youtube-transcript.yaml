@@ -1,0 +1,56 @@
+id: youtube-transcript
+name: YouTube Transcript MCP Server
+description: >
+  MCP server that fetches transcripts, captions, and metadata from YouTube videos so AI agents
+  can summarize, search, and analyze video content without watching it. Supports multiple
+  languages, timestamped segments, and channel/playlist lookups for research and content
+  workflows.
+author:
+  name: Kim Do Gyun
+  github: kimtaeyoon83
+repository: https://github.com/kimtaeyoon83/mcp-server-youtube-transcript
+transport:
+  - stdio
+category: Research
+tags:
+  - youtube
+  - transcript
+  - captions
+  - video
+  - summarization
+  - research
+created_at: "2026-06-19T00:00:00.000Z"
+updated_at: "2026-06-19T00:00:00.000Z"
+tools:
+  - name: get_transcript
+    description: Fetch the transcript of a YouTube video by URL or video ID.
+    input_schema:
+      type: object
+      properties:
+        video:
+          type: string
+          description: YouTube video URL or ID
+        language:
+          type: string
+          description: Preferred transcript language code (e.g., en, es)
+      required:
+        - video
+  - name: get_video_metadata
+    description: Retrieve title, channel, duration, and description for a YouTube video.
+    input_schema:
+      type: object
+      properties:
+        video:
+          type: string
+          description: YouTube video URL or ID
+      required:
+        - video
+install:
+  npm: "@kimtaeyoon83/mcp-server-youtube-transcript"
+  command: npx
+  args:
+    - "-y"
+    - "@kimtaeyoon83/mcp-server-youtube-transcript"
+license: MIT
+version: "0.2.0"
+stars: 870

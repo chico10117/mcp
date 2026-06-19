@@ -1,0 +1,98 @@
+id: gitlab
+name: GitLab MCP Server
+description: >
+  Official GitLab MCP server connecting AI tools to GitLab's DevOps platform. Enables agents
+  to manage projects, issues, merge requests, branches, files, CI/CD pipelines, and the
+  GitLab Duo workflow. Supports both GitLab.com SaaS and self-managed instances with
+  fine-grained access tokens.
+author:
+  name: GitLab
+  github: gitlab-org
+repository: https://gitlab.com/gitlab-org/api/mcp-server
+transport:
+  - stdio
+  - http-streaming
+category: Development
+tags:
+  - gitlab
+  - git
+  - version-control
+  - merge-requests
+  - ci-cd
+  - issues
+created_at: "2026-06-19T00:00:00.000Z"
+updated_at: "2026-06-19T00:00:00.000Z"
+tools:
+  - name: create_merge_request
+    description: Create a new merge request in a GitLab project.
+    input_schema:
+      type: object
+      properties:
+        project_id:
+          type: string
+          description: Project ID or URL-encoded path
+        source_branch:
+          type: string
+          description: Source branch with changes
+        target_branch:
+          type: string
+          description: Target branch to merge into
+        title:
+          type: string
+          description: Merge request title
+        description:
+          type: string
+          description: Merge request description in Markdown
+      required:
+        - project_id
+        - source_branch
+        - target_branch
+        - title
+  - name: list_issues
+    description: List issues for a GitLab project with optional state and label filters.
+    input_schema:
+      type: object
+      properties:
+        project_id:
+          type: string
+          description: Project ID or URL-encoded path
+        state:
+          type: string
+          description: Issue state (opened, closed, all)
+        labels:
+          type: array
+          items:
+            type: string
+          description: Labels to filter by
+      required:
+        - project_id
+  - name: get_pipeline
+    description: Get the status and jobs of a CI/CD pipeline.
+    input_schema:
+      type: object
+      properties:
+        project_id:
+          type: string
+          description: Project ID or URL-encoded path
+        pipeline_id:
+          type: integer
+          description: Pipeline ID
+      required:
+        - project_id
+        - pipeline_id
+install:
+  npm: "@gitlab/mcp-server"
+  command: npx
+  args:
+    - "-y"
+    - "@gitlab/mcp-server"
+env_vars:
+  - name: GITLAB_TOKEN
+    description: GitLab personal or project access token
+    required: true
+  - name: GITLAB_URL
+    description: Base URL for self-managed GitLab instances (defaults to https://gitlab.com)
+    required: false
+license: MIT
+version: "1.0.0"
+stars: 2100

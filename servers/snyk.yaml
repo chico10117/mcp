@@ -1,0 +1,70 @@
+id: snyk
+name: Snyk MCP Server
+description: >
+  Official Snyk MCP server that brings developer security scanning into AI agent workflows.
+  Lets agents scan code, open-source dependencies, containers, and infrastructure-as-code for
+  vulnerabilities, retrieve fix advice, and check license issues directly from the editor or
+  CI, using the Snyk CLI under the hood.
+author:
+  name: Snyk
+  github: snyk
+repository: https://github.com/snyk/cli
+transport:
+  - stdio
+category: Security
+tags:
+  - snyk
+  - security
+  - vulnerability-scanning
+  - sca
+  - sast
+  - dependencies
+created_at: "2026-06-19T00:00:00.000Z"
+updated_at: "2026-06-19T00:00:00.000Z"
+tools:
+  - name: scan_code
+    description: Run static application security testing (SAST) on a code path.
+    input_schema:
+      type: object
+      properties:
+        path:
+          type: string
+          description: Path to the code directory to scan
+      required:
+        - path
+  - name: scan_dependencies
+    description: Scan open-source dependencies for known vulnerabilities and license issues.
+    input_schema:
+      type: object
+      properties:
+        path:
+          type: string
+          description: Path to the project manifest or directory
+      required:
+        - path
+  - name: scan_container
+    description: Scan a container image for OS and application vulnerabilities.
+    input_schema:
+      type: object
+      properties:
+        image:
+          type: string
+          description: Container image name and tag
+      required:
+        - image
+install:
+  npm: "snyk"
+  command: npx
+  args:
+    - "-y"
+    - "snyk"
+    - "mcp"
+    - "-t"
+    - "stdio"
+env_vars:
+  - name: SNYK_TOKEN
+    description: Snyk API token for authentication
+    required: true
+license: Apache-2.0
+version: "1.1290.0"
+stars: 5100

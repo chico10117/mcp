@@ -1,0 +1,74 @@
+id: salesforce
+name: Salesforce MCP Server
+description: >
+  MCP server for Salesforce that lets AI agents query and modify CRM data using SOQL, manage
+  standard and custom objects (Accounts, Contacts, Opportunities, Cases), describe object
+  metadata, and execute Apex anonymous blocks. Supports both production and sandbox orgs via
+  OAuth or username-password flows.
+author:
+  name: Salesforce Community
+  github: salesforcecli
+repository: https://github.com/salesforcecli/mcp
+transport:
+  - stdio
+category: Productivity
+tags:
+  - salesforce
+  - crm
+  - soql
+  - sales
+  - apex
+  - enterprise
+created_at: "2026-06-19T00:00:00.000Z"
+updated_at: "2026-06-19T00:00:00.000Z"
+tools:
+  - name: run_soql
+    description: Execute a SOQL query and return matching records.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: SOQL query string
+      required:
+        - query
+  - name: create_record
+    description: Create a record for a given Salesforce object.
+    input_schema:
+      type: object
+      properties:
+        object_type:
+          type: string
+          description: Salesforce object API name (e.g., Account, Contact)
+        fields:
+          type: object
+          description: Field API name/value pairs
+      required:
+        - object_type
+        - fields
+  - name: describe_object
+    description: Return field and relationship metadata for a Salesforce object.
+    input_schema:
+      type: object
+      properties:
+        object_type:
+          type: string
+          description: Salesforce object API name
+      required:
+        - object_type
+install:
+  npm: "@salesforce/mcp"
+  command: npx
+  args:
+    - "-y"
+    - "@salesforce/mcp"
+env_vars:
+  - name: SALESFORCE_INSTANCE_URL
+    description: Salesforce org instance URL
+    required: true
+  - name: SALESFORCE_ACCESS_TOKEN
+    description: OAuth access token for the Salesforce org
+    required: true
+license: BSD-3-Clause
+version: "0.8.0"
+stars: 540

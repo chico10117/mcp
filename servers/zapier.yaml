@@ -1,0 +1,51 @@
+id: zapier
+name: Zapier MCP Server
+description: >
+  Official Zapier MCP server that exposes thousands of app integrations and Zap actions to AI
+  agents through a single remote endpoint. Lets agents trigger automations and perform actions
+  across apps like Gmail, Slack, Google Sheets, and Salesforce without building custom
+  integrations, with per-action scoping configured in the Zapier dashboard.
+author:
+  name: Zapier
+  github: zapier
+repository: https://github.com/zapier/zapier-mcp
+transport:
+  - http-streaming
+  - sse
+category: Productivity
+tags:
+  - zapier
+  - automation
+  - integrations
+  - workflow
+  - no-code
+  - actions
+created_at: "2026-06-19T00:00:00.000Z"
+updated_at: "2026-06-19T00:00:00.000Z"
+tools:
+  - name: list_actions
+    description: List the Zapier actions that have been enabled for this MCP endpoint.
+    input_schema:
+      type: object
+      properties: {}
+  - name: run_action
+    description: Execute a configured Zapier action with the provided input fields.
+    input_schema:
+      type: object
+      properties:
+        action_id:
+          type: string
+          description: Identifier of the enabled Zapier action
+        inputs:
+          type: object
+          description: Input field values required by the action
+      required:
+        - action_id
+        - inputs
+env_vars:
+  - name: ZAPIER_MCP_URL
+    description: Your personal Zapier MCP server endpoint URL with embedded API key
+    required: true
+license: MIT
+version: "1.0.0"
+stars: 1200

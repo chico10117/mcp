@@ -5,6 +5,26 @@ All notable changes to the OpenModels MCP Server Registry will be documented in 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.0] - 2026-06-19
+
+### Added
+
+- 10 new MCP server definitions:
+  - `gitlab` — official GitLab MCP server for projects, issues, merge requests, and CI/CD pipelines (Development)
+  - `airtable` — Airtable MCP server for reading/writing records, bases, and schemas (Database)
+  - `snowflake` — official Snowflake MCP server for SQL queries and Cortex AI over the Data Cloud (Database)
+  - `bigquery` — Google BigQuery MCP server for dataset exploration and SQL analytics with dry-run costing (Database)
+  - `asana` — official Asana MCP server for tasks, projects, and work management (Productivity)
+  - `salesforce` — Salesforce MCP server for SOQL queries, CRM records, and Apex execution (Productivity)
+  - `hubspot` — official HubSpot MCP server for CRM contacts, companies, and deals (Productivity)
+  - `zapier` — official Zapier MCP server exposing thousands of app actions and automations (Productivity)
+  - `snyk` — official Snyk MCP server for code, dependency, container, and IaC security scanning (Security)
+  - `youtube-transcript` — YouTube transcript and metadata MCP server for video summarization and research (Research)
+
+### Changed
+
+- Total server count now 67 across 11 categories
+
 ## [0.6.0] - 2026-06-12
 
 ### Added

@@ -1,0 +1,78 @@
+id: snowflake
+name: Snowflake MCP Server
+description: >
+  Official Snowflake MCP server enabling AI agents to query and analyze data in the Snowflake
+  AI Data Cloud. Supports running SQL against warehouses, exploring databases and schemas,
+  describing tables, and invoking Cortex AI services for search and analytics, with role-based
+  access control honored end to end.
+author:
+  name: Snowflake
+  github: Snowflake-Labs
+repository: https://github.com/Snowflake-Labs/mcp
+transport:
+  - stdio
+category: Database
+tags:
+  - snowflake
+  - data-warehouse
+  - sql
+  - analytics
+  - cortex
+  - olap
+created_at: "2026-06-19T00:00:00.000Z"
+updated_at: "2026-06-19T00:00:00.000Z"
+tools:
+  - name: run_query
+    description: Execute a read-only SQL query against a Snowflake warehouse and return rows.
+    input_schema:
+      type: object
+      properties:
+        statement:
+          type: string
+          description: SQL statement to execute
+        warehouse:
+          type: string
+          description: Warehouse to run the query on
+      required:
+        - statement
+  - name: list_tables
+    description: List tables in a given database and schema.
+    input_schema:
+      type: object
+      properties:
+        database:
+          type: string
+          description: Database name
+        schema:
+          type: string
+          description: Schema name
+      required:
+        - database
+        - schema
+  - name: describe_table
+    description: Return the column definitions and metadata for a table.
+    input_schema:
+      type: object
+      properties:
+        table:
+          type: string
+          description: Fully qualified table name (database.schema.table)
+      required:
+        - table
+install:
+  command: uvx
+  args:
+    - "snowflake-labs-mcp"
+env_vars:
+  - name: SNOWFLAKE_ACCOUNT
+    description: Snowflake account identifier
+    required: true
+  - name: SNOWFLAKE_USER
+    description: Snowflake username
+    required: true
+  - name: SNOWFLAKE_PASSWORD
+    description: Snowflake password or programmatic access token
+    required: true
+license: Apache-2.0
+version: "1.2.0"
+stars: 980
