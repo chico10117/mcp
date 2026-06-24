@@ -1,0 +1,65 @@
+id: apify
+name: Apify MCP Server
+description: >
+  Official Apify MCP server that gives AI agents access to thousands of Actors for web scraping
+  and automation. Agents can run Actors to extract data from websites, search engines, social
+  platforms, and maps, then retrieve structured results from the dataset, enabling rich web
+  research and data collection.
+author:
+  name: Apify
+  github: apify
+repository: https://github.com/apify/actors-mcp-server
+transport:
+  - stdio
+  - http-streaming
+category: Browser Automation
+tags:
+  - apify
+  - web-scraping
+  - crawling
+  - automation
+  - data-extraction
+  - actors
+created_at: "2026-06-24T00:00:00.000Z"
+updated_at: "2026-06-24T00:00:00.000Z"
+tools:
+  - name: run_actor
+    description: Run an Apify Actor with the given input and wait for results.
+    input_schema:
+      type: object
+      properties:
+        actor_id:
+          type: string
+          description: Actor identifier (e.g., apify/web-scraper)
+        input:
+          type: object
+          description: Actor input configuration
+      required:
+        - actor_id
+        - input
+  - name: get_dataset_items
+    description: Retrieve items from an Actor run's dataset.
+    input_schema:
+      type: object
+      properties:
+        dataset_id:
+          type: string
+          description: Dataset ID returned by an Actor run
+        limit:
+          type: integer
+          description: Maximum number of items to return
+      required:
+        - dataset_id
+install:
+  npm: "@apify/actors-mcp-server"
+  command: npx
+  args:
+    - "-y"
+    - "@apify/actors-mcp-server"
+env_vars:
+  - name: APIFY_TOKEN
+    description: Apify API token
+    required: true
+license: Apache-2.0
+version: "0.5.0"
+stars: 1100

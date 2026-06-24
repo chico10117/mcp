@@ -1,0 +1,84 @@
+id: confluence
+name: Confluence MCP Server
+description: >
+  MCP server for Atlassian Confluence that lets AI agents search the knowledge base, read and
+  create pages, update content, and navigate spaces. Useful for grounding answers in internal
+  documentation and for drafting or maintaining wiki content directly from an AI client.
+author:
+  name: Sooperset
+  github: sooperset
+repository: https://github.com/sooperset/mcp-atlassian
+transport:
+  - stdio
+category: Productivity
+tags:
+  - confluence
+  - atlassian
+  - wiki
+  - documentation
+  - knowledge-base
+  - search
+created_at: "2026-06-24T00:00:00.000Z"
+updated_at: "2026-06-24T00:00:00.000Z"
+tools:
+  - name: search_pages
+    description: Search Confluence content using text or CQL.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Search text or CQL expression
+        space_key:
+          type: string
+          description: Optional space to scope the search
+      required:
+        - query
+  - name: get_page
+    description: Retrieve the content of a Confluence page by ID.
+    input_schema:
+      type: object
+      properties:
+        page_id:
+          type: string
+          description: Confluence page ID
+      required:
+        - page_id
+  - name: create_page
+    description: Create a new Confluence page in a space.
+    input_schema:
+      type: object
+      properties:
+        space_key:
+          type: string
+          description: Target space key
+        title:
+          type: string
+          description: Page title
+        body:
+          type: string
+          description: Page body in storage or Markdown format
+        parent_id:
+          type: string
+          description: Optional parent page ID
+      required:
+        - space_key
+        - title
+        - body
+install:
+  command: uvx
+  args:
+    - "mcp-atlassian"
+env_vars:
+  - name: CONFLUENCE_URL
+    description: Base URL of your Confluence site
+    required: true
+  - name: CONFLUENCE_API_TOKEN
+    description: Atlassian API token
+    required: true
+  - name: CONFLUENCE_EMAIL
+    description: Account email associated with the API token
+    required: true
+license: MIT
+version: "0.11.0"
+stars: 2600

@@ -1,0 +1,85 @@
+id: sonarqube
+name: SonarQube MCP Server
+description: >
+  Official SonarQube MCP server that brings code quality and security analysis into AI
+  workflows. Lets agents fetch project issues, security hotspots, quality-gate status, and
+  metrics from SonarQube Server or SonarCloud, so code health can be inspected and triaged
+  conversationally.
+author:
+  name: SonarSource
+  github: SonarSource
+repository: https://github.com/SonarSource/sonarqube-mcp-server
+transport:
+  - stdio
+category: Development
+tags:
+  - sonarqube
+  - code-quality
+  - static-analysis
+  - security
+  - quality-gate
+  - linting
+created_at: "2026-06-24T00:00:00.000Z"
+updated_at: "2026-06-24T00:00:00.000Z"
+tools:
+  - name: list_issues
+    description: List code quality and security issues for a project.
+    input_schema:
+      type: object
+      properties:
+        project_key:
+          type: string
+          description: SonarQube project key
+        severities:
+          type: array
+          items:
+            type: string
+          description: Severity filter (e.g., BLOCKER, CRITICAL, MAJOR)
+      required:
+        - project_key
+  - name: get_quality_gate
+    description: Get the quality-gate status for a project.
+    input_schema:
+      type: object
+      properties:
+        project_key:
+          type: string
+          description: SonarQube project key
+      required:
+        - project_key
+  - name: get_metrics
+    description: Retrieve measures such as coverage, bugs, and code smells for a project.
+    input_schema:
+      type: object
+      properties:
+        project_key:
+          type: string
+          description: SonarQube project key
+        metric_keys:
+          type: array
+          items:
+            type: string
+          description: Metric keys to fetch
+      required:
+        - project_key
+install:
+  command: docker
+  args:
+    - "run"
+    - "-i"
+    - "--rm"
+    - "-e"
+    - "SONARQUBE_TOKEN"
+    - "-e"
+    - "SONARQUBE_URL"
+    - "mcp/sonarqube"
+env_vars:
+  - name: SONARQUBE_TOKEN
+    description: SonarQube or SonarCloud user token
+    required: true
+  - name: SONARQUBE_URL
+    description: Base URL of the SonarQube server (or SonarCloud)
+    required: true
+license: LGPL-3.0
+version: "1.0.0"
+stars: 360

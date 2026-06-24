@@ -1,0 +1,73 @@
+id: mysql
+name: MySQL MCP Server
+description: >
+  MCP server for MySQL and MariaDB that lets AI agents inspect schemas, list tables, and run
+  parameterized SQL queries. Supports read-only or read-write modes so agents can explore data,
+  debug, and prototype against a MySQL database with controlled access.
+author:
+  name: Benborla
+  github: benborla
+repository: https://github.com/benborla/mcp-server-mysql
+transport:
+  - stdio
+category: Database
+tags:
+  - mysql
+  - mariadb
+  - sql
+  - database
+  - relational
+  - query
+created_at: "2026-06-24T00:00:00.000Z"
+updated_at: "2026-06-24T00:00:00.000Z"
+tools:
+  - name: run_query
+    description: Execute a SQL query against the configured MySQL database.
+    input_schema:
+      type: object
+      properties:
+        sql:
+          type: string
+          description: SQL statement to execute
+      required:
+        - sql
+  - name: list_tables
+    description: List tables in the current database.
+    input_schema:
+      type: object
+      properties:
+        database:
+          type: string
+          description: Optional database name to scope results
+  - name: describe_table
+    description: Return the column definitions for a table.
+    input_schema:
+      type: object
+      properties:
+        table:
+          type: string
+          description: Table name
+      required:
+        - table
+install:
+  npm: "@benborla29/mcp-server-mysql"
+  command: npx
+  args:
+    - "-y"
+    - "@benborla29/mcp-server-mysql"
+env_vars:
+  - name: MYSQL_HOST
+    description: MySQL server host
+    required: true
+  - name: MYSQL_USER
+    description: MySQL username
+    required: true
+  - name: MYSQL_PASS
+    description: MySQL password
+    required: true
+  - name: MYSQL_DB
+    description: Default database name
+    required: true
+license: MIT
+version: "2.0.0"
+stars: 980

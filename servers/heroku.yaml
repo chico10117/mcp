@@ -1,0 +1,76 @@
+id: heroku
+name: Heroku MCP Server
+description: >
+  Official Heroku MCP server that lets AI agents manage Heroku Platform resources. Supports
+  listing and inspecting apps, scaling dynos, viewing logs, managing config vars and add-ons,
+  and running one-off commands, so deployment and operations tasks can be handled
+  conversationally.
+author:
+  name: Heroku
+  github: heroku
+repository: https://github.com/heroku/heroku-mcp-server
+transport:
+  - stdio
+category: Cloud
+tags:
+  - heroku
+  - paas
+  - deployment
+  - devops
+  - cloud
+  - operations
+created_at: "2026-06-24T00:00:00.000Z"
+updated_at: "2026-06-24T00:00:00.000Z"
+tools:
+  - name: list_apps
+    description: List Heroku apps accessible to the account.
+    input_schema:
+      type: object
+      properties:
+        team:
+          type: string
+          description: Optional team to scope results
+  - name: scale_dynos
+    description: Scale the dyno formation for an app process type.
+    input_schema:
+      type: object
+      properties:
+        app:
+          type: string
+          description: App name
+        process_type:
+          type: string
+          description: Process type to scale (e.g., web, worker)
+        quantity:
+          type: integer
+          description: Desired number of dynos
+      required:
+        - app
+        - process_type
+        - quantity
+  - name: get_logs
+    description: Fetch recent log lines for an app.
+    input_schema:
+      type: object
+      properties:
+        app:
+          type: string
+          description: App name
+        lines:
+          type: integer
+          description: Number of log lines to return
+      required:
+        - app
+install:
+  npm: "@heroku/mcp-server"
+  command: npx
+  args:
+    - "-y"
+    - "@heroku/mcp-server"
+env_vars:
+  - name: HEROKU_API_KEY
+    description: Heroku API key
+    required: true
+license: Apache-2.0
+version: "1.0.0"
+stars: 480

@@ -1,0 +1,89 @@
+id: gmail
+name: Gmail MCP Server
+description: >
+  MCP server for Gmail that lets AI agents read, search, draft, and send email, manage labels,
+  and organize the inbox via the Gmail API with OAuth. Handy for triaging mail, drafting
+  replies, and automating routine inbox workflows from an AI client.
+author:
+  name: GongRzhe
+  github: GongRzhe
+repository: https://github.com/GongRzhe/Gmail-MCP-Server
+transport:
+  - stdio
+category: Communication
+tags:
+  - gmail
+  - email
+  - google
+  - inbox
+  - communication
+  - automation
+created_at: "2026-06-24T00:00:00.000Z"
+updated_at: "2026-06-24T00:00:00.000Z"
+tools:
+  - name: search_emails
+    description: Search the mailbox using Gmail search syntax.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Gmail search query (e.g., "from:boss is:unread")
+        max_results:
+          type: integer
+          description: Maximum number of messages to return
+      required:
+        - query
+  - name: send_email
+    description: Send an email message.
+    input_schema:
+      type: object
+      properties:
+        to:
+          type: array
+          items:
+            type: string
+          description: Recipient email addresses
+        subject:
+          type: string
+          description: Email subject
+        body:
+          type: string
+          description: Email body
+      required:
+        - to
+        - subject
+        - body
+  - name: create_draft
+    description: Create a draft email without sending it.
+    input_schema:
+      type: object
+      properties:
+        to:
+          type: array
+          items:
+            type: string
+          description: Recipient email addresses
+        subject:
+          type: string
+          description: Email subject
+        body:
+          type: string
+          description: Email body
+      required:
+        - to
+        - subject
+        - body
+install:
+  npm: "@gongrzhe/server-gmail-autoauth-mcp"
+  command: npx
+  args:
+    - "-y"
+    - "@gongrzhe/server-gmail-autoauth-mcp"
+env_vars:
+  - name: GMAIL_OAUTH_CREDENTIALS
+    description: Path to the Google OAuth client credentials JSON file
+    required: true
+license: MIT
+version: "1.1.0"
+stars: 1900

@@ -5,6 +5,26 @@ All notable changes to the OpenModels MCP Server Registry will be documented in 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.8.0] - 2026-06-24
+
+### Added
+
+- 10 new MCP server definitions:
+  - `bitbucket` — Atlassian Bitbucket repositories, pull requests, and pipelines (Development)
+  - `sonarqube` — official SonarQube code quality and security analysis (Development)
+  - `mysql` — MySQL/MariaDB schema inspection and SQL queries (Database)
+  - `trello` — Trello boards, lists, and cards (Productivity)
+  - `confluence` — Atlassian Confluence wiki search and page management (Productivity)
+  - `todoist` — Todoist task management (Productivity)
+  - `google-calendar` — Google Calendar events and scheduling (Productivity)
+  - `gmail` — Gmail read, search, draft, and send (Communication)
+  - `apify` — official Apify Actors for web scraping and automation (Browser Automation)
+  - `heroku` — official Heroku Platform app and dyno management (Cloud)
+
+### Changed
+
+- Total server count now 77 across categories
+
 ## [0.7.0] - 2026-06-19
 
 ### Added

@@ -1,0 +1,76 @@
+id: todoist
+name: Todoist MCP Server
+description: >
+  MCP server for Todoist that lets AI agents create, update, complete, and query tasks using
+  natural language. Supports projects, due dates, priorities, labels, and filters, making it
+  easy to manage a personal or team task list conversationally.
+author:
+  name: Doist
+  github: Doist
+repository: https://github.com/Doist/todoist-mcp
+transport:
+  - stdio
+category: Productivity
+tags:
+  - todoist
+  - tasks
+  - to-do
+  - productivity
+  - reminders
+  - planning
+created_at: "2026-06-24T00:00:00.000Z"
+updated_at: "2026-06-24T00:00:00.000Z"
+tools:
+  - name: create_task
+    description: Create a Todoist task with optional due date, priority, and project.
+    input_schema:
+      type: object
+      properties:
+        content:
+          type: string
+          description: Task text
+        due_string:
+          type: string
+          description: Natural-language due date (e.g., "tomorrow at 5pm")
+        priority:
+          type: integer
+          description: Priority from 1 (normal) to 4 (urgent)
+        project_id:
+          type: string
+          description: Target project ID
+      required:
+        - content
+  - name: list_tasks
+    description: List active tasks, optionally filtered by project or a Todoist filter query.
+    input_schema:
+      type: object
+      properties:
+        project_id:
+          type: string
+          description: Project ID to scope results
+        filter:
+          type: string
+          description: Todoist filter expression
+  - name: complete_task
+    description: Mark a task as complete.
+    input_schema:
+      type: object
+      properties:
+        task_id:
+          type: string
+          description: ID of the task to complete
+      required:
+        - task_id
+install:
+  npm: "@doist/todoist-mcp"
+  command: npx
+  args:
+    - "-y"
+    - "@doist/todoist-mcp"
+env_vars:
+  - name: TODOIST_API_TOKEN
+    description: Todoist API token
+    required: true
+license: MIT
+version: "1.0.0"
+stars: 720
