@@ -1,0 +1,62 @@
+id: langfuse
+name: Langfuse MCP Server
+description: >
+  MCP server for Langfuse, the open-source LLM observability and prompt management platform.
+  Enables AI agents to fetch and render managed prompts, list prompt versions, and query traces,
+  helping teams manage prompts and inspect LLM application behavior from AI-powered tools.
+author:
+  name: Langfuse
+  github: langfuse
+repository: https://github.com/langfuse/mcp-server-langfuse
+transport:
+  - stdio
+category: AI
+tags:
+  - langfuse
+  - observability
+  - prompt-management
+  - llm
+  - tracing
+created_at: "2026-07-09T00:00:00.000Z"
+updated_at: "2026-07-09T00:00:00.000Z"
+tools:
+  - name: get_prompt
+    description: Fetch a managed prompt by name and compile it with the given variables.
+    input_schema:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the prompt in Langfuse
+        variables:
+          type: object
+          description: Variables to compile into the prompt template
+      required:
+        - name
+  - name: list_prompts
+    description: List available prompts and their versions in the Langfuse project.
+    input_schema:
+      type: object
+      properties:
+        label:
+          type: string
+          description: Optional label filter (for example production)
+install:
+  npm: "@langfuse/mcp-server-langfuse"
+  command: npx
+  args:
+    - "-y"
+    - "@langfuse/mcp-server-langfuse"
+env_vars:
+  - name: LANGFUSE_PUBLIC_KEY
+    description: Langfuse project public key
+    required: true
+  - name: LANGFUSE_SECRET_KEY
+    description: Langfuse project secret key
+    required: true
+  - name: LANGFUSE_HOST
+    description: Langfuse host URL (cloud or self-hosted)
+    required: false
+license: MIT
+version: "0.3.0"
+stars: 233

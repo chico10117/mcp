@@ -1,0 +1,58 @@
+id: circleci
+name: CircleCI MCP Server
+description: >
+  Official CircleCI MCP server. Lets AI agents fetch build and pipeline status, retrieve failed
+  build logs, and diagnose flaky or broken jobs so developers can fix CI failures without leaving
+  their AI-powered tools.
+author:
+  name: CircleCI
+  github: CircleCI-Public
+repository: https://github.com/CircleCI-Public/mcp-server-circleci
+transport:
+  - stdio
+category: DevOps
+tags:
+  - circleci
+  - ci-cd
+  - build
+  - pipelines
+  - automation
+created_at: "2026-07-09T00:00:00.000Z"
+updated_at: "2026-07-09T00:00:00.000Z"
+tools:
+  - name: get_build_failure_logs
+    description: Retrieve logs for failed steps of a CircleCI pipeline to diagnose failures.
+    input_schema:
+      type: object
+      properties:
+        project_slug:
+          type: string
+          description: Project slug in the form vcs/org/repo
+        branch:
+          type: string
+          description: Branch to inspect
+      required:
+        - project_slug
+  - name: get_pipeline_status
+    description: Get the status of recent pipelines for a project.
+    input_schema:
+      type: object
+      properties:
+        project_slug:
+          type: string
+          description: Project slug in the form vcs/org/repo
+      required:
+        - project_slug
+install:
+  npm: "@circleci/mcp-server-circleci"
+  command: npx
+  args:
+    - "-y"
+    - "@circleci/mcp-server-circleci"
+env_vars:
+  - name: CIRCLECI_TOKEN
+    description: CircleCI personal API token
+    required: true
+license: Apache-2.0
+version: "0.5.0"
+stars: 321

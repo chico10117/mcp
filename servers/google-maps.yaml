@@ -1,0 +1,78 @@
+id: google-maps
+name: Google Maps MCP Server
+description: >
+  MCP server for the Google Maps Platform. Enables AI agents to geocode addresses, search for
+  places, retrieve place details, and compute directions and distances, giving models location
+  awareness and routing from AI-powered tools.
+author:
+  name: Model Context Protocol
+  github: modelcontextprotocol
+repository: https://github.com/modelcontextprotocol/servers
+transport:
+  - stdio
+category: Productivity
+tags:
+  - google-maps
+  - geocoding
+  - places
+  - directions
+  - location
+created_at: "2026-07-09T00:00:00.000Z"
+updated_at: "2026-07-09T00:00:00.000Z"
+tools:
+  - name: maps_geocode
+    description: Convert an address into latitude/longitude coordinates.
+    input_schema:
+      type: object
+      properties:
+        address:
+          type: string
+          description: Address to geocode
+      required:
+        - address
+  - name: maps_search_places
+    description: Search for places near a location using a text query.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Text query (for example "coffee near me")
+        location:
+          type: string
+          description: Center location as "lat,lng"
+        radius:
+          type: integer
+          description: Search radius in meters
+      required:
+        - query
+  - name: maps_directions
+    description: Get directions and travel time between an origin and destination.
+    input_schema:
+      type: object
+      properties:
+        origin:
+          type: string
+          description: Starting address or coordinates
+        destination:
+          type: string
+          description: Ending address or coordinates
+        mode:
+          type: string
+          description: Travel mode (driving, walking, bicycling, transit)
+      required:
+        - origin
+        - destination
+install:
+  npm: "@modelcontextprotocol/server-google-maps"
+  command: npx
+  args:
+    - "-y"
+    - "@modelcontextprotocol/server-google-maps"
+env_vars:
+  - name: GOOGLE_MAPS_API_KEY
+    description: Google Maps Platform API key
+    required: true
+license: MIT
+version: "0.6.2"
+stars: 1876

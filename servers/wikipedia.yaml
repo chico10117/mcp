@@ -1,0 +1,56 @@
+id: wikipedia
+name: Wikipedia MCP Server
+description: >
+  MCP server that provides access to Wikipedia content. Lets AI agents search articles, fetch
+  full or summarized page content, and resolve references, giving models reliable, citable
+  background knowledge for research and question answering.
+author:
+  name: Wikipedia MCP Community
+  github: rudra-ravi
+repository: https://github.com/rudra-ravi/wikipedia-mcp
+transport:
+  - stdio
+category: Research
+tags:
+  - wikipedia
+  - research
+  - knowledge
+  - search
+  - reference
+created_at: "2026-07-09T00:00:00.000Z"
+updated_at: "2026-07-09T00:00:00.000Z"
+tools:
+  - name: search_wikipedia
+    description: Search Wikipedia for articles matching a query and return titles and snippets.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Search query
+        limit:
+          type: integer
+          description: Maximum number of results
+      required:
+        - query
+  - name: get_article
+    description: Retrieve the full or summarized content of a Wikipedia article by title.
+    input_schema:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Article title
+        summary_only:
+          type: boolean
+          description: Return only the lead summary when true
+      required:
+        - title
+install:
+  pip: wikipedia-mcp
+  command: uvx
+  args:
+    - wikipedia-mcp
+license: MIT
+version: "1.0.0"
+stars: 431

@@ -1,0 +1,68 @@
+id: pagerduty
+name: PagerDuty MCP Server
+description: >
+  Official PagerDuty MCP server for incident management. Lets AI agents list and triage incidents,
+  acknowledge and resolve them, look up on-call schedules, and query services so responders can
+  manage operational incidents from AI-powered tools.
+author:
+  name: PagerDuty
+  github: PagerDuty
+repository: https://github.com/PagerDuty/pagerduty-mcp-server
+transport:
+  - stdio
+category: DevOps
+tags:
+  - pagerduty
+  - incident-management
+  - on-call
+  - alerting
+  - sre
+created_at: "2026-07-09T00:00:00.000Z"
+updated_at: "2026-07-09T00:00:00.000Z"
+tools:
+  - name: list_incidents
+    description: List PagerDuty incidents filtered by status, service, or urgency.
+    input_schema:
+      type: object
+      properties:
+        statuses:
+          type: array
+          items:
+            type: string
+          description: Incident statuses to include (triggered, acknowledged, resolved)
+        service_ids:
+          type: array
+          items:
+            type: string
+          description: Restrict to specific service IDs
+  - name: manage_incident
+    description: Acknowledge, resolve, or reassign a PagerDuty incident.
+    input_schema:
+      type: object
+      properties:
+        incident_id:
+          type: string
+          description: ID of the incident to act on
+        action:
+          type: string
+          description: Action to perform (acknowledge, resolve, reassign)
+      required:
+        - incident_id
+        - action
+  - name: list_oncalls
+    description: Look up who is currently on call for a schedule or escalation policy.
+    input_schema:
+      type: object
+      properties:
+        schedule_ids:
+          type: array
+          items:
+            type: string
+          description: Schedule IDs to query
+env_vars:
+  - name: PAGERDUTY_API_TOKEN
+    description: PagerDuty REST API token
+    required: true
+license: MIT
+version: "1.1.0"
+stars: 274

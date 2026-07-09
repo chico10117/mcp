@@ -1,0 +1,52 @@
+id: vault
+name: HashiCorp Vault MCP Server
+description: >
+  MCP server for HashiCorp Vault secrets management. Enables AI agents to read and write secrets,
+  list secret paths, and manage key/value engines under controlled policies, so applications and
+  workflows can retrieve credentials securely from AI-powered tools.
+author:
+  name: HashiCorp
+  github: hashicorp
+repository: https://github.com/hashicorp/vault-mcp-server
+transport:
+  - stdio
+category: Security
+tags:
+  - vault
+  - secrets
+  - credentials
+  - security
+  - key-management
+created_at: "2026-07-09T00:00:00.000Z"
+updated_at: "2026-07-09T00:00:00.000Z"
+tools:
+  - name: read_secret
+    description: Read a secret from a Vault key/value path.
+    input_schema:
+      type: object
+      properties:
+        path:
+          type: string
+          description: Secret path (for example secret/data/app/config)
+      required:
+        - path
+  - name: list_secrets
+    description: List secret keys under a Vault path.
+    input_schema:
+      type: object
+      properties:
+        path:
+          type: string
+          description: Path to list keys under
+      required:
+        - path
+env_vars:
+  - name: VAULT_ADDR
+    description: Address of the Vault server
+    required: true
+  - name: VAULT_TOKEN
+    description: Vault token used for authentication
+    required: true
+license: MPL-2.0
+version: "0.2.0"
+stars: 367

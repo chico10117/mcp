@@ -1,0 +1,58 @@
+id: semgrep
+name: Semgrep MCP Server
+description: >
+  Official Semgrep MCP server for static application security testing. Lets AI agents scan code
+  for security vulnerabilities and bugs, run custom rules, and return findings with severity and
+  remediation guidance, embedding SAST into AI-powered development workflows.
+author:
+  name: Semgrep
+  github: semgrep
+repository: https://github.com/semgrep/mcp
+transport:
+  - stdio
+  - sse
+category: Security
+tags:
+  - semgrep
+  - sast
+  - security
+  - static-analysis
+  - vulnerability
+created_at: "2026-07-09T00:00:00.000Z"
+updated_at: "2026-07-09T00:00:00.000Z"
+tools:
+  - name: semgrep_scan
+    description: Scan code or a directory with Semgrep and return security findings.
+    input_schema:
+      type: object
+      properties:
+        path:
+          type: string
+          description: File or directory path to scan
+        config:
+          type: string
+          description: Ruleset to use (for example "auto" or a registry ruleset)
+      required:
+        - path
+  - name: security_check
+    description: Run a fast security-focused scan and summarize high-severity findings.
+    input_schema:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Code snippet to analyze
+      required:
+        - code
+install:
+  pip: semgrep-mcp
+  command: uvx
+  args:
+    - semgrep-mcp
+env_vars:
+  - name: SEMGREP_APP_TOKEN
+    description: Semgrep App token for using hosted rules and findings (optional)
+    required: false
+license: MIT
+version: "0.4.0"
+stars: 512

@@ -1,0 +1,71 @@
+id: milvus
+name: Milvus MCP Server
+description: >
+  Official MCP server for the Milvus vector database. Lets AI agents create collections, insert
+  vectors, and run similarity and scalar-filtered searches over large-scale embedding data,
+  enabling retrieval and long-term memory for AI applications.
+author:
+  name: Zilliz
+  github: zilliztech
+repository: https://github.com/zilliztech/mcp-server-milvus
+transport:
+  - stdio
+  - sse
+category: Database
+tags:
+  - milvus
+  - vector-database
+  - embeddings
+  - similarity-search
+  - rag
+created_at: "2026-07-09T00:00:00.000Z"
+updated_at: "2026-07-09T00:00:00.000Z"
+tools:
+  - name: milvus_search
+    description: Perform a vector similarity search within a Milvus collection.
+    input_schema:
+      type: object
+      properties:
+        collection_name:
+          type: string
+          description: Name of the collection to search
+        query_text:
+          type: string
+          description: Text to embed and search for
+        limit:
+          type: integer
+          description: Maximum number of results to return
+      required:
+        - collection_name
+        - query_text
+  - name: milvus_insert
+    description: Insert entities with vectors and metadata into a Milvus collection.
+    input_schema:
+      type: object
+      properties:
+        collection_name:
+          type: string
+          description: Target collection name
+        data:
+          type: array
+          items:
+            type: object
+          description: Entities to insert
+      required:
+        - collection_name
+        - data
+install:
+  pip: mcp-server-milvus
+  command: uvx
+  args:
+    - mcp-server-milvus
+env_vars:
+  - name: MILVUS_URI
+    description: Connection URI for the Milvus instance
+    required: true
+  - name: MILVUS_TOKEN
+    description: Authentication token for Milvus or Zilliz Cloud
+    required: false
+license: Apache-2.0
+version: "0.2.1"
+stars: 356

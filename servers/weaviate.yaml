@@ -1,0 +1,68 @@
+id: weaviate
+name: Weaviate MCP Server
+description: >
+  MCP server for the Weaviate open-source vector database. Enables AI agents to store objects,
+  run semantic and hybrid searches, and manage collections, making it a memory and retrieval
+  backend for RAG applications directly from AI-powered tools.
+author:
+  name: Weaviate
+  github: weaviate
+repository: https://github.com/weaviate/mcp-server-weaviate
+transport:
+  - stdio
+category: Database
+tags:
+  - weaviate
+  - vector-database
+  - embeddings
+  - semantic-search
+  - rag
+created_at: "2026-07-09T00:00:00.000Z"
+updated_at: "2026-07-09T00:00:00.000Z"
+tools:
+  - name: weaviate_insert
+    description: Insert an object into a Weaviate collection, embedding its text automatically.
+    input_schema:
+      type: object
+      properties:
+        collection:
+          type: string
+          description: Name of the target collection
+        properties:
+          type: object
+          description: Object properties to store
+      required:
+        - collection
+        - properties
+  - name: weaviate_search
+    description: Run a semantic or hybrid search over a Weaviate collection.
+    input_schema:
+      type: object
+      properties:
+        collection:
+          type: string
+          description: Collection to search
+        query:
+          type: string
+          description: Natural language query
+        limit:
+          type: integer
+          description: Maximum number of results
+      required:
+        - collection
+        - query
+install:
+  pip: mcp-server-weaviate
+  command: uvx
+  args:
+    - mcp-server-weaviate
+env_vars:
+  - name: WEAVIATE_URL
+    description: URL of the Weaviate instance
+    required: true
+  - name: WEAVIATE_API_KEY
+    description: API key for authenticating to Weaviate
+    required: false
+license: BSD-3-Clause
+version: "0.3.0"
+stars: 412

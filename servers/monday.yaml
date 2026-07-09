@@ -1,0 +1,66 @@
+id: monday
+name: monday.com MCP Server
+description: >
+  Official monday.com MCP server. Lets AI agents read and update boards, items, and columns,
+  create new items, and run queries against the monday.com Work OS so teams can manage work
+  directly from AI-powered tools.
+author:
+  name: monday.com
+  github: mondaycom
+repository: https://github.com/mondaycom/mcp
+transport:
+  - stdio
+  - http-streaming
+category: Productivity
+tags:
+  - monday
+  - project-management
+  - work-os
+  - tasks
+  - productivity
+created_at: "2026-07-09T00:00:00.000Z"
+updated_at: "2026-07-09T00:00:00.000Z"
+tools:
+  - name: create_item
+    description: Create a new item on a monday.com board with column values.
+    input_schema:
+      type: object
+      properties:
+        board_id:
+          type: string
+          description: ID of the board
+        item_name:
+          type: string
+          description: Name of the new item
+        column_values:
+          type: object
+          description: Column values keyed by column ID
+      required:
+        - board_id
+        - item_name
+  - name: get_board_items
+    description: Retrieve items and their column values from a monday.com board.
+    input_schema:
+      type: object
+      properties:
+        board_id:
+          type: string
+          description: ID of the board to read
+        limit:
+          type: integer
+          description: Maximum number of items to return
+      required:
+        - board_id
+install:
+  npm: "@mondaydotcomorg/monday-api-mcp"
+  command: npx
+  args:
+    - "-y"
+    - "@mondaydotcomorg/monday-api-mcp"
+env_vars:
+  - name: MONDAY_API_TOKEN
+    description: monday.com API token
+    required: true
+license: MIT
+version: "1.0.0"
+stars: 289

@@ -1,0 +1,62 @@
+id: jenkins
+name: Jenkins MCP Server
+description: >
+  MCP server for Jenkins CI/CD. Enables AI agents to trigger builds, inspect job and build status,
+  stream console logs, and diagnose failing pipelines, bringing continuous integration workflows
+  into AI-powered development environments.
+author:
+  name: Jenkins Community
+  github: jenkinsci
+repository: https://github.com/jenkinsci/mcp-server-plugin
+transport:
+  - stdio
+  - sse
+category: DevOps
+tags:
+  - jenkins
+  - ci-cd
+  - build
+  - automation
+  - pipelines
+created_at: "2026-07-09T00:00:00.000Z"
+updated_at: "2026-07-09T00:00:00.000Z"
+tools:
+  - name: trigger_build
+    description: Trigger a build for a Jenkins job with optional parameters.
+    input_schema:
+      type: object
+      properties:
+        job_name:
+          type: string
+          description: Name or path of the Jenkins job
+        parameters:
+          type: object
+          description: Build parameters as key/value pairs
+      required:
+        - job_name
+  - name: get_build_log
+    description: Retrieve the console log for a specific build of a job.
+    input_schema:
+      type: object
+      properties:
+        job_name:
+          type: string
+          description: Name or path of the Jenkins job
+        build_number:
+          type: integer
+          description: Build number (defaults to latest)
+      required:
+        - job_name
+env_vars:
+  - name: JENKINS_URL
+    description: Base URL of the Jenkins server
+    required: true
+  - name: JENKINS_USER
+    description: Jenkins username for authentication
+    required: true
+  - name: JENKINS_API_TOKEN
+    description: Jenkins API token for the user
+    required: true
+license: MIT
+version: "0.2.0"
+stars: 198

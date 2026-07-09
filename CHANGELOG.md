@@ -5,6 +5,31 @@ All notable changes to the OpenModels MCP Server Registry will be documented in 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.9.0] - 2026-07-09
+
+### Added
+
+- 15 new MCP server definitions:
+  - `weaviate` — Weaviate vector database for semantic and hybrid search (Database)
+  - `milvus` — official Milvus vector database for similarity search (Database)
+  - `databricks` — Databricks lakehouse SQL, Unity Catalog, and jobs (Database)
+  - `pagerduty` — official PagerDuty incident management and on-call (DevOps)
+  - `jenkins` — Jenkins CI/CD builds, jobs, and console logs (DevOps)
+  - `circleci` — official CircleCI pipeline status and failure logs (DevOps)
+  - `langfuse` — Langfuse LLM observability and prompt management (AI)
+  - `clickup` — ClickUp tasks, spaces, and lists (Productivity)
+  - `monday` — official monday.com Work OS boards and items (Productivity)
+  - `google-maps` — Google Maps geocoding, places, and directions (Productivity)
+  - `browserbase` — official Browserbase cloud browser automation with Stagehand (Browser Automation)
+  - `vault` — HashiCorp Vault secrets management (Security)
+  - `semgrep` — official Semgrep SAST scanning (Security)
+  - `telegram` — Telegram Bot API messaging and notifications (Communication)
+  - `wikipedia` — Wikipedia search and article retrieval for research (Research)
+
+### Changed
+
+- Total server count now 92 across categories
+
 ## [0.8.0] - 2026-06-24
 
 ### Added
