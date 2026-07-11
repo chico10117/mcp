@@ -1,0 +1,66 @@
+id: zendesk
+name: Zendesk MCP Server
+description: >
+  MCP server for Zendesk Support. Lets AI agents search and read tickets, add comments and replies,
+  update ticket status and fields, and query help-center articles. Useful for building support
+  copilots, triaging and summarizing tickets, and drafting grounded responses from an AI assistant.
+author:
+  name: Reza Zeraat
+  github: reza-gholizade
+repository: https://github.com/reza-gholizade/zendesk-mcp-server
+transport:
+  - stdio
+category: Communication
+tags:
+  - zendesk
+  - customer-support
+  - helpdesk
+  - tickets
+  - communication
+created_at: "2026-07-09T00:00:00.000Z"
+updated_at: "2026-07-09T00:00:00.000Z"
+tools:
+  - name: search_tickets
+    description: Search Zendesk tickets using a query and optional filters.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Search query (Zendesk search syntax)
+      required:
+        - query
+  - name: add_ticket_comment
+    description: Add a public reply or internal note to a ticket.
+    input_schema:
+      type: object
+      properties:
+        ticket_id:
+          type: integer
+          description: Zendesk ticket ID
+        body:
+          type: string
+          description: Comment body
+        public:
+          type: boolean
+          description: Whether the comment is public
+      required:
+        - ticket_id
+        - body
+install:
+  command: uvx
+  args:
+    - "zendesk-mcp-server"
+env_vars:
+  - name: ZENDESK_SUBDOMAIN
+    description: Zendesk subdomain (e.g., yourcompany)
+    required: true
+  - name: ZENDESK_EMAIL
+    description: Zendesk agent email for API auth
+    required: true
+  - name: ZENDESK_API_TOKEN
+    description: Zendesk API token
+    required: true
+license: MIT
+version: "0.2.0"
+stars: 180

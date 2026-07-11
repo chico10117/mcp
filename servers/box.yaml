@@ -1,0 +1,58 @@
+id: box
+name: Box MCP Server
+description: >
+  Official Box MCP server for enterprise content management. Lets AI agents search files, read
+  documents, extract text and metadata, ask questions with Box AI, and manage folders via the Box
+  API. Useful for document analysis, knowledge retrieval, and automating content workflows over
+  files stored in Box.
+author:
+  name: Box
+  github: box-community
+repository: https://github.com/box-community/mcp-server-box
+transport:
+  - stdio
+category: Filesystem
+tags:
+  - box
+  - storage
+  - documents
+  - content-management
+  - enterprise
+  - files
+created_at: "2026-07-09T00:00:00.000Z"
+updated_at: "2026-07-09T00:00:00.000Z"
+tools:
+  - name: search_files
+    description: Search Box for files and folders matching a query.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Search query
+      required:
+        - query
+  - name: read_file
+    description: Read and extract text content from a Box file by ID.
+    input_schema:
+      type: object
+      properties:
+        file_id:
+          type: string
+          description: Box file ID
+      required:
+        - file_id
+install:
+  command: uvx
+  args:
+    - "mcp-server-box"
+env_vars:
+  - name: BOX_CLIENT_ID
+    description: Box application client ID
+    required: true
+  - name: BOX_CLIENT_SECRET
+    description: Box application client secret
+    required: true
+license: MIT
+version: "0.2.0"
+stars: 210

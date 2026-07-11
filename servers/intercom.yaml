@@ -1,0 +1,56 @@
+id: intercom
+name: Intercom MCP Server
+description: >
+  MCP server for Intercom. Lets AI agents search and read conversations and contacts, retrieve
+  message history, and query help-center articles via the Intercom API. Useful for support
+  analytics, conversation summarization, and building assistants that reason over customer
+  communications.
+author:
+  name: Fabian Piau
+  github: fabianpiau
+repository: https://github.com/fabian1710/mcp-intercom
+transport:
+  - stdio
+category: Communication
+tags:
+  - intercom
+  - customer-support
+  - messaging
+  - crm
+  - communication
+created_at: "2026-07-09T00:00:00.000Z"
+updated_at: "2026-07-09T00:00:00.000Z"
+tools:
+  - name: search_conversations
+    description: Search Intercom conversations by query and filters (date, state, contact).
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Search query
+      required:
+        - query
+  - name: get_conversation
+    description: Retrieve a full Intercom conversation thread by ID.
+    input_schema:
+      type: object
+      properties:
+        conversation_id:
+          type: string
+          description: Intercom conversation ID
+      required:
+        - conversation_id
+install:
+  npm: "mcp-intercom"
+  command: npx
+  args:
+    - "-y"
+    - "mcp-intercom"
+env_vars:
+  - name: INTERCOM_ACCESS_TOKEN
+    description: Intercom access token
+    required: true
+license: MIT
+version: "0.1.0"
+stars: 140

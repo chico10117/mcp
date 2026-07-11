@@ -1,0 +1,52 @@
+id: duckdb
+name: DuckDB MCP Server
+description: >
+  MCP server for DuckDB, the fast in-process analytical database. Lets AI agents run analytical SQL
+  over local files (CSV, Parquet, JSON), attach databases, inspect schemas, and profile queries.
+  Ideal for ad-hoc data analysis, ETL prototyping, and querying large columnar files without a
+  separate database server.
+author:
+  name: MotherDuck
+  github: motherduckdb
+repository: https://github.com/motherduckdb/mcp-server-motherduck
+transport:
+  - stdio
+category: Database
+tags:
+  - duckdb
+  - sql
+  - analytics
+  - olap
+  - parquet
+  - data
+created_at: "2026-07-09T00:00:00.000Z"
+updated_at: "2026-07-09T00:00:00.000Z"
+tools:
+  - name: query
+    description: Execute a read-only SQL query against DuckDB and return the results.
+    input_schema:
+      type: object
+      properties:
+        sql:
+          type: string
+          description: SQL query to execute
+      required:
+        - sql
+  - name: list_tables
+    description: List tables and views available in the current DuckDB database.
+    input_schema:
+      type: object
+      properties: {}
+install:
+  npm: "@motherduck/mcp-server-motherduck"
+  command: npx
+  args:
+    - "-y"
+    - "@motherduck/mcp-server-motherduck"
+env_vars:
+  - name: MOTHERDUCK_TOKEN
+    description: MotherDuck access token (optional; only for cloud databases)
+    required: false
+license: MIT
+version: "0.6.0"
+stars: 780

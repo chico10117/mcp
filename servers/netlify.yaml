@@ -1,0 +1,52 @@
+id: netlify
+name: Netlify MCP Server
+description: >
+  Official Netlify MCP server for managing web deployments. Lets AI agents create and configure
+  sites, trigger and monitor deploys, manage environment variables, and read build logs. Useful
+  for shipping frontends and serverless functions, debugging failed builds, and automating
+  deployment workflows from an AI assistant.
+author:
+  name: Netlify
+  github: netlify
+repository: https://github.com/netlify/netlify-mcp
+transport:
+  - stdio
+category: DevOps
+tags:
+  - netlify
+  - deployment
+  - hosting
+  - serverless
+  - devops
+  - ci-cd
+created_at: "2026-07-09T00:00:00.000Z"
+updated_at: "2026-07-09T00:00:00.000Z"
+tools:
+  - name: list_sites
+    description: List Netlify sites in the authenticated account.
+    input_schema:
+      type: object
+      properties: {}
+  - name: get_deploy_status
+    description: Get the status and logs for a site's most recent deploy.
+    input_schema:
+      type: object
+      properties:
+        site_id:
+          type: string
+          description: Netlify site ID
+      required:
+        - site_id
+install:
+  npm: "@netlify/mcp"
+  command: npx
+  args:
+    - "-y"
+    - "@netlify/mcp"
+env_vars:
+  - name: NETLIFY_PERSONAL_ACCESS_TOKEN
+    description: Netlify personal access token
+    required: true
+license: MIT
+version: "1.0.0"
+stars: 470

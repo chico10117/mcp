@@ -1,0 +1,52 @@
+id: railway
+name: Railway MCP Server
+description: >
+  MCP server for the Railway deployment platform. Lets AI agents create projects and services,
+  deploy from repositories, manage environment variables, view deployment logs, and inspect service
+  status. Useful for provisioning backends, databases, and cron jobs and for debugging deploys
+  directly from an AI assistant.
+author:
+  name: Jason Tan
+  github: jason-tan-swe
+repository: https://github.com/jason-tan-swe/railway-mcp
+transport:
+  - stdio
+category: Cloud
+tags:
+  - railway
+  - deployment
+  - paas
+  - cloud
+  - devops
+  - hosting
+created_at: "2026-07-09T00:00:00.000Z"
+updated_at: "2026-07-09T00:00:00.000Z"
+tools:
+  - name: list_projects
+    description: List Railway projects and their services in the account.
+    input_schema:
+      type: object
+      properties: {}
+  - name: get_deployment_logs
+    description: Retrieve logs for a specific deployment.
+    input_schema:
+      type: object
+      properties:
+        deployment_id:
+          type: string
+          description: Railway deployment ID
+      required:
+        - deployment_id
+install:
+  npm: "@railway/mcp-server"
+  command: npx
+  args:
+    - "-y"
+    - "@railway/mcp-server"
+env_vars:
+  - name: RAILWAY_API_TOKEN
+    description: Railway account or project API token
+    required: true
+license: MIT
+version: "0.2.0"
+stars: 360

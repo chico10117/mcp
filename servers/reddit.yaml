@@ -1,0 +1,63 @@
+id: reddit
+name: Reddit MCP Server
+description: >
+  MCP server for the Reddit API. Lets AI agents search subreddits, fetch hot/new/top posts, read
+  comment threads, and retrieve user activity. Useful for market and community research, sentiment
+  monitoring, trend discovery, and summarizing discussions across communities.
+author:
+  name: Adam Hill
+  github: adhikasp
+repository: https://github.com/adhikasp/mcp-reddit
+transport:
+  - stdio
+category: Research
+tags:
+  - reddit
+  - social-media
+  - research
+  - community
+  - trends
+  - sentiment
+created_at: "2026-07-09T00:00:00.000Z"
+updated_at: "2026-07-09T00:00:00.000Z"
+tools:
+  - name: get_subreddit_posts
+    description: Fetch posts from a subreddit sorted by hot, new, or top.
+    input_schema:
+      type: object
+      properties:
+        subreddit:
+          type: string
+          description: Subreddit name without the r/ prefix
+        sort:
+          type: string
+          description: Sort order (hot, new, top)
+        limit:
+          type: integer
+          description: Number of posts to return
+      required:
+        - subreddit
+  - name: get_post_comments
+    description: Retrieve the comment tree for a specific Reddit post.
+    input_schema:
+      type: object
+      properties:
+        post_id:
+          type: string
+          description: Reddit post ID
+      required:
+        - post_id
+install:
+  command: uvx
+  args:
+    - "mcp-reddit"
+env_vars:
+  - name: REDDIT_CLIENT_ID
+    description: Reddit API client ID
+    required: true
+  - name: REDDIT_CLIENT_SECRET
+    description: Reddit API client secret
+    required: true
+license: MIT
+version: "0.2.0"
+stars: 410

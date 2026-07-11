@@ -1,0 +1,45 @@
+id: wolfram-alpha
+name: Wolfram Alpha MCP Server
+description: >
+  MCP server for the Wolfram Alpha computational knowledge engine. Gives AI agents access to
+  step-by-step math, symbolic computation, unit conversions, scientific data, and curated facts
+  across physics, chemistry, finance, and more. Useful for grounding quantitative answers and
+  offloading precise computation from the model.
+author:
+  name: Wolfram Research
+  github: WolframResearch
+repository: https://github.com/WolframResearch/LLMFunctions
+transport:
+  - stdio
+category: Research
+tags:
+  - wolfram-alpha
+  - computation
+  - math
+  - science
+  - knowledge
+  - facts
+created_at: "2026-07-09T00:00:00.000Z"
+updated_at: "2026-07-09T00:00:00.000Z"
+tools:
+  - name: ask
+    description: Send a natural-language query to Wolfram Alpha and return computed results.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Question or computation to evaluate
+      required:
+        - query
+install:
+  command: uvx
+  args:
+    - "wolfram-alpha-mcp"
+env_vars:
+  - name: WOLFRAM_APP_ID
+    description: Wolfram Alpha App ID (API credential)
+    required: true
+license: MIT
+version: "0.1.0"
+stars: 340

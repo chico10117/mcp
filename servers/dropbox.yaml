@@ -1,0 +1,55 @@
+id: dropbox
+name: Dropbox MCP Server
+description: >
+  MCP server for Dropbox cloud storage. Lets AI agents list folders, upload and download files,
+  search content, move and delete items, and create shared links via the Dropbox API with OAuth.
+  Useful for document workflows, backups, and giving agents access to files stored in Dropbox.
+author:
+  name: Dropbox
+  github: dropbox
+repository: https://github.com/dropbox/dropbox-mcp-server
+transport:
+  - stdio
+category: Filesystem
+tags:
+  - dropbox
+  - storage
+  - files
+  - cloud-storage
+  - documents
+created_at: "2026-07-09T00:00:00.000Z"
+updated_at: "2026-07-09T00:00:00.000Z"
+tools:
+  - name: list_folder
+    description: List files and subfolders within a Dropbox folder path.
+    input_schema:
+      type: object
+      properties:
+        path:
+          type: string
+          description: Folder path (empty string for the root)
+      required:
+        - path
+  - name: search_files
+    description: Search Dropbox for files and folders matching a query.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Search query
+      required:
+        - query
+install:
+  npm: "@dropbox/mcp-server"
+  command: npx
+  args:
+    - "-y"
+    - "@dropbox/mcp-server"
+env_vars:
+  - name: DROPBOX_ACCESS_TOKEN
+    description: Dropbox OAuth access token
+    required: true
+license: MIT
+version: "0.2.0"
+stars: 260

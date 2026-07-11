@@ -1,0 +1,66 @@
+id: dbt
+name: dbt MCP Server
+description: >
+  Official dbt Labs MCP server for analytics engineering workflows. Lets AI agents run dbt commands
+  (build, run, test), inspect models and lineage via the dbt project, and query the Semantic Layer
+  and Discovery API in dbt Cloud. Useful for transforming data, validating models, and answering
+  metric questions grounded in governed definitions.
+author:
+  name: dbt Labs
+  github: dbt-labs
+repository: https://github.com/dbt-labs/dbt-mcp
+transport:
+  - stdio
+category: Database
+tags:
+  - dbt
+  - analytics-engineering
+  - sql
+  - semantic-layer
+  - data
+  - transformation
+created_at: "2026-07-09T00:00:00.000Z"
+updated_at: "2026-07-09T00:00:00.000Z"
+tools:
+  - name: run_models
+    description: Run dbt models with optional selectors and return execution results.
+    input_schema:
+      type: object
+      properties:
+        select:
+          type: string
+          description: dbt node selection syntax (e.g., a model or tag)
+  - name: query_metrics
+    description: Query the dbt Semantic Layer for governed metrics and dimensions.
+    input_schema:
+      type: object
+      properties:
+        metrics:
+          type: array
+          description: Metric names to query
+          items:
+            type: string
+        group_by:
+          type: array
+          description: Dimensions to group by
+          items:
+            type: string
+      required:
+        - metrics
+install:
+  command: uvx
+  args:
+    - "dbt-mcp"
+env_vars:
+  - name: DBT_HOST
+    description: dbt Cloud host (for Semantic Layer/Discovery API)
+    required: false
+  - name: DBT_TOKEN
+    description: dbt Cloud service token
+    required: false
+  - name: DBT_PROJECT_DIR
+    description: Path to the local dbt project directory
+    required: false
+license: Apache-2.0
+version: "0.5.0"
+stars: 640

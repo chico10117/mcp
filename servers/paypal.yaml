@@ -1,0 +1,65 @@
+id: paypal
+name: PayPal MCP Server
+description: >
+  Official PayPal MCP server for commerce and payments. Lets AI agents create and capture orders,
+  issue invoices, process refunds, manage subscriptions, and query transactions and disputes via
+  the PayPal APIs. Useful for building checkout integrations, automating billing, and reconciling
+  payments from an AI assistant.
+author:
+  name: PayPal
+  github: paypal
+repository: https://github.com/paypal/agent-toolkit
+transport:
+  - stdio
+  - http-streaming
+category: Development
+tags:
+  - paypal
+  - payments
+  - billing
+  - invoicing
+  - fintech
+  - e-commerce
+created_at: "2026-07-09T00:00:00.000Z"
+updated_at: "2026-07-09T00:00:00.000Z"
+tools:
+  - name: create_order
+    description: Create a PayPal order for a given amount and currency.
+    input_schema:
+      type: object
+      properties:
+        amount:
+          type: string
+          description: Order amount as a decimal string
+        currency:
+          type: string
+          description: Three-letter ISO currency code
+      required:
+        - amount
+        - currency
+  - name: create_refund
+    description: Refund a captured payment, fully or partially.
+    input_schema:
+      type: object
+      properties:
+        capture_id:
+          type: string
+          description: Capture ID to refund
+        amount:
+          type: string
+          description: Amount to refund (omit for full refund)
+      required:
+        - capture_id
+install:
+  npm: "@paypal/mcp"
+  command: npx
+  args:
+    - "-y"
+    - "@paypal/mcp"
+env_vars:
+  - name: PAYPAL_ACCESS_TOKEN
+    description: PayPal API access token
+    required: true
+license: MIT
+version: "1.0.0"
+stars: 430

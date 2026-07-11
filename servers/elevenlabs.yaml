@@ -1,0 +1,57 @@
+id: elevenlabs
+name: ElevenLabs MCP Server
+description: >
+  Official MCP server for the ElevenLabs audio platform. Gives AI agents text-to-speech, voice
+  cloning, speech-to-text transcription, sound-effect generation, and voice library management.
+  Useful for building voice agents, narration, audiobooks, dubbing, and accessible audio experiences.
+author:
+  name: ElevenLabs
+  github: elevenlabs
+repository: https://github.com/elevenlabs/elevenlabs-mcp
+transport:
+  - stdio
+category: AI
+tags:
+  - text-to-speech
+  - voice
+  - audio
+  - speech-to-text
+  - tts
+  - dubbing
+created_at: "2026-07-09T00:00:00.000Z"
+updated_at: "2026-07-09T00:00:00.000Z"
+tools:
+  - name: text_to_speech
+    description: Convert text to natural speech audio using a selected voice.
+    input_schema:
+      type: object
+      properties:
+        text:
+          type: string
+          description: Text to synthesize
+        voice_id:
+          type: string
+          description: Voice ID to use
+      required:
+        - text
+  - name: speech_to_text
+    description: Transcribe an audio file to text with optional speaker diarization.
+    input_schema:
+      type: object
+      properties:
+        file_path:
+          type: string
+          description: Path to the audio file to transcribe
+      required:
+        - file_path
+install:
+  command: uvx
+  args:
+    - "elevenlabs-mcp"
+env_vars:
+  - name: ELEVENLABS_API_KEY
+    description: ElevenLabs API key
+    required: true
+license: MIT
+version: "0.4.0"
+stars: 1500

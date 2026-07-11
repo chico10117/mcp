@@ -1,0 +1,68 @@
+id: google-sheets
+name: Google Sheets MCP Server
+description: >
+  MCP server for Google Sheets. Lets AI agents read and write cell ranges, create and update
+  spreadsheets and tabs, append rows, and apply formatting via the Sheets API with OAuth. Useful
+  for lightweight data entry, reporting, dashboards, and automating spreadsheet-driven workflows.
+author:
+  name: Xing Xing
+  github: xing5
+repository: https://github.com/xing5/mcp-google-sheets
+transport:
+  - stdio
+category: Productivity
+tags:
+  - google-sheets
+  - spreadsheets
+  - data
+  - productivity
+  - reporting
+created_at: "2026-07-09T00:00:00.000Z"
+updated_at: "2026-07-09T00:00:00.000Z"
+tools:
+  - name: read_range
+    description: Read values from a range in a Google spreadsheet.
+    input_schema:
+      type: object
+      properties:
+        spreadsheet_id:
+          type: string
+          description: The spreadsheet ID
+        range:
+          type: string
+          description: A1 notation range (e.g., Sheet1!A1:C10)
+      required:
+        - spreadsheet_id
+        - range
+  - name: update_range
+    description: Write values to a range in a Google spreadsheet.
+    input_schema:
+      type: object
+      properties:
+        spreadsheet_id:
+          type: string
+          description: The spreadsheet ID
+        range:
+          type: string
+          description: A1 notation range to write
+        values:
+          type: array
+          description: 2D array of cell values
+          items:
+            type: array
+            items: {}
+      required:
+        - spreadsheet_id
+        - range
+        - values
+install:
+  command: uvx
+  args:
+    - "mcp-google-sheets"
+env_vars:
+  - name: GOOGLE_APPLICATION_CREDENTIALS
+    description: Path to a Google service account or OAuth credentials JSON file
+    required: true
+license: MIT
+version: "0.3.0"
+stars: 680

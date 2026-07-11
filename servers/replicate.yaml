@@ -1,0 +1,61 @@
+id: replicate
+name: Replicate MCP Server
+description: >
+  MCP server for Replicate, which hosts thousands of open machine learning models behind a single
+  API. Lets AI agents search models, run predictions (image, video, audio, and text generation),
+  poll prediction status, and retrieve outputs. Useful for adding generative media and specialized
+  ML capabilities to agent workflows without managing infrastructure.
+author:
+  name: Replicate
+  github: replicate
+repository: https://github.com/replicate/mcp
+transport:
+  - stdio
+category: AI
+tags:
+  - replicate
+  - machine-learning
+  - image-generation
+  - inference
+  - models
+  - media
+created_at: "2026-07-09T00:00:00.000Z"
+updated_at: "2026-07-09T00:00:00.000Z"
+tools:
+  - name: search_models
+    description: Search Replicate's catalog of hosted models by keyword.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Search query
+      required:
+        - query
+  - name: create_prediction
+    description: Run a model prediction with the given inputs and return the prediction ID.
+    input_schema:
+      type: object
+      properties:
+        model:
+          type: string
+          description: Model identifier (owner/name or version)
+        input:
+          type: object
+          description: Model input parameters
+      required:
+        - model
+        - input
+install:
+  npm: "@replicate/mcp"
+  command: npx
+  args:
+    - "-y"
+    - "@replicate/mcp"
+env_vars:
+  - name: REPLICATE_API_TOKEN
+    description: Replicate API token
+    required: true
+license: Apache-2.0
+version: "0.2.0"
+stars: 520

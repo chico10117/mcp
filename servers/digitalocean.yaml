@@ -1,0 +1,52 @@
+id: digitalocean
+name: DigitalOcean MCP Server
+description: >
+  Official DigitalOcean MCP server for managing cloud infrastructure. Lets AI agents deploy and
+  manage App Platform apps, Droplets, databases, and Spaces object storage, and read logs and
+  metrics. Useful for provisioning and operating cloud resources and debugging deployments through
+  an AI assistant.
+author:
+  name: DigitalOcean
+  github: digitalocean
+repository: https://github.com/digitalocean/digitalocean-mcp
+transport:
+  - stdio
+category: Cloud
+tags:
+  - digitalocean
+  - cloud
+  - infrastructure
+  - deployment
+  - hosting
+  - devops
+created_at: "2026-07-09T00:00:00.000Z"
+updated_at: "2026-07-09T00:00:00.000Z"
+tools:
+  - name: list_apps
+    description: List App Platform apps in the account.
+    input_schema:
+      type: object
+      properties: {}
+  - name: create_app
+    description: Create a new App Platform app from a specification.
+    input_schema:
+      type: object
+      properties:
+        spec:
+          type: object
+          description: App Platform app specification
+      required:
+        - spec
+install:
+  npm: "@digitalocean/mcp"
+  command: npx
+  args:
+    - "-y"
+    - "@digitalocean/mcp"
+env_vars:
+  - name: DIGITALOCEAN_API_TOKEN
+    description: DigitalOcean personal access token
+    required: true
+license: Apache-2.0
+version: "0.3.0"
+stars: 300

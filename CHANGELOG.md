@@ -5,6 +5,36 @@ All notable changes to the OpenModels MCP Server Registry will be documented in 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.0] - 2026-07-09
+
+### Added
+
+- 20 new MCP server definitions:
+  - `duckdb` — DuckDB in-process analytical SQL over local files (Database)
+  - `neo4j` — official Neo4j graph database with Cypher queries (Database)
+  - `dbt` — official dbt Labs analytics engineering and Semantic Layer (Database)
+  - `replicate` — Replicate hosted ML models for generative media and inference (AI)
+  - `elevenlabs` — official ElevenLabs text-to-speech, voice, and transcription (AI)
+  - `wolfram-alpha` — Wolfram Alpha computational knowledge and math (Research)
+  - `reddit` — Reddit search, posts, and comment threads for research (Research)
+  - `hackernews` — Hacker News stories, comments, and trends (Research)
+  - `netlify` — official Netlify site deploys and build logs (DevOps)
+  - `launchdarkly` — official LaunchDarkly feature flags and targeting (DevOps)
+  - `railway` — Railway project and service deployment management (Cloud)
+  - `digitalocean` — official DigitalOcean App Platform and infrastructure (Cloud)
+  - `google-sheets` — read/write Google Sheets ranges and tabs (Productivity)
+  - `obsidian` — Obsidian vault notes via Local REST API (Productivity)
+  - `dropbox` — official Dropbox file storage and sharing (Filesystem)
+  - `box` — official Box enterprise content management with Box AI (Filesystem)
+  - `zendesk` — Zendesk Support tickets and replies (Communication)
+  - `intercom` — Intercom conversations and contacts (Communication)
+  - `paypal` — official PayPal orders, invoices, and refunds (Development)
+  - `plaid` — official Plaid banking, balances, and transactions (Development)
+
+### Changed
+
+- Total server count now 112 across categories
+
 ## [0.9.0] - 2026-07-09
 
 ### Added

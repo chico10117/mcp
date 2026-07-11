@@ -1,0 +1,58 @@
+id: neo4j
+name: Neo4j MCP Server
+description: >
+  Official MCP server for the Neo4j graph database. Enables AI agents to run Cypher queries,
+  inspect graph schemas, and manage nodes and relationships. Includes support for natural-language
+  to Cypher translation and graph-backed memory for agents. Useful for knowledge graphs,
+  recommendations, fraud detection, and relationship-heavy data.
+author:
+  name: Neo4j
+  github: neo4j-contrib
+repository: https://github.com/neo4j-contrib/mcp-neo4j
+transport:
+  - stdio
+category: Database
+tags:
+  - neo4j
+  - graph-database
+  - cypher
+  - knowledge-graph
+  - data
+created_at: "2026-07-09T00:00:00.000Z"
+updated_at: "2026-07-09T00:00:00.000Z"
+tools:
+  - name: read_cypher
+    description: Execute a read-only Cypher query and return matching nodes and relationships.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Cypher query to execute
+        params:
+          type: object
+          description: Query parameters
+      required:
+        - query
+  - name: get_schema
+    description: Return the graph schema including node labels, relationship types, and properties.
+    input_schema:
+      type: object
+      properties: {}
+install:
+  command: uvx
+  args:
+    - "mcp-neo4j-cypher"
+env_vars:
+  - name: NEO4J_URI
+    description: Neo4j connection URI (e.g., bolt://localhost:7687)
+    required: true
+  - name: NEO4J_USERNAME
+    description: Neo4j username
+    required: true
+  - name: NEO4J_PASSWORD
+    description: Neo4j password
+    required: true
+license: MIT
+version: "0.3.0"
+stars: 900

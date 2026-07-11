@@ -1,0 +1,57 @@
+id: obsidian
+name: Obsidian MCP Server
+description: >
+  MCP server for Obsidian that connects AI agents to a local Markdown knowledge vault via the Local
+  REST API plugin. Lets agents read, search, create, and update notes, follow links, and manage
+  frontmatter and tags. Useful for personal knowledge management, note synthesis, and grounding
+  agents in your own notes.
+author:
+  name: Markus Pfundstein
+  github: MarkusPfundstein
+repository: https://github.com/MarkusPfundstein/mcp-obsidian
+transport:
+  - stdio
+category: Productivity
+tags:
+  - obsidian
+  - notes
+  - knowledge-management
+  - markdown
+  - productivity
+created_at: "2026-07-09T00:00:00.000Z"
+updated_at: "2026-07-09T00:00:00.000Z"
+tools:
+  - name: search_notes
+    description: Search the Obsidian vault for notes matching a query.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Search query
+      required:
+        - query
+  - name: get_note
+    description: Read the contents of a note by its vault path.
+    input_schema:
+      type: object
+      properties:
+        path:
+          type: string
+          description: Note path relative to the vault root
+      required:
+        - path
+install:
+  command: uvx
+  args:
+    - "mcp-obsidian"
+env_vars:
+  - name: OBSIDIAN_API_KEY
+    description: API key from the Obsidian Local REST API plugin
+    required: true
+  - name: OBSIDIAN_HOST
+    description: Host of the Local REST API (default https://127.0.0.1:27124)
+    required: false
+license: MIT
+version: "0.2.0"
+stars: 1600
