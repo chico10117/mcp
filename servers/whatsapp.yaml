@@ -1,0 +1,55 @@
+id: whatsapp
+name: WhatsApp MCP Server
+description: >
+  Community MCP server that connects a personal WhatsApp account to AI assistants. Using the
+  WhatsApp multi-device web API, it lets agents search and read your messages and contacts
+  and send messages, including media. Messages are stored locally in SQLite and only shared
+  with the model when the agent accesses them through tools, keeping data on your machine.
+author:
+  name: Luke Harries
+  github: lharries
+repository: https://github.com/lharries/whatsapp-mcp
+transport:
+  - stdio
+category: Communication
+tags:
+  - whatsapp
+  - messaging
+  - chat
+  - communication
+  - automation
+created_at: "2026-07-12T00:00:00.000Z"
+updated_at: "2026-07-12T00:00:00.000Z"
+tools:
+  - name: search_messages
+    description: Search local WhatsApp message history by text, contact, or chat.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Text to search for
+        contact:
+          type: string
+          description: Optional contact or chat to scope the search
+      required:
+        - query
+  - name: send_message
+    description: Send a WhatsApp message to a contact or group.
+    input_schema:
+      type: object
+      properties:
+        recipient:
+          type: string
+          description: Phone number or chat ID of the recipient
+        message:
+          type: string
+          description: Message text to send
+      required:
+        - recipient
+        - message
+  - name: list_contacts
+    description: List WhatsApp contacts available in the local database.
+    input_schema:
+      type: object
+      properties: {}

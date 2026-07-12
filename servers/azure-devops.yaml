@@ -1,0 +1,76 @@
+id: azure-devops
+name: Azure DevOps MCP Server
+description: >
+  Microsoft's official MCP server for Azure DevOps. Brings Azure DevOps capabilities to AI
+  agents, including managing work items and boards, browsing Git repositories and pull
+  requests, querying builds and pipelines, and accessing wikis and test plans. Lets teams
+  drive their Azure DevOps workflows through natural language from MCP-compatible tools.
+author:
+  name: Microsoft
+  github: microsoft
+repository: https://github.com/microsoft/azure-devops-mcp
+transport:
+  - stdio
+  - http-streaming
+category: DevOps
+tags:
+  - azure-devops
+  - ci-cd
+  - pipelines
+  - work-items
+  - repos
+  - devops
+created_at: "2026-07-12T00:00:00.000Z"
+updated_at: "2026-07-12T00:00:00.000Z"
+tools:
+  - name: list_work_items
+    description: List or query work items from an Azure DevOps project.
+    input_schema:
+      type: object
+      properties:
+        project:
+          type: string
+          description: Project name
+        query:
+          type: string
+          description: Optional WIQL query to filter work items
+      required:
+        - project
+  - name: list_pull_requests
+    description: List pull requests in an Azure DevOps repository.
+    input_schema:
+      type: object
+      properties:
+        project:
+          type: string
+          description: Project name
+        repository:
+          type: string
+          description: Repository name
+        status:
+          type: string
+          description: Filter by status (active, completed, abandoned)
+      required:
+        - project
+        - repository
+  - name: list_builds
+    description: List recent pipeline builds for a project.
+    input_schema:
+      type: object
+      properties:
+        project:
+          type: string
+          description: Project name
+      required:
+        - project
+install:
+  npm: "@azure-devops/mcp"
+  command: npx
+  args:
+    - "-y"
+    - "@azure-devops/mcp"
+    - "<your-organization>"
+env_vars:
+  - name: ADO_ORG
+    description: Azure DevOps organization name (authentication uses the Azure CLI login)
+    required: false

@@ -1,0 +1,59 @@
+id: prisma
+name: Prisma MCP Server
+description: >
+  Prisma's official MCP server that lets AI tools manage Prisma ORM projects and Prisma
+  Postgres databases through natural language. Provides both a local server for working with
+  a project's Prisma schema and migrations, and a remote server for provisioning and managing
+  Prisma Postgres databases. Useful for scaffolding models, generating and applying
+  migrations, and running database workflows from an AI coding assistant.
+author:
+  name: Prisma
+  github: prisma
+repository: https://github.com/prisma/mcp
+transport:
+  - stdio
+  - http-streaming
+category: Database
+tags:
+  - prisma
+  - orm
+  - postgres
+  - database
+  - migrations
+  - schema
+created_at: "2026-07-12T00:00:00.000Z"
+updated_at: "2026-07-12T00:00:00.000Z"
+tools:
+  - name: migrate
+    description: Create and apply Prisma migrations from changes to the Prisma schema.
+    input_schema:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name for the migration
+      required:
+        - name
+  - name: create_database
+    description: Provision a new Prisma Postgres database in a chosen region.
+    input_schema:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the database to create
+        region:
+          type: string
+          description: Region to provision the database in
+      required:
+        - name
+install:
+  command: npx
+  args:
+    - "-y"
+    - "prisma"
+    - "mcp"
+env_vars:
+  - name: PRISMA_POSTGRES_API_KEY
+    description: API key for managing Prisma Postgres databases via the remote server
+    required: false

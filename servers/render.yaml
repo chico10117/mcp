@@ -1,0 +1,57 @@
+id: render
+name: Render MCP Server
+description: >
+  Render's official MCP server for interacting with your Render cloud resources via LLMs.
+  Lets agents list and inspect services, create and manage deploys, read logs and metrics,
+  and query managed Postgres and Key Value instances. Useful for deploying, debugging, and
+  monitoring applications hosted on Render directly from an MCP-compatible assistant.
+author:
+  name: Render
+  github: render-oss
+repository: https://github.com/render-oss/render-mcp-server
+transport:
+  - stdio
+  - http-streaming
+category: Cloud
+tags:
+  - render
+  - deployment
+  - hosting
+  - cloud
+  - paas
+  - devops
+created_at: "2026-07-12T00:00:00.000Z"
+updated_at: "2026-07-12T00:00:00.000Z"
+tools:
+  - name: list_services
+    description: List the services in the authenticated Render account.
+    input_schema:
+      type: object
+      properties: {}
+  - name: get_deploys
+    description: List recent deploys for a Render service.
+    input_schema:
+      type: object
+      properties:
+        service_id:
+          type: string
+          description: ID of the Render service
+      required:
+        - service_id
+  - name: get_logs
+    description: Retrieve logs for a Render service to debug issues.
+    input_schema:
+      type: object
+      properties:
+        service_id:
+          type: string
+          description: ID of the Render service
+        limit:
+          type: integer
+          description: Maximum number of log lines to return
+      required:
+        - service_id
+env_vars:
+  - name: RENDER_API_KEY
+    description: Render API key used to authenticate requests
+    required: true

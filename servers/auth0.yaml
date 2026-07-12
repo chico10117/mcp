@@ -1,0 +1,61 @@
+id: auth0
+name: Auth0 MCP Server
+description: >
+  Auth0's official MCP server that connects AI agents to the Auth0 Management API. Lets
+  developers create and configure applications, deploy Actions, manage APIs and connections,
+  and query tenant logs using natural language. Runs locally with interactive tenant
+  authentication and stores access tokens in the system keychain so the model never sees them
+  directly, supporting secure Auth0 administration.
+author:
+  name: Auth0
+  github: auth0
+repository: https://github.com/auth0/auth0-mcp-server
+transport:
+  - stdio
+category: Security
+tags:
+  - auth0
+  - authentication
+  - identity
+  - oauth
+  - security
+  - iam
+created_at: "2026-07-12T00:00:00.000Z"
+updated_at: "2026-07-12T00:00:00.000Z"
+tools:
+  - name: auth0_create_application
+    description: Create a new Auth0 application (client) in the authenticated tenant.
+    input_schema:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the application
+        app_type:
+          type: string
+          description: Application type (spa, native, regular_web, non_interactive)
+      required:
+        - name
+  - name: auth0_list_applications
+    description: List applications configured in the Auth0 tenant.
+    input_schema:
+      type: object
+      properties: {}
+  - name: auth0_get_logs
+    description: Query recent Auth0 tenant logs for troubleshooting and auditing.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Optional log search query
+        take:
+          type: integer
+          description: Number of log entries to return
+install:
+  npm: "@auth0/auth0-mcp-server"
+  command: npx
+  args:
+    - "-y"
+    - "@auth0/auth0-mcp-server"
+    - "run"

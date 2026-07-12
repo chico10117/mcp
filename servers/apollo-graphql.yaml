@@ -1,0 +1,47 @@
+id: apollo-graphql
+name: Apollo MCP Server
+description: >
+  Apollo's official MCP server that exposes GraphQL operations as MCP tools, letting AI
+  agents interact with any GraphQL API through the Model Context Protocol. Turns curated
+  GraphQL operations into callable tools, supports schema introspection, and can run locally
+  alongside a graph via the Rover CLI or in production with the Apollo Runtime Container.
+author:
+  name: Apollo GraphQL
+  github: apollographql
+repository: https://github.com/apollographql/apollo-mcp-server
+transport:
+  - stdio
+  - http-streaming
+category: Development
+tags:
+  - graphql
+  - apollo
+  - api
+  - schema
+  - developer-tools
+created_at: "2026-07-12T00:00:00.000Z"
+updated_at: "2026-07-12T00:00:00.000Z"
+tools:
+  - name: execute_operation
+    description: Execute a predefined GraphQL operation exposed as an MCP tool against the configured graph.
+    input_schema:
+      type: object
+      properties:
+        variables:
+          type: object
+          description: Variables for the GraphQL operation
+  - name: introspect
+    description: Introspect the GraphQL schema to discover available types and fields.
+    input_schema:
+      type: object
+      properties:
+        type_name:
+          type: string
+          description: Optional type name to focus the introspection on
+env_vars:
+  - name: APOLLO_GRAPH_REF
+    description: Apollo graph reference (graph@variant) for schema and operations
+    required: false
+  - name: APOLLO_KEY
+    description: Apollo Studio API key for authenticated graph access
+    required: false

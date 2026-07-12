@@ -1,0 +1,46 @@
+id: motherduck
+name: MotherDuck MCP Server
+description: >
+  Official MCP server for DuckDB and MotherDuck. Lets AI assistants run SQL analytics
+  directly against local DuckDB files, in-memory databases, S3-hosted data, and MotherDuck
+  cloud warehouses. Supports read and write queries, browsing database catalogs, and
+  switching between connections on the fly, making it well suited for conversational data
+  exploration and lightweight analytics.
+author:
+  name: MotherDuck
+  github: motherduckdb
+repository: https://github.com/motherduckdb/mcp-server-motherduck
+transport:
+  - stdio
+  - http-streaming
+category: Database
+tags:
+  - duckdb
+  - motherduck
+  - sql
+  - analytics
+  - database
+  - olap
+created_at: "2026-07-12T00:00:00.000Z"
+updated_at: "2026-07-12T00:00:00.000Z"
+tools:
+  - name: query
+    description: Execute a SQL query against DuckDB or MotherDuck and return the results.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: SQL statement to execute (read or write)
+      required:
+        - query
+install:
+  command: uvx
+  args:
+    - "mcp-server-motherduck"
+    - "--db-path"
+    - "md:"
+env_vars:
+  - name: motherduck_token
+    description: MotherDuck access token for connecting to cloud databases
+    required: false

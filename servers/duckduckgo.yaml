@@ -1,0 +1,50 @@
+id: duckduckgo
+name: DuckDuckGo MCP Server
+description: >
+  Community MCP server that provides privacy-friendly web search through DuckDuckGo, plus
+  fetching and parsing of web page content into clean text. Lets AI agents look up current
+  information and retrieve source pages without an API key, making it a lightweight option
+  for research and retrieval workflows. Not affiliated with DuckDuckGo.
+author:
+  name: Nick Clyde
+  github: nickclyde
+repository: https://github.com/nickclyde/duckduckgo-mcp-server
+transport:
+  - stdio
+category: Research
+tags:
+  - search
+  - web-search
+  - duckduckgo
+  - privacy
+  - research
+created_at: "2026-07-12T00:00:00.000Z"
+updated_at: "2026-07-12T00:00:00.000Z"
+tools:
+  - name: search
+    description: Search the web using DuckDuckGo and return a list of results with titles, URLs, and snippets.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Search query
+        max_results:
+          type: integer
+          description: Maximum number of results to return
+      required:
+        - query
+  - name: fetch_content
+    description: Fetch and parse the content of a web page into clean text.
+    input_schema:
+      type: object
+      properties:
+        url:
+          type: string
+          description: URL of the page to fetch
+      required:
+        - url
+install:
+  command: uvx
+  args:
+    - "duckduckgo-mcp-server"

@@ -1,0 +1,90 @@
+id: excel
+name: Excel MCP Server
+description: >
+  MCP server for reading and writing Excel workbooks without needing Microsoft Excel
+  installed. Lets AI agents create workbooks and worksheets, read and write cell ranges,
+  apply formulas and formatting, and build charts and pivot tables programmatically. Useful
+  for automating spreadsheet generation, reporting, and data entry from an assistant.
+author:
+  name: Haris Musa
+  github: haris-musa
+repository: https://github.com/haris-musa/excel-mcp-server
+transport:
+  - stdio
+  - sse
+  - http-streaming
+category: Productivity
+tags:
+  - excel
+  - spreadsheets
+  - xlsx
+  - reporting
+  - automation
+  - productivity
+created_at: "2026-07-12T00:00:00.000Z"
+updated_at: "2026-07-12T00:00:00.000Z"
+tools:
+  - name: read_data_from_excel
+    description: Read cell values from a range in an Excel worksheet.
+    input_schema:
+      type: object
+      properties:
+        filepath:
+          type: string
+          description: Path to the Excel workbook
+        sheet_name:
+          type: string
+          description: Name of the worksheet
+        cell_range:
+          type: string
+          description: Range to read (e.g. A1:D20)
+      required:
+        - filepath
+        - sheet_name
+  - name: write_data_to_excel
+    description: Write values to a range in an Excel worksheet, creating the file if needed.
+    input_schema:
+      type: object
+      properties:
+        filepath:
+          type: string
+          description: Path to the Excel workbook
+        sheet_name:
+          type: string
+          description: Name of the worksheet
+        data:
+          type: array
+          items:
+            type: array
+          description: Two-dimensional array of values to write
+      required:
+        - filepath
+        - sheet_name
+        - data
+  - name: apply_formula
+    description: Apply an Excel formula to a specific cell.
+    input_schema:
+      type: object
+      properties:
+        filepath:
+          type: string
+          description: Path to the Excel workbook
+        sheet_name:
+          type: string
+          description: Name of the worksheet
+        cell:
+          type: string
+          description: Target cell (e.g. E2)
+        formula:
+          type: string
+          description: Excel formula to apply (e.g. =SUM(A2:D2))
+      required:
+        - filepath
+        - sheet_name
+        - cell
+        - formula
+install:
+  command: uvx
+  args:
+    - "excel-mcp-server"
+    - "stdio"

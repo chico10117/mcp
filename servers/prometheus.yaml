@@ -1,0 +1,77 @@
+id: prometheus
+name: Prometheus MCP Server
+description: >
+  MCP server that lets AI assistants query and analyze Prometheus metrics through
+  standardized interfaces. Exposes instant and range PromQL queries, metric and label
+  discovery, and target/health inspection, allowing agents to investigate system performance
+  and troubleshoot incidents using natural language instead of hand-writing PromQL.
+author:
+  name: Pavel Shklovsky
+  github: pab1it0
+repository: https://github.com/pab1it0/prometheus-mcp-server
+transport:
+  - stdio
+category: DevOps
+tags:
+  - prometheus
+  - monitoring
+  - metrics
+  - observability
+  - promql
+created_at: "2026-07-12T00:00:00.000Z"
+updated_at: "2026-07-12T00:00:00.000Z"
+tools:
+  - name: execute_query
+    description: Execute an instant PromQL query at a single point in time.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: PromQL expression to evaluate
+        time:
+          type: string
+          description: Optional RFC3339 or Unix timestamp for the evaluation
+      required:
+        - query
+  - name: execute_range_query
+    description: Execute a PromQL query over a time range with a fixed step.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: PromQL expression to evaluate
+        start:
+          type: string
+          description: Start timestamp (RFC3339 or Unix)
+        end:
+          type: string
+          description: End timestamp (RFC3339 or Unix)
+        step:
+          type: string
+          description: Query resolution step (e.g. 15s, 1m)
+      required:
+        - query
+        - start
+        - end
+        - step
+  - name: list_metrics
+    description: List available metric names exposed by the Prometheus server.
+    input_schema:
+      type: object
+      properties: {}
+install:
+  command: uvx
+  args:
+    - "prometheus-mcp-server"
+env_vars:
+  - name: PROMETHEUS_URL
+    description: Base URL of the Prometheus server (e.g. http://localhost:9090)
+    required: true
+  - name: PROMETHEUS_USERNAME
+    description: Username for basic auth, if the Prometheus endpoint is protected
+    required: false
+  - name: PROMETHEUS_PASSWORD
+    description: Password for basic auth, if the Prometheus endpoint is protected
+    required: false

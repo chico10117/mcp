@@ -1,0 +1,54 @@
+id: kagi
+name: Kagi MCP Server
+description: >
+  Official MCP server backed by the Kagi API. Exposes Kagi's high-quality search and
+  summarization tools to MCP-compatible clients, including web search and the Universal
+  Summarizer for pages and videos. Useful for research workflows that want ad-free,
+  privacy-respecting results with concise summaries. Requires a Kagi API key.
+author:
+  name: Kagi Search
+  github: kagisearch
+repository: https://github.com/kagisearch/kagimcp
+transport:
+  - stdio
+  - http-streaming
+category: Research
+tags:
+  - search
+  - kagi
+  - summarization
+  - research
+  - web-search
+created_at: "2026-07-12T00:00:00.000Z"
+updated_at: "2026-07-12T00:00:00.000Z"
+tools:
+  - name: kagi_search_fetch
+    description: Search the web with Kagi and return ranked results with titles, URLs, and snippets.
+    input_schema:
+      type: object
+      properties:
+        queries:
+          type: array
+          items:
+            type: string
+          description: One or more search queries
+      required:
+        - queries
+  - name: kagi_summarizer
+    description: Summarize a web page or video URL using Kagi's Universal Summarizer.
+    input_schema:
+      type: object
+      properties:
+        url:
+          type: string
+          description: URL of the page or video to summarize
+      required:
+        - url
+install:
+  command: uvx
+  args:
+    - "kagimcp"
+env_vars:
+  - name: KAGI_API_KEY
+    description: Kagi API key for authenticating search and summarization requests
+    required: true

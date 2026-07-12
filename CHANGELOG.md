@@ -5,6 +5,34 @@ All notable changes to the OpenModels MCP Server Registry will be documented in 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2026-07-12
+
+### Added
+
+- 18 new MCP server definitions across 9 categories:
+  - `prisma` — official Prisma ORM and Prisma Postgres schema/migration management (Database)
+  - `motherduck` — official DuckDB and MotherDuck SQL analytics over local and cloud data (Database)
+  - `meilisearch` — official Meilisearch index management and full-text search (Database)
+  - `prometheus` — query and analyze Prometheus metrics with PromQL (DevOps)
+  - `pulumi` — official Pulumi AI-assisted Infrastructure as Code (DevOps)
+  - `azure-devops` — official Microsoft Azure DevOps work items, repos, and pipelines (DevOps)
+  - `postman` — official Postman workspaces, collections, and API workflows (Development)
+  - `apollo-graphql` — official Apollo server exposing GraphQL operations as MCP tools (Development)
+  - `unity` — Coplay's MCP bridge for AI-driven Unity Editor game development (Development)
+  - `duckduckgo` — privacy-friendly DuckDuckGo web search and content fetching (Research)
+  - `algolia` — official Algolia search, index settings, and analytics (Research)
+  - `kagi` — official Kagi search and Universal Summarizer tools (Research)
+  - `browserstack` — official BrowserStack cross-browser and device testing (Browser Automation)
+  - `whatsapp` — local-first WhatsApp message search and sending via the web multi-device API (Communication)
+  - `excel` — read/write Excel workbooks, formulas, and charts without Excel installed (Productivity)
+  - `auth0` — official Auth0 Management API for apps, Actions, and tenant logs (Security)
+  - `render` — official Render service deploys, logs, and managed databases (Cloud)
+  - `cloudinary` — official Cloudinary media upload, transformation, and asset management (Cloud)
+
+### Changed
+
+- Total server count now 130 across categories
+
 ## [1.0.0] - 2026-07-09
 
 ### Added

@@ -1,0 +1,53 @@
+id: cloudinary
+name: Cloudinary MCP Servers
+description: >
+  Cloudinary's official MCP servers for managing media through conversational AI. Cover the
+  full media workflow: uploading and transforming images and videos, organizing assets with
+  structured metadata, configuring processing pipelines, and running AI-powered content
+  analysis. Available as remote OAuth endpoints or local npx processes across several
+  focused servers (asset management, environment config, structured metadata, and analysis).
+author:
+  name: Cloudinary
+  github: cloudinary
+repository: https://github.com/cloudinary/mcp-servers
+transport:
+  - stdio
+  - http-streaming
+category: Cloud
+tags:
+  - cloudinary
+  - media
+  - images
+  - video
+  - cdn
+  - asset-management
+created_at: "2026-07-12T00:00:00.000Z"
+updated_at: "2026-07-12T00:00:00.000Z"
+tools:
+  - name: upload_asset
+    description: Upload an image or video to Cloudinary from a file path or URL.
+    input_schema:
+      type: object
+      properties:
+        source:
+          type: string
+          description: File path or URL of the asset to upload
+        folder:
+          type: string
+          description: Optional destination folder
+      required:
+        - source
+  - name: search_assets
+    description: Search stored Cloudinary assets by expression, tags, or metadata.
+    input_schema:
+      type: object
+      properties:
+        expression:
+          type: string
+          description: Search expression using Cloudinary's search syntax
+      required:
+        - expression
+env_vars:
+  - name: CLOUDINARY_URL
+    description: Cloudinary connection string (cloudinary://api_key:api_secret@cloud_name)
+    required: true

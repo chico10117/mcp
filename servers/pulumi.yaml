@@ -1,0 +1,67 @@
+id: pulumi
+name: Pulumi MCP Server
+description: >
+  Pulumi's official MCP server for AI-assisted Infrastructure as Code. Wraps the Pulumi
+  Automation and Cloud APIs so agents can preview and deploy stacks, read stack outputs,
+  inspect resources, and look up provider/resource schemas from the Pulumi Registry. Helps
+  developers codify cloud architectures and review infrastructure diffs from within an AI
+  coding assistant.
+author:
+  name: Pulumi
+  github: pulumi
+repository: https://github.com/pulumi/mcp-server
+transport:
+  - stdio
+  - sse
+category: DevOps
+tags:
+  - pulumi
+  - infrastructure-as-code
+  - iac
+  - cloud
+  - deployment
+  - devops
+created_at: "2026-07-12T00:00:00.000Z"
+updated_at: "2026-07-12T00:00:00.000Z"
+tools:
+  - name: preview
+    description: Run a Pulumi preview to show the changes a deployment would make.
+    input_schema:
+      type: object
+      properties:
+        workDir:
+          type: string
+          description: Path to the Pulumi project directory
+      required:
+        - workDir
+  - name: up
+    description: Deploy a Pulumi stack, creating or updating cloud resources.
+    input_schema:
+      type: object
+      properties:
+        workDir:
+          type: string
+          description: Path to the Pulumi project directory
+      required:
+        - workDir
+  - name: get_resource
+    description: Look up a resource's schema and input/output properties from the Pulumi Registry.
+    input_schema:
+      type: object
+      properties:
+        provider:
+          type: string
+          description: Provider name (e.g. aws, gcp, azure)
+        resource:
+          type: string
+          description: Resource type to look up
+      required:
+        - provider
+        - resource
+install:
+  npm: "@pulumi/mcp-server"
+  command: npx
+  args:
+    - "-y"
+    - "@pulumi/mcp-server@latest"
+    - "stdio"

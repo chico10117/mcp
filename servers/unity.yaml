@@ -1,0 +1,63 @@
+id: unity
+name: MCP for Unity
+description: >
+  MCP server that bridges AI assistants with the Unity Editor. Gives an LLM tools to create
+  and modify GameObjects, edit scripts, manage assets and scenes, read the console, and run
+  tests, enabling AI-driven game development workflows directly inside Unity. Works with
+  clients such as Claude, Cursor, VS Code, and other MCP-compatible tools.
+author:
+  name: Coplay
+  github: CoplayDev
+repository: https://github.com/CoplayDev/unity-mcp
+transport:
+  - stdio
+category: Development
+tags:
+  - unity
+  - game-development
+  - editor
+  - automation
+  - scripting
+created_at: "2026-07-12T00:00:00.000Z"
+updated_at: "2026-07-12T00:00:00.000Z"
+tools:
+  - name: manage_gameobject
+    description: Create, find, modify, or delete GameObjects and their components in the active scene.
+    input_schema:
+      type: object
+      properties:
+        action:
+          type: string
+          description: Operation to perform (create, modify, delete, find)
+        name:
+          type: string
+          description: Name of the GameObject to act on
+      required:
+        - action
+  - name: manage_script
+    description: Create or edit C# scripts in the Unity project.
+    input_schema:
+      type: object
+      properties:
+        path:
+          type: string
+          description: Path to the script file
+        contents:
+          type: string
+          description: Script contents to write
+      required:
+        - path
+  - name: read_console
+    description: Read log, warning, and error messages from the Unity console.
+    input_schema:
+      type: object
+      properties:
+        types:
+          type: array
+          items:
+            type: string
+          description: Message types to include (log, warning, error)
+install:
+  command: uvx
+  args:
+    - "unity-mcp-server"

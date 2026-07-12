@@ -1,0 +1,54 @@
+id: algolia
+name: Algolia MCP Server
+description: >
+  Algolia's MCP server for interacting with the Algolia search platform through AI tools.
+  Lets agents run searches against indices, inspect and manage index settings and records,
+  and review analytics and monitoring data using natural language. Useful for building,
+  tuning, and debugging search experiences powered by Algolia.
+author:
+  name: Algolia
+  github: algolia
+repository: https://github.com/algolia/mcp-node
+transport:
+  - stdio
+category: Research
+tags:
+  - algolia
+  - search
+  - indexing
+  - analytics
+  - developer-tools
+created_at: "2026-07-12T00:00:00.000Z"
+updated_at: "2026-07-12T00:00:00.000Z"
+tools:
+  - name: search_single_index
+    description: Run a search query against a specific Algolia index.
+    input_schema:
+      type: object
+      properties:
+        indexName:
+          type: string
+          description: Name of the index to search
+        query:
+          type: string
+          description: Search query string
+      required:
+        - indexName
+        - query
+  - name: get_settings
+    description: Retrieve the configuration settings for an Algolia index.
+    input_schema:
+      type: object
+      properties:
+        indexName:
+          type: string
+          description: Name of the index
+      required:
+        - indexName
+env_vars:
+  - name: ALGOLIA_APP_ID
+    description: Algolia application ID
+    required: true
+  - name: ALGOLIA_API_KEY
+    description: Algolia API key with appropriate permissions
+    required: true

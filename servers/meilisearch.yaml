@@ -1,0 +1,67 @@
+id: meilisearch
+name: Meilisearch MCP Server
+description: >
+  Official MCP server for Meilisearch, the open-source, lightning-fast search engine. Enables
+  MCP-compatible clients to manage search indexes, add and update documents, run searches,
+  and adjust index settings through natural language. Useful for building and debugging
+  search experiences and for letting agents query application data stored in Meilisearch.
+author:
+  name: Meilisearch
+  github: meilisearch
+repository: https://github.com/meilisearch/meilisearch-mcp
+transport:
+  - stdio
+category: Database
+tags:
+  - meilisearch
+  - search
+  - full-text-search
+  - indexing
+  - database
+created_at: "2026-07-12T00:00:00.000Z"
+updated_at: "2026-07-12T00:00:00.000Z"
+tools:
+  - name: search
+    description: Run a search query against a Meilisearch index and return matching documents.
+    input_schema:
+      type: object
+      properties:
+        index_uid:
+          type: string
+          description: Unique identifier of the index to search
+        query:
+          type: string
+          description: Search query string
+        limit:
+          type: integer
+          description: Maximum number of results to return
+      required:
+        - index_uid
+        - query
+  - name: add_documents
+    description: Add or update documents in a Meilisearch index.
+    input_schema:
+      type: object
+      properties:
+        index_uid:
+          type: string
+          description: Unique identifier of the target index
+        documents:
+          type: array
+          items:
+            type: object
+          description: Documents to index
+      required:
+        - index_uid
+        - documents
+install:
+  command: uvx
+  args:
+    - "meilisearch-mcp"
+env_vars:
+  - name: MEILI_HTTP_ADDR
+    description: URL of the Meilisearch instance (e.g. http://localhost:7700)
+    required: false
+  - name: MEILI_MASTER_KEY
+    description: Meilisearch master or API key for authenticated operations
+    required: false
