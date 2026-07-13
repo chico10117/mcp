@@ -1,0 +1,63 @@
+id: contentful
+name: Contentful MCP Server
+description: >
+  Contentful's official MCP server for the Content Management API. Gives AI agents tools to
+  create, edit, organize, and publish content, manage content models and assets, and work
+  across spaces and environments. Useful for automating editorial workflows and content
+  operations in a Contentful-backed headless CMS.
+author:
+  name: Contentful
+  github: contentful
+repository: https://github.com/contentful/contentful-mcp-server
+transport:
+  - stdio
+category: Development
+tags:
+  - contentful
+  - cms
+  - headless-cms
+  - content-management
+  - developer-tools
+created_at: "2026-07-12T00:00:00.000Z"
+updated_at: "2026-07-12T00:00:00.000Z"
+tools:
+  - name: list_entries
+    description: List or search entries in a Contentful space and environment.
+    input_schema:
+      type: object
+      properties:
+        content_type:
+          type: string
+          description: Optional content type ID to filter by
+      required: []
+  - name: create_entry
+    description: Create a new entry of a given content type.
+    input_schema:
+      type: object
+      properties:
+        content_type:
+          type: string
+          description: Content type ID for the new entry
+        fields:
+          type: object
+          description: Field values for the entry
+      required:
+        - content_type
+        - fields
+  - name: publish_entry
+    description: Publish an existing entry so it becomes available via the delivery API.
+    input_schema:
+      type: object
+      properties:
+        entry_id:
+          type: string
+          description: ID of the entry to publish
+      required:
+        - entry_id
+env_vars:
+  - name: CONTENTFUL_MANAGEMENT_ACCESS_TOKEN
+    description: Contentful Content Management API token
+    required: true
+  - name: CONTENTFUL_SPACE_ID
+    description: Contentful space ID to operate on
+    required: false

@@ -1,0 +1,55 @@
+id: tinybird
+name: Tinybird MCP Server
+description: >
+  MCP server for interacting with a Tinybird Workspace from any MCP client. Lets AI agents
+  explore data sources, call published API endpoints, run SQL queries over real-time data,
+  and push datafiles, making Tinybird's analytics readily available to LLM-driven workflows.
+author:
+  name: Tinybird
+  github: tinybirdco
+repository: https://github.com/tinybirdco/mcp-tinybird
+transport:
+  - stdio
+category: Database
+tags:
+  - tinybird
+  - analytics
+  - real-time
+  - sql
+  - clickhouse
+  - database
+created_at: "2026-07-12T00:00:00.000Z"
+updated_at: "2026-07-12T00:00:00.000Z"
+tools:
+  - name: list_data_sources
+    description: List the data sources available in the Tinybird Workspace.
+    input_schema:
+      type: object
+      properties: {}
+  - name: run_select_query
+    description: Run a read-only SQL query against Tinybird data sources.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: SQL SELECT query to execute
+      required:
+        - query
+  - name: list_endpoints
+    description: List published Tinybird API endpoints that can be called as tools.
+    input_schema:
+      type: object
+      properties: {}
+install:
+  command: uvx
+  args:
+    - "mcp-tinybird"
+    - "stdio"
+env_vars:
+  - name: TB_API_URL
+    description: Tinybird API region URL (e.g. https://api.tinybird.co)
+    required: true
+  - name: TB_ADMIN_TOKEN
+    description: Tinybird Workspace admin token
+    required: true

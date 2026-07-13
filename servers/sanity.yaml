@@ -1,0 +1,61 @@
+id: sanity
+name: Sanity MCP Server
+description: >
+  Sanity's official MCP server that connects structured content to AI agents. Provides tools
+  to run GROQ queries, read and write documents, explore and deploy schemas, manage content
+  releases, and generate images, all with full schema context. Available as a hosted remote
+  server at mcp.sanity.io and works with MCP-compatible clients like Cursor, Claude Code, and
+  VS Code.
+author:
+  name: Sanity
+  github: sanity-io
+repository: https://github.com/sanity-io/sanity-mcp-server
+transport:
+  - stdio
+  - http-streaming
+category: Development
+tags:
+  - sanity
+  - cms
+  - headless-cms
+  - groq
+  - content-management
+  - developer-tools
+created_at: "2026-07-12T00:00:00.000Z"
+updated_at: "2026-07-12T00:00:00.000Z"
+tools:
+  - name: query_documents
+    description: Run a GROQ query to fetch documents from the Sanity dataset.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: GROQ query string
+      required:
+        - query
+  - name: create_document
+    description: Create a new document in the Sanity dataset.
+    input_schema:
+      type: object
+      properties:
+        document:
+          type: object
+          description: Document body including its _type
+      required:
+        - document
+  - name: get_schema
+    description: Retrieve the schema types configured for the Sanity project.
+    input_schema:
+      type: object
+      properties: {}
+env_vars:
+  - name: SANITY_PROJECT_ID
+    description: Sanity project ID
+    required: false
+  - name: SANITY_DATASET
+    description: Sanity dataset name (e.g. production)
+    required: false
+  - name: SANITY_API_TOKEN
+    description: Sanity API token (for token-based authentication)
+    required: false

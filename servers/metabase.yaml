@@ -1,0 +1,49 @@
+id: metabase
+name: Metabase MCP Server
+description: >
+  Metabase's built-in MCP server that lets AI clients connect directly to a Metabase
+  instance, scoped to the connecting user's permissions. Enables agents to discover
+  databases and models, run queries, and retrieve results and dashboards so teams can ask
+  questions of their business intelligence data in natural language.
+author:
+  name: Metabase
+  github: metabase
+repository: https://github.com/metabase/metabase
+transport:
+  - http-streaming
+category: Database
+tags:
+  - metabase
+  - business-intelligence
+  - analytics
+  - dashboards
+  - sql
+created_at: "2026-07-12T00:00:00.000Z"
+updated_at: "2026-07-12T00:00:00.000Z"
+tools:
+  - name: list_databases
+    description: List the databases connected to the Metabase instance that the user can access.
+    input_schema:
+      type: object
+      properties: {}
+  - name: execute_query
+    description: Run a query against a connected database and return the results.
+    input_schema:
+      type: object
+      properties:
+        database_id:
+          type: integer
+          description: ID of the database to query
+        query:
+          type: string
+          description: SQL query to execute
+      required:
+        - database_id
+        - query
+env_vars:
+  - name: METABASE_URL
+    description: Base URL of the Metabase instance
+    required: true
+  - name: METABASE_API_KEY
+    description: Metabase API key for authentication (when not using session auth)
+    required: false

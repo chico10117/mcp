@@ -5,6 +5,31 @@ All notable changes to the OpenModels MCP Server Registry will be documented in 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2026-07-12
+
+### Added
+
+- 15 new MCP server definitions across 8 categories:
+  - `couchbase` — Couchbase cluster access with SQL++ (N1QL) queries and document operations (Database)
+  - `astra-db` — official DataStax Astra DB serverless Cassandra with vector search (Database)
+  - `tinybird` — official Tinybird real-time analytics workspace queries and endpoints (Database)
+  - `metabase` — Metabase built-in BI server, permission-scoped database queries and dashboards (Database)
+  - `confluent` — official Confluent/Apache Kafka topics, connectors, Schema Registry, and Flink SQL (DevOps)
+  - `honeycomb` — Honeycomb observability queries across events, traces, and boards (DevOps)
+  - `dynatrace` — official Dynatrace problems, vulnerabilities, and DQL over logs/metrics/traces (DevOps)
+  - `contentful` — official Contentful CMS content, models, and asset management (Development)
+  - `sanity` — official Sanity CMS GROQ queries, document writes, and schema tools (Development)
+  - `wordpress` — Automattic's remote WordPress server for posts, pages, and media (Productivity)
+  - `n8n` — popular n8n workflow node knowledge, validation, and workflow management (Productivity)
+  - `webflow` — official Webflow sites, CMS collections, and publishing via the Data API (Cloud)
+  - `google-analytics` — official Google Analytics 4 reporting and metadata discovery (Research)
+  - `zoom` — official Zoom remote server for meeting search, recordings, and Docs (Communication)
+  - `infisical` — official Infisical secret management with machine-identity auth (Security)
+
+### Changed
+
+- Total server count now 145 across categories
+
 ## [1.1.0] - 2026-07-12
 
 ### Added

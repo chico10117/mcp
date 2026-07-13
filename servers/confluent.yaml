@@ -1,0 +1,74 @@
+id: confluent
+name: Confluent MCP Server
+description: >
+  Confluent's open-source MCP server that connects AI assistants to Confluent Cloud,
+  Confluent Platform, and standalone Apache Kafka deployments. Provides tools to manage Kafka
+  topics and connectors, work with Schema Registry, and run Flink SQL statements through
+  natural language, helping teams operate streaming data platforms from an MCP client.
+author:
+  name: Confluent
+  github: confluentinc
+repository: https://github.com/confluentinc/mcp-confluent
+transport:
+  - stdio
+category: DevOps
+tags:
+  - confluent
+  - kafka
+  - streaming
+  - flink
+  - schema-registry
+  - devops
+created_at: "2026-07-12T00:00:00.000Z"
+updated_at: "2026-07-12T00:00:00.000Z"
+tools:
+  - name: list_topics
+    description: List Kafka topics in the connected Confluent or Kafka cluster.
+    input_schema:
+      type: object
+      properties: {}
+  - name: create_topic
+    description: Create a new Kafka topic with the given partitions and configuration.
+    input_schema:
+      type: object
+      properties:
+        topic_name:
+          type: string
+          description: Name of the topic to create
+        partitions:
+          type: integer
+          description: Number of partitions
+      required:
+        - topic_name
+  - name: produce_message
+    description: Produce a message to a Kafka topic.
+    input_schema:
+      type: object
+      properties:
+        topic_name:
+          type: string
+          description: Target topic
+        value:
+          type: string
+          description: Message payload
+      required:
+        - topic_name
+        - value
+install:
+  npm: "@confluentinc/mcp-confluent"
+  command: npx
+  args:
+    - "-y"
+    - "@confluentinc/mcp-confluent"
+    - "-e"
+    - ".env"
+env_vars:
+  - name: BOOTSTRAP_SERVERS
+    description: Kafka bootstrap servers for the target cluster
+    required: false
+  - name: KAFKA_API_KEY
+    description: API key for authenticating to the Kafka cluster
+    required: false
+  - name: KAFKA_API_SECRET
+    description: API secret for authenticating to the Kafka cluster
+    required: false

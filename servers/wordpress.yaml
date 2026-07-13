@@ -1,0 +1,61 @@
+id: wordpress
+name: WordPress MCP Server (Remote)
+description: >
+  Automattic's MCP server that connects AI assistants such as Claude Desktop to WordPress
+  sites. Supports multiple authentication methods (OAuth 2.0, JWT, and application
+  passwords) and exposes the WordPress REST and WP-CLI capabilities so agents can read and
+  manage posts, pages, media, and site settings through natural language.
+author:
+  name: Automattic
+  github: Automattic
+repository: https://github.com/Automattic/mcp-wordpress-remote
+transport:
+  - stdio
+category: Productivity
+tags:
+  - wordpress
+  - cms
+  - content-management
+  - blogging
+  - productivity
+created_at: "2026-07-12T00:00:00.000Z"
+updated_at: "2026-07-12T00:00:00.000Z"
+tools:
+  - name: list_posts
+    description: List posts from the connected WordPress site with optional filters.
+    input_schema:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Filter by post status (publish, draft, pending)
+        search:
+          type: string
+          description: Optional search term
+  - name: create_post
+    description: Create a new post or page on the WordPress site.
+    input_schema:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Post title
+        content:
+          type: string
+          description: Post content (HTML or blocks)
+        status:
+          type: string
+          description: Post status (draft or publish)
+      required:
+        - title
+        - content
+env_vars:
+  - name: WORDPRESS_API_URL
+    description: Base URL of the WordPress site (e.g. https://example.com)
+    required: true
+  - name: WORDPRESS_USERNAME
+    description: WordPress username for authentication
+    required: false
+  - name: WORDPRESS_PASSWORD
+    description: Application password or token for the WordPress user
+    required: false

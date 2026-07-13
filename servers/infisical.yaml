@@ -1,0 +1,69 @@
+id: infisical
+name: Infisical MCP Server
+description: >
+  Infisical's official MCP server for its open-source secret management platform. Lets AI
+  agents list projects and environments and create, read, update, and delete secrets and
+  folders through controlled tools, so assistants can help manage application configuration
+  without exposing raw credentials in code. Authenticates using a machine identity.
+author:
+  name: Infisical
+  github: Infisical
+repository: https://github.com/Infisical/infisical-mcp-server
+transport:
+  - stdio
+category: Security
+tags:
+  - infisical
+  - secrets-management
+  - security
+  - credentials
+  - configuration
+created_at: "2026-07-12T00:00:00.000Z"
+updated_at: "2026-07-12T00:00:00.000Z"
+tools:
+  - name: list_secrets
+    description: List secrets in a given Infisical project, environment, and path.
+    input_schema:
+      type: object
+      properties:
+        projectId:
+          type: string
+          description: Infisical project ID
+        environment:
+          type: string
+          description: Environment slug (e.g. dev, staging, prod)
+        secretPath:
+          type: string
+          description: Folder path (defaults to /)
+      required:
+        - projectId
+        - environment
+  - name: create_secret
+    description: Create a new secret in an Infisical project environment.
+    input_schema:
+      type: object
+      properties:
+        projectId:
+          type: string
+          description: Infisical project ID
+        environment:
+          type: string
+          description: Environment slug
+        secretName:
+          type: string
+          description: Name of the secret
+        secretValue:
+          type: string
+          description: Value of the secret
+      required:
+        - projectId
+        - environment
+        - secretName
+        - secretValue
+env_vars:
+  - name: INFISICAL_CLIENT_ID
+    description: Client ID of an Infisical machine identity (Universal Auth)
+    required: true
+  - name: INFISICAL_CLIENT_SECRET
+    description: Client secret of the Infisical machine identity
+    required: true

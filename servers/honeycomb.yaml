@@ -1,0 +1,58 @@
+id: honeycomb
+name: Honeycomb MCP Server
+description: >
+  Honeycomb's MCP server that lets AI assistants query and analyze observability data,
+  including events, traces, alerts (triggers), and boards. Agents can run queries against
+  datasets, inspect columns and schemas, and cross-reference production behavior with the
+  codebase to investigate incidents. Connects to Honeycomb via API key or OAuth.
+author:
+  name: Honeycomb
+  github: honeycombio
+repository: https://github.com/honeycombio/honeycomb-mcp
+transport:
+  - stdio
+  - http-streaming
+category: DevOps
+tags:
+  - honeycomb
+  - observability
+  - tracing
+  - monitoring
+  - debugging
+  - devops
+created_at: "2026-07-12T00:00:00.000Z"
+updated_at: "2026-07-12T00:00:00.000Z"
+tools:
+  - name: list_datasets
+    description: List the datasets available in the Honeycomb environment.
+    input_schema:
+      type: object
+      properties: {}
+  - name: run_query
+    description: Run a Honeycomb query against a dataset to analyze events and traces.
+    input_schema:
+      type: object
+      properties:
+        dataset:
+          type: string
+          description: Dataset to query
+        query:
+          type: object
+          description: Honeycomb query specification (calculations, filters, breakdowns)
+      required:
+        - dataset
+        - query
+  - name: list_columns
+    description: List the columns and their types for a given dataset.
+    input_schema:
+      type: object
+      properties:
+        dataset:
+          type: string
+          description: Dataset to inspect
+      required:
+        - dataset
+env_vars:
+  - name: HONEYCOMB_API_KEY
+    description: Honeycomb API key used to authenticate queries
+    required: true

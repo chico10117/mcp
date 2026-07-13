@@ -1,0 +1,67 @@
+id: astra-db
+name: Astra DB MCP Server
+description: >
+  DataStax's official MCP server for Astra DB, a serverless database built on Apache
+  Cassandra with native vector search. Lets AI agents create and manage collections, insert
+  and update records, and run similarity and metadata queries, making it a convenient backend
+  for retrieval-augmented generation and agent memory workloads.
+author:
+  name: DataStax
+  github: datastax
+repository: https://github.com/datastax/astra-db-mcp
+transport:
+  - stdio
+category: Database
+tags:
+  - astra-db
+  - datastax
+  - cassandra
+  - vector-database
+  - database
+created_at: "2026-07-12T00:00:00.000Z"
+updated_at: "2026-07-12T00:00:00.000Z"
+tools:
+  - name: ListCollections
+    description: List the collections available in the Astra DB database.
+    input_schema:
+      type: object
+      properties: {}
+  - name: CreateCollection
+    description: Create a new collection, optionally configured for vector search.
+    input_schema:
+      type: object
+      properties:
+        collectionName:
+          type: string
+          description: Name of the collection to create
+        dimension:
+          type: integer
+          description: Vector dimension, if the collection stores embeddings
+      required:
+        - collectionName
+  - name: FindRecords
+    description: Query records in a collection by filter or vector similarity.
+    input_schema:
+      type: object
+      properties:
+        collectionName:
+          type: string
+          description: Collection to query
+        filter:
+          type: object
+          description: Optional metadata filter
+      required:
+        - collectionName
+install:
+  npm: "@datastax/astra-db-mcp"
+  command: npx
+  args:
+    - "-y"
+    - "@datastax/astra-db-mcp"
+env_vars:
+  - name: ASTRA_DB_APPLICATION_TOKEN
+    description: Astra DB application token for authentication
+    required: true
+  - name: ASTRA_DB_API_ENDPOINT
+    description: Astra DB API endpoint URL for the database
+    required: true

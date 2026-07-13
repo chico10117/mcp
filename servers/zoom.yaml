@@ -1,0 +1,44 @@
+id: zoom
+name: Zoom MCP Server
+description: >
+  Zoom's official remote MCP server, published to the MCP registry, that gives AI agents
+  access to Zoom capabilities over the Model Context Protocol. Supports semantic meeting
+  search, Zoom-wide chat and docs search, meeting assets and recording resources, and Zoom
+  Docs import/export, so assistants can find and summarize meeting content and manage related
+  data. Authenticates via OAuth.
+author:
+  name: Zoom
+  github: zoom
+repository: https://github.com/zoom/mcp-registry
+transport:
+  - http-streaming
+category: Communication
+tags:
+  - zoom
+  - meetings
+  - video-conferencing
+  - transcripts
+  - communication
+created_at: "2026-07-12T00:00:00.000Z"
+updated_at: "2026-07-12T00:00:00.000Z"
+tools:
+  - name: search_meetings
+    description: Perform semantic search across Zoom meetings and recordings.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Natural-language search query
+      required:
+        - query
+  - name: get_recording
+    description: Retrieve recording resources and assets for a specific meeting.
+    input_schema:
+      type: object
+      properties:
+        meeting_id:
+          type: string
+          description: ID of the meeting
+      required:
+        - meeting_id

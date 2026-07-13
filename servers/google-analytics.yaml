@@ -1,0 +1,62 @@
+id: google-analytics
+name: Google Analytics MCP Server
+description: >
+  Google's official MCP server for Google Analytics 4. Lets AI agents run reports against
+  the GA4 Data API, discover dimensions and metrics, and explore account and property
+  metadata with server-side aggregation and safe defaults. Runs locally (via pipx) and
+  connects to MCP-compatible clients for conversational analysis of website traffic and user
+  behavior.
+author:
+  name: Google Analytics
+  github: googleanalytics
+repository: https://github.com/googleanalytics/google-analytics-mcp
+transport:
+  - stdio
+category: Research
+tags:
+  - google-analytics
+  - ga4
+  - analytics
+  - reporting
+  - marketing
+created_at: "2026-07-12T00:00:00.000Z"
+updated_at: "2026-07-12T00:00:00.000Z"
+tools:
+  - name: run_report
+    description: Run a Google Analytics 4 report with the given metrics, dimensions, and date range.
+    input_schema:
+      type: object
+      properties:
+        property_id:
+          type: string
+          description: GA4 property ID
+        metrics:
+          type: array
+          items:
+            type: string
+          description: Metrics to include (e.g. activeUsers, sessions)
+        dimensions:
+          type: array
+          items:
+            type: string
+          description: Dimensions to break down by (e.g. country, deviceCategory)
+        date_range:
+          type: object
+          description: Start and end dates for the report
+      required:
+        - property_id
+        - metrics
+  - name: get_property_details
+    description: Retrieve metadata and available dimensions/metrics for a GA4 property.
+    input_schema:
+      type: object
+      properties:
+        property_id:
+          type: string
+          description: GA4 property ID
+      required:
+        - property_id
+env_vars:
+  - name: GOOGLE_APPLICATION_CREDENTIALS
+    description: Path to a Google service account credentials JSON file with GA4 read access
+    required: true
