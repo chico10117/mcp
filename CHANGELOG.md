@@ -5,6 +5,31 @@ All notable changes to the OpenModels MCP Server Registry will be documented in 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] - 2026-07-15
+
+### Added
+
+- 15 new MCP server definitions from established vendors and open-source projects:
+  - `chrome-devtools-mcp` — Chrome DevTools browser inspection, debugging, network, and performance workflows (Browser Automation)
+  - `jetbrains-mcp` — JetBrains IDE and Android Studio development integration (Development)
+  - `microsoft-learn-mcp` — trusted Microsoft Learn documentation and code samples (Research)
+  - `firebase-mcp` — Firebase project context and development workflows (Cloud)
+  - `buildkite` — CI/CD pipelines, builds, jobs, and artifacts (DevOps)
+  - `growthbook` — feature flags, experiments, and metrics (Productivity)
+  - `harness` — software delivery pipelines, services, environments, and insights (DevOps)
+  - `apache-doris` — Doris analytics database schema and query workflows (Database)
+  - `apache-iotdb` — IoT time-series data and telemetry exploration (Database)
+  - `apache-skywalking` — tracing, service topology, metrics, and incident investigation (DevOps)
+  - `apache-solr` — search collections, schema discovery, and relevance investigation (Database)
+  - `jfrog` — artifact repositories, build information, and supply-chain workflows (DevOps)
+  - `fivetran` — managed ELT connector and sync-health investigation (Database)
+  - `cloud-run-mcp` — Google Cloud Run deployment and serverless service management (Cloud)
+  - `google-ads-mcp` — Google Ads API resources and campaign operations (Productivity)
+
+### Changed
+
+- Total server count now 160 across categories (from 145)
+
 ## [1.2.0] - 2026-07-12
 
 ### Added

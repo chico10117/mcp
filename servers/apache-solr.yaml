@@ -1,0 +1,13 @@
+id: apache-solr
+name: Apache Solr MCP Server
+description: >
+  Apache Solr's MCP server connects agents to search collections and query workflows
+  for schema discovery, relevance investigation, and search application development.
+author: {name: Apache Solr, github: apache}
+repository: https://github.com/apache/solr-mcp
+transport: [stdio]
+category: Database
+tags: [apache-solr, search, indexing, relevance, database]
+created_at: "2026-07-15T00:00:00.000Z"
+updated_at: "2026-07-15T00:00:00.000Z"
+license: Apache-2.0

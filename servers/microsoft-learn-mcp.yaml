@@ -1,0 +1,13 @@
+id: microsoft-learn-mcp
+name: Microsoft Learn MCP Server
+description: >
+  Microsoft's official MCP server and CLI for giving agents current, trusted Microsoft
+  Learn documentation and code samples during development and troubleshooting.
+author: {name: Microsoft Learn, github: MicrosoftDocs}
+repository: https://github.com/MicrosoftDocs/mcp
+transport: [stdio]
+category: Research
+tags: [microsoft, documentation, learn, code-samples, search]
+created_at: "2026-07-15T00:00:00.000Z"
+updated_at: "2026-07-15T00:00:00.000Z"
+license: MIT

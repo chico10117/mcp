@@ -1,0 +1,13 @@
+id: fivetran
+name: Fivetran MCP Server
+description: >
+  Fivetran's MCP server helps agents inspect data connectors and sync health, diagnose
+  broken connections, and answer operational questions about managed ELT pipelines.
+author: {name: Fivetran, github: fivetran}
+repository: https://github.com/fivetran/fivetran-mcp
+transport: [stdio]
+category: Database
+tags: [fivetran, elt, data-pipelines, connectors, analytics]
+created_at: "2026-07-15T00:00:00.000Z"
+updated_at: "2026-07-15T00:00:00.000Z"
+license: MIT

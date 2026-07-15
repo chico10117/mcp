@@ -1,0 +1,13 @@
+id: apache-iotdb
+name: Apache IoTDB MCP Server
+description: >
+  Apache IoTDB's MCP server connects agents to time-series data and metadata for
+  operational analysis, industrial telemetry exploration, and query assistance.
+author: {name: Apache IoTDB, github: apache}
+repository: https://github.com/apache/iotdb-mcp-server
+transport: [stdio]
+category: Database
+tags: [apache-iotdb, time-series, iot, database, telemetry]
+created_at: "2026-07-15T00:00:00.000Z"
+updated_at: "2026-07-15T00:00:00.000Z"
+license: Apache-2.0

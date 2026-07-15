@@ -1,0 +1,13 @@
+id: jfrog
+name: JFrog MCP Server
+description: >
+  JFrog's MCP server lets agents work with Platform services for artifact repositories,
+  build information, release lifecycle management, and software supply-chain workflows.
+author: {name: JFrog, github: jfrog}
+repository: https://github.com/jfrog/mcp-jfrog
+transport: [stdio]
+category: DevOps
+tags: [jfrog, artifacts, supply-chain, builds, devops]
+created_at: "2026-07-15T00:00:00.000Z"
+updated_at: "2026-07-15T00:00:00.000Z"
+license: Apache-2.0

@@ -1,0 +1,13 @@
+id: apache-doris
+name: Apache Doris MCP Server
+description: >
+  Apache Doris' MCP server provides agents with governed access to Doris analytics
+  databases for schema discovery, query assistance, and operational investigation.
+author: {name: Apache Doris, github: apache}
+repository: https://github.com/apache/doris-mcp-server
+transport: [stdio]
+category: Database
+tags: [apache-doris, database, analytics, sql, data-warehouse]
+created_at: "2026-07-15T00:00:00.000Z"
+updated_at: "2026-07-15T00:00:00.000Z"
+license: Apache-2.0

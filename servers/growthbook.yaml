@@ -1,0 +1,13 @@
+id: growthbook
+name: GrowthBook MCP Server
+description: >
+  GrowthBook's official MCP server for working with feature flags, experiments, and
+  metrics so agents can safely support product experimentation workflows.
+author: {name: GrowthBook, github: growthbook}
+repository: https://github.com/growthbook/growthbook-mcp
+transport: [stdio]
+category: Productivity
+tags: [growthbook, feature-flags, experimentation, analytics, ab-testing]
+created_at: "2026-07-15T00:00:00.000Z"
+updated_at: "2026-07-15T00:00:00.000Z"
+license: MIT

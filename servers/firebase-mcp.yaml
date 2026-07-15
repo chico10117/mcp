@@ -1,0 +1,13 @@
+id: firebase-mcp
+name: Firebase MCP Server
+description: >
+  Firebase's MCP integration exposes Firebase project context and development workflows
+  to coding agents for building, testing, and operating Firebase applications.
+author: {name: Firebase, github: firebase}
+repository: https://github.com/firebase/firebase-tools
+transport: [stdio]
+category: Cloud
+tags: [firebase, google-cloud, backend, mobile, serverless]
+created_at: "2026-07-15T00:00:00.000Z"
+updated_at: "2026-07-15T00:00:00.000Z"
+license: MIT

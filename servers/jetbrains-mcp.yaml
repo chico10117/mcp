@@ -1,0 +1,13 @@
+id: jetbrains-mcp
+name: JetBrains MCP Server
+description: >
+  JetBrains' official MCP server for working with IntelliJ-based IDEs and Android Studio,
+  enabling agents to inspect projects and use IDE-aware development capabilities.
+author: {name: JetBrains, github: JetBrains}
+repository: https://github.com/JetBrains/mcp-jetbrains
+transport: [stdio]
+category: Development
+tags: [jetbrains, ide, intellij, android-studio, development]
+created_at: "2026-07-15T00:00:00.000Z"
+updated_at: "2026-07-15T00:00:00.000Z"
+license: Apache-2.0

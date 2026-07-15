@@ -1,0 +1,13 @@
+id: cloud-run-mcp
+name: Cloud Run MCP Server
+description: >
+  Google Cloud's MCP server for deploying and managing applications on Cloud Run,
+  giving coding agents a guided path from source code to a serverless production service.
+author: {name: Google Cloud, github: GoogleCloudPlatform}
+repository: https://github.com/GoogleCloudPlatform/cloud-run-mcp
+transport: [stdio]
+category: Cloud
+tags: [google-cloud, cloud-run, serverless, deployment, containers]
+created_at: "2026-07-15T00:00:00.000Z"
+updated_at: "2026-07-15T00:00:00.000Z"
+license: Apache-2.0

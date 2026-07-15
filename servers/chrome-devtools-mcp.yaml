@@ -1,0 +1,13 @@
+id: chrome-devtools-mcp
+name: Chrome DevTools MCP
+description: >
+  Chrome's official MCP server for inspecting and controlling a live browser through
+  Chrome DevTools. It helps agents diagnose UI, network, performance, and runtime issues.
+author: {name: Chrome DevTools, github: ChromeDevTools}
+repository: https://github.com/ChromeDevTools/chrome-devtools-mcp
+transport: [stdio]
+category: Browser Automation
+tags: [chrome, devtools, browser, debugging, performance]
+created_at: "2026-07-15T00:00:00.000Z"
+updated_at: "2026-07-15T00:00:00.000Z"
+license: Apache-2.0
