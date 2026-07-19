@@ -1,0 +1,11 @@
+id: markitdown
+name: MarkItDown MCP
+description: Microsoft's MarkItDown MCP integration converts documents from HTTP, file, and data URIs into Markdown for agent-ready analysis and retrieval.
+author: {name: Microsoft, github: microsoft}
+repository: https://github.com/microsoft/markitdown
+transport: [stdio, sse, http-streaming]
+category: Productivity
+tags: [microsoft, markdown, documents, conversion, extraction]
+created_at: "2026-07-15T00:00:00.000Z"
+updated_at: "2026-07-15T00:00:00.000Z"
+license: MIT

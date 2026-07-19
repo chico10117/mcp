@@ -1,0 +1,11 @@
+id: dagster-mcp
+name: Dagster MCP Server
+description: Dagster's MCP integration enables agents to inspect and operate data assets, jobs, schedules, and runs in modern data platforms.
+author: {name: Dagster, github: dagster-io}
+repository: https://github.com/dagster-io/dagster
+transport: [stdio]
+category: DevOps
+tags: [dagster, data-orchestration, assets, jobs, pipelines]
+created_at: "2026-07-15T00:00:00.000Z"
+updated_at: "2026-07-15T00:00:00.000Z"
+license: Apache-2.0

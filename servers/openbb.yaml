@@ -1,0 +1,11 @@
+id: openbb
+name: OpenBB MCP Server
+description: OpenBB's MCP server connects agents to financial market data, research, and analytics for evidence-based investment and business workflows.
+author: {name: OpenBB, github: OpenBB-finance}
+repository: https://github.com/OpenBB-finance/OpenBB
+transport: [stdio]
+category: Research
+tags: [finance, market-data, research, analytics, openbb]
+created_at: "2026-07-15T00:00:00.000Z"
+updated_at: "2026-07-15T00:00:00.000Z"
+license: AGPL-3.0

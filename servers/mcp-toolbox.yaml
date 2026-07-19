@@ -1,0 +1,11 @@
+id: mcp-toolbox
+name: MCP Toolbox for Databases
+description: Google's MCP Toolbox provides secure, ready-made and custom tools for database queries, schema operations, and semantic search in agent workflows.
+author: {name: Google APIs, github: googleapis}
+repository: https://github.com/googleapis/mcp-toolbox
+transport: [stdio, sse, http-streaming]
+category: Database
+tags: [google, database, sql, semantic-search, tools]
+created_at: "2026-07-15T00:00:00.000Z"
+updated_at: "2026-07-15T00:00:00.000Z"
+license: Apache-2.0

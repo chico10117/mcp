@@ -1,0 +1,11 @@
+id: mcp-everything
+name: Everything MCP Reference Server
+description: The official MCP reference and test server demonstrates tools, resources, prompts, sampling, and protocol capabilities for MCP client development.
+author: {name: Model Context Protocol, github: modelcontextprotocol}
+repository: https://github.com/modelcontextprotocol/servers
+transport: [stdio]
+category: Development
+tags: [mcp, reference, testing, protocol, development]
+created_at: "2026-07-15T00:00:00.000Z"
+updated_at: "2026-07-15T00:00:00.000Z"
+license: MIT

@@ -1,0 +1,10 @@
+id: influxdb3
+name: InfluxDB MCP Server
+description: InfluxData's MCP server connects agents to InfluxDB 3 for SQL queries, schema exploration, and time-series database operations.
+author: {name: InfluxData, github: influxdata}
+repository: https://github.com/influxdata/influxdb3_mcp_server
+transport: [stdio]
+category: Database
+tags: [influxdb, time-series, sql, observability, database]
+created_at: "2026-07-15T00:00:00.000Z"
+updated_at: "2026-07-15T00:00:00.000Z"

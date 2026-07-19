@@ -1,0 +1,11 @@
+id: mcp-context-forge
+name: MCP Context Forge
+description: IBM's MCP Context Forge is a gateway, registry, and proxy for MCP, A2A, REST, and gRPC services with centralized discovery and guardrails.
+author: {name: IBM, github: IBM}
+repository: https://github.com/IBM/mcp-context-forge
+transport: [http-streaming]
+category: Security
+tags: [ibm, mcp, gateway, governance, security]
+created_at: "2026-07-15T00:00:00.000Z"
+updated_at: "2026-07-15T00:00:00.000Z"
+license: Apache-2.0

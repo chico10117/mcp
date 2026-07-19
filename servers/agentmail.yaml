@@ -1,0 +1,11 @@
+id: agentmail
+name: AgentMail MCP
+description: AgentMail MCP gives AI agents secure email operations through hosted MCP access and local stdio bridges for agent-native inbox workflows.
+author: {name: AgentMail, github: agentmail-to}
+repository: https://github.com/agentmail-to/agentmail-mcp
+transport: [stdio, http-streaming]
+category: Communication
+tags: [email, agentmail, communication, inbox, automation]
+created_at: "2026-07-15T00:00:00.000Z"
+updated_at: "2026-07-15T00:00:00.000Z"
+license: MIT

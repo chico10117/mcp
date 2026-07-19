@@ -1,0 +1,11 @@
+id: atlassian-mcp
+name: Atlassian MCP Server
+description: Atlassian's official MCP server provides authenticated access to Jira, Confluence, Jira Service Management, Bitbucket, and Compass workflows.
+author: {name: Atlassian, github: atlassian}
+repository: https://github.com/atlassian/atlassian-mcp-server
+transport: [http-streaming]
+category: Productivity
+tags: [atlassian, jira, confluence, project-management, collaboration]
+created_at: "2026-07-15T00:00:00.000Z"
+updated_at: "2026-07-15T00:00:00.000Z"
+license: Apache-2.0

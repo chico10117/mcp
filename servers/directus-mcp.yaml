@@ -1,0 +1,10 @@
+id: directus-mcp
+name: Directus MCP Server
+description: Directus' MCP integration connects agents to headless CMS data, schemas, and operations for governed content and application workflows.
+author: {name: Directus, github: directus}
+repository: https://github.com/directus/directus
+transport: [http-streaming]
+category: Development
+tags: [directus, cms, data, schemas, headless]
+created_at: "2026-07-15T00:00:00.000Z"
+updated_at: "2026-07-15T00:00:00.000Z"

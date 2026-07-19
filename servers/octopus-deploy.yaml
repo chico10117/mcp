@@ -1,0 +1,11 @@
+id: octopus-deploy
+name: Octopus Deploy MCP Server
+description: Octopus Deploy's official MCP server helps agents inspect, query, and diagnose deployment infrastructure, projects, releases, and environments.
+author: {name: Octopus Deploy, github: OctopusDeploy}
+repository: https://github.com/OctopusDeploy/mcp-server
+transport: [stdio]
+category: DevOps
+tags: [octopus-deploy, deployments, releases, devops, ci-cd]
+created_at: "2026-07-15T00:00:00.000Z"
+updated_at: "2026-07-15T00:00:00.000Z"
+license: MPL-2.0

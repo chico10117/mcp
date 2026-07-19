@@ -1,0 +1,11 @@
+id: payload-mcp
+name: Payload MCP Server
+description: Payload CMS provides an MCP integration for agents to explore and manage CMS content, schemas, and application workflows.
+author: {name: Payload CMS, github: payloadcms}
+repository: https://github.com/payloadcms/payload
+transport: [stdio]
+category: Development
+tags: [payload, cms, content, schemas, development]
+created_at: "2026-07-15T00:00:00.000Z"
+updated_at: "2026-07-15T00:00:00.000Z"
+license: MIT

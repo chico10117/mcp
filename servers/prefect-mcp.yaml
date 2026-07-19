@@ -1,0 +1,11 @@
+id: prefect-mcp
+name: Prefect MCP Server
+description: Prefect's MCP integration gives agents access to orchestration objects including flows, deployments, work pools, and run diagnostics.
+author: {name: Prefect, github: PrefectHQ}
+repository: https://github.com/PrefectHQ/prefect
+transport: [stdio]
+category: DevOps
+tags: [prefect, orchestration, workflows, deployments, data]
+created_at: "2026-07-15T00:00:00.000Z"
+updated_at: "2026-07-15T00:00:00.000Z"
+license: Apache-2.0
