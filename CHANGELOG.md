@@ -5,6 +5,12 @@ All notable changes to the OpenModels MCP Server Registry will be documented in 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.0] - 2026-07-21
+### Added
+- 2 MCP servers on the theme of the latest Gemini Flash releases:
+  - `google-mcp-security` — Google's official security MCP servers (SecOps, Threat Intelligence, Security Command Center) for agent-driven investigation and vulnerability triage.
+  - `gemini-cli` — MCP server that delegates large-context analysis to the Google Gemini CLI.
+
 ## [1.4.0] - 2026-07-15
 
 ### Added

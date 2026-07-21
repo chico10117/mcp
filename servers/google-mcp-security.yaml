@@ -1,0 +1,67 @@
+id: google-mcp-security
+name: Google Security MCP
+description: >
+  Google's official collection of Model Context Protocol servers that expose Google's security
+  products to MCP clients. Provides access to Google SecOps (Chronicle) for SIEM search and
+  case management, Google Threat Intelligence for indicator and malware lookups, and Security
+  Command Center for cloud posture and findings. Lets security agents investigate alerts,
+  enrich indicators of compromise, and triage vulnerabilities directly from natural language.
+author:
+  name: Google
+  github: google
+repository: https://github.com/google/mcp-security
+transport:
+  - stdio
+category: Security
+tags:
+  - security
+  - threat-intelligence
+  - siem
+  - secops
+  - vulnerability
+  - incident-response
+  - google
+created_at: "2026-07-21T00:00:00.000Z"
+updated_at: "2026-07-21T00:00:00.000Z"
+tools:
+  - name: search_security_events
+    description: Search Google SecOps (Chronicle) for security events matching a query over a time range.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: UDM or natural-language search query for security events
+        time_range:
+          type: string
+          description: Time window to search over (e.g. last 24h)
+      required:
+        - query
+  - name: lookup_threat_indicator
+    description: Look up an indicator of compromise (IP, domain, hash, URL) in Google Threat Intelligence.
+    input_schema:
+      type: object
+      properties:
+        indicator:
+          type: string
+          description: The IOC to enrich (IP, domain, file hash, or URL)
+      required:
+        - indicator
+  - name: list_scc_findings
+    description: List Security Command Center findings for a project or organization, filtered by severity or category.
+    input_schema:
+      type: object
+      properties:
+        parent:
+          type: string
+          description: Organization, folder, or project resource to query
+        severity:
+          type: string
+          description: Optional severity filter (e.g. HIGH, CRITICAL)
+      required:
+        - parent
+env_vars:
+  - name: GOOGLE_APPLICATION_CREDENTIALS
+    description: Path to Google Cloud service account credentials with access to the enabled security products
+    required: true
+license: Apache-2.0
