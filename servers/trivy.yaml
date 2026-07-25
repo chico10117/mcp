@@ -1,0 +1,45 @@
+id: trivy
+name: Trivy MCP
+description: >
+  Aqua Security's Trivy plugin that runs as a Model Context Protocol server, exposing Trivy's
+  scanning capabilities to AI assistants. Scans container images, filesystems, and repositories
+  for vulnerabilities, misconfigurations, exposed secrets, and license issues, returning
+  structured findings agents can triage and act on.
+author:
+  name: Aqua Security
+  github: aquasecurity
+repository: https://github.com/aquasecurity/trivy-mcp
+transport:
+  - stdio
+category: Security
+tags:
+  - security
+  - vulnerability-scanning
+  - containers
+  - sbom
+  - misconfiguration
+  - secrets
+created_at: "2026-07-25T00:00:00.000Z"
+updated_at: "2026-07-25T00:00:00.000Z"
+tools:
+  - name: scan_image
+    description: Scan a container image for vulnerabilities and misconfigurations.
+    input_schema:
+      type: object
+      properties:
+        image:
+          type: string
+          description: Container image reference (e.g. nginx:latest)
+      required:
+        - image
+  - name: scan_filesystem
+    description: Scan a local path for vulnerabilities, secrets, and misconfigurations.
+    input_schema:
+      type: object
+      properties:
+        path:
+          type: string
+          description: Filesystem path to scan
+      required:
+        - path
+license: Apache-2.0

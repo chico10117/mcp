@@ -1,0 +1,49 @@
+id: square
+name: Square MCP
+description: >
+  Square's Model Context Protocol server (by Block), giving AI agents access to the Square API.
+  Supports working with payments, orders, catalog items, customers, and inventory, so assistants
+  can look up sales data, manage a catalog, and automate commerce operations for a Square account.
+author:
+  name: Block
+  github: block
+repository: https://github.com/block/square-mcp
+transport:
+  - stdio
+category: Productivity
+tags:
+  - square
+  - payments
+  - commerce
+  - orders
+  - catalog
+  - point-of-sale
+created_at: "2026-07-25T00:00:00.000Z"
+updated_at: "2026-07-25T00:00:00.000Z"
+tools:
+  - name: list_payments
+    description: List payments for the connected Square account within a date range.
+    input_schema:
+      type: object
+      properties:
+        begin_time:
+          type: string
+          description: Start of the date range (RFC 3339)
+        end_time:
+          type: string
+          description: End of the date range (RFC 3339)
+  - name: search_catalog
+    description: Search catalog items and variations.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Text to match against catalog item names
+      required:
+        - query
+env_vars:
+  - name: SQUARE_ACCESS_TOKEN
+    description: Square API access token
+    required: true
+license: Apache-2.0

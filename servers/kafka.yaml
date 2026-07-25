@@ -1,0 +1,61 @@
+id: kafka
+name: Apache Kafka MCP
+description: >
+  A Model Context Protocol server for Apache Kafka implemented in Go. Lets AI assistants inspect
+  clusters, list and describe topics and consumer groups, produce test messages, and consume
+  recent records, making it easier to debug and operate event-streaming pipelines from natural
+  language.
+author:
+  name: tuannvm
+  github: tuannvm
+repository: https://github.com/tuannvm/kafka-mcp-server
+transport:
+  - stdio
+category: DevOps
+tags:
+  - kafka
+  - streaming
+  - messaging
+  - event-streaming
+  - topics
+  - consumer-groups
+created_at: "2026-07-25T00:00:00.000Z"
+updated_at: "2026-07-25T00:00:00.000Z"
+tools:
+  - name: list_topics
+    description: List Kafka topics in the connected cluster.
+    input_schema:
+      type: object
+      properties: {}
+  - name: produce_message
+    description: Produce a message to a topic.
+    input_schema:
+      type: object
+      properties:
+        topic:
+          type: string
+          description: Target topic name
+        value:
+          type: string
+          description: Message payload
+      required:
+        - topic
+        - value
+  - name: consume_messages
+    description: Consume recent messages from a topic.
+    input_schema:
+      type: object
+      properties:
+        topic:
+          type: string
+          description: Source topic name
+        max_messages:
+          type: integer
+          description: Maximum number of messages to read
+      required:
+        - topic
+env_vars:
+  - name: KAFKA_BROKERS
+    description: Comma-separated list of Kafka broker addresses
+    required: true
+license: MIT

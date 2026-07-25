@@ -1,0 +1,49 @@
+id: oracle-database
+name: Oracle Database MCP
+description: >
+  A Model Context Protocol server for working with large Oracle databases. It provides contextual
+  schema information for databases with thousands of tables, letting AI assistants understand
+  relationships, look up table and column definitions, and run queries without loading the entire
+  schema into context.
+author:
+  name: Daniel Meppiel
+  github: danielmeppiel
+repository: https://github.com/danielmeppiel/oracle-mcp-server
+transport:
+  - stdio
+category: Database
+tags:
+  - oracle
+  - sql
+  - database
+  - schema
+  - enterprise
+  - query
+created_at: "2026-07-25T00:00:00.000Z"
+updated_at: "2026-07-25T00:00:00.000Z"
+tools:
+  - name: get_table_schema
+    description: Retrieve the schema for a specific table, including columns and keys.
+    input_schema:
+      type: object
+      properties:
+        table:
+          type: string
+          description: Table name to describe
+      required:
+        - table
+  - name: run_query
+    description: Execute a read-only SQL query against the Oracle database.
+    input_schema:
+      type: object
+      properties:
+        sql:
+          type: string
+          description: SQL statement to execute
+      required:
+        - sql
+env_vars:
+  - name: ORACLE_CONNECTION_STRING
+    description: Oracle database connection string
+    required: true
+license: MIT

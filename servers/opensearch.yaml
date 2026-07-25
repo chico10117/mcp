@@ -1,0 +1,55 @@
+id: opensearch
+name: OpenSearch MCP
+description: >
+  The official OpenSearch Model Context Protocol server, enabling AI assistants to interact with
+  OpenSearch clusters. Lets agents list indices, inspect mappings, run search and aggregation
+  queries, and read basic cluster health so they can explore and analyze data stored in
+  OpenSearch through natural language.
+author:
+  name: OpenSearch Project
+  github: opensearch-project
+repository: https://github.com/opensearch-project/opensearch-mcp-server-py
+transport:
+  - stdio
+  - sse
+category: Database
+tags:
+  - opensearch
+  - search
+  - elasticsearch
+  - analytics
+  - indexing
+  - observability
+created_at: "2026-07-25T00:00:00.000Z"
+updated_at: "2026-07-25T00:00:00.000Z"
+tools:
+  - name: list_indices
+    description: List the indices available in the OpenSearch cluster.
+    input_schema:
+      type: object
+      properties: {}
+  - name: search
+    description: Run a search or aggregation query against an index.
+    input_schema:
+      type: object
+      properties:
+        index:
+          type: string
+          description: Target index name
+        query:
+          type: object
+          description: OpenSearch query DSL body
+      required:
+        - index
+        - query
+env_vars:
+  - name: OPENSEARCH_URL
+    description: Base URL of the OpenSearch cluster
+    required: true
+  - name: OPENSEARCH_USERNAME
+    description: Username for basic auth
+    required: false
+  - name: OPENSEARCH_PASSWORD
+    description: Password for basic auth
+    required: false
+license: Apache-2.0

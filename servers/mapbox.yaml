@@ -1,0 +1,55 @@
+id: mapbox
+name: Mapbox MCP
+description: >
+  Mapbox's official Model Context Protocol server, giving AI agents access to Mapbox's
+  geospatial APIs. Supports forward and reverse geocoding, routing and directions, isochrone
+  and matrix travel-time computation, and static map image generation, so assistants can answer
+  location questions and build map-driven workflows from natural language.
+author:
+  name: Mapbox
+  github: mapbox
+repository: https://github.com/mapbox/mcp-server
+transport:
+  - stdio
+  - http-streaming
+category: Development
+tags:
+  - geospatial
+  - maps
+  - geocoding
+  - routing
+  - directions
+  - location
+created_at: "2026-07-25T00:00:00.000Z"
+updated_at: "2026-07-25T00:00:00.000Z"
+tools:
+  - name: geocode
+    description: Convert an address or place name into geographic coordinates (or reverse).
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Address, place name, or "lat,lng" for reverse geocoding
+      required:
+        - query
+  - name: directions
+    description: Compute a route between two or more coordinates for a given travel profile.
+    input_schema:
+      type: object
+      properties:
+        coordinates:
+          type: array
+          items:
+            type: string
+          description: Ordered list of "lng,lat" waypoints
+        profile:
+          type: string
+          description: Travel profile (driving, walking, cycling)
+      required:
+        - coordinates
+env_vars:
+  - name: MAPBOX_ACCESS_TOKEN
+    description: Mapbox API access token
+    required: true
+license: BSD-3-Clause

@@ -1,0 +1,51 @@
+id: grafana-tempo
+name: Grafana Tempo MCP
+description: >
+  A Model Context Protocol server for Grafana Tempo that lets AI assistants query and analyze
+  distributed tracing data. Agents can search traces with TraceQL, fetch a trace by ID, and
+  inspect spans to investigate latency and errors across services during incident analysis.
+author:
+  name: Grafana Labs
+  github: grafana
+repository: https://github.com/grafana/tempo-mcp-server
+transport:
+  - stdio
+category: DevOps
+tags:
+  - grafana
+  - tempo
+  - tracing
+  - observability
+  - traceql
+  - distributed-tracing
+created_at: "2026-07-25T00:00:00.000Z"
+updated_at: "2026-07-25T00:00:00.000Z"
+tools:
+  - name: search_traces
+    description: Search traces in Grafana Tempo using a TraceQL query.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: TraceQL query expression
+        time_range:
+          type: string
+          description: Optional time window to search over
+      required:
+        - query
+  - name: get_trace
+    description: Fetch a single trace by its trace ID.
+    input_schema:
+      type: object
+      properties:
+        trace_id:
+          type: string
+          description: The trace identifier
+      required:
+        - trace_id
+env_vars:
+  - name: TEMPO_URL
+    description: Base URL of the Grafana Tempo instance
+    required: true
+license: Apache-2.0

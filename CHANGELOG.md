@@ -5,6 +5,15 @@ All notable changes to the OpenModels MCP Server Registry will be documented in 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.6.0] - 2026-07-25
+### Added
+- 10 new MCP servers from established vendors and maintained open-source projects:
+  - `mapbox` (geospatial: geocoding, routing, maps), `opensearch`, `cockroachdb`, `oracle-database`, and `kafka` for search, SQL, and event-streaming data access.
+  - `trivy` (Aqua Security vulnerability/misconfig/secret scanning) and `grafana-tempo` (distributed tracing) for security and observability.
+  - `apple-mcp`, `square`, and `spotify` for macOS-native productivity, commerce, and music/playback.
+### Changed
+- Total MCP servers: 187 (from 177).
+
 ## [1.5.0] - 2026-07-21
 ### Added
 - 2 MCP servers on the theme of the latest Gemini Flash releases:

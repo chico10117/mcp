@@ -1,0 +1,55 @@
+id: spotify
+name: Spotify MCP
+description: >
+  A lightweight Model Context Protocol server for Spotify that lets AI assistants control
+  playback and manage playlists through the Spotify Web API. Agents can search tracks, albums,
+  and artists, start or pause playback, queue tracks, and create or update playlists on behalf of
+  the authenticated user.
+author:
+  name: Marcel Marais
+  github: marcelmarais
+repository: https://github.com/marcelmarais/spotify-mcp-server
+transport:
+  - stdio
+category: Productivity
+tags:
+  - spotify
+  - music
+  - playback
+  - playlists
+  - media
+  - audio
+created_at: "2026-07-25T00:00:00.000Z"
+updated_at: "2026-07-25T00:00:00.000Z"
+tools:
+  - name: search
+    description: Search Spotify for tracks, albums, artists, or playlists.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Search text
+        type:
+          type: string
+          description: Item type to search (track, album, artist, playlist)
+      required:
+        - query
+  - name: control_playback
+    description: Control playback (play, pause, next, previous) on the active device.
+    input_schema:
+      type: object
+      properties:
+        action:
+          type: string
+          description: Playback action (play, pause, next, previous)
+      required:
+        - action
+env_vars:
+  - name: SPOTIFY_CLIENT_ID
+    description: Spotify application client ID
+    required: true
+  - name: SPOTIFY_CLIENT_SECRET
+    description: Spotify application client secret
+    required: true
+license: MIT
