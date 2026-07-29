@@ -1,0 +1,74 @@
+id: ghost
+name: Ghost CMS MCP
+description: >
+  An MCP server for managing content on a Ghost CMS instance. Exposes the Ghost Admin API as
+  tools so AI assistants can list, draft, update, and publish posts and pages, manage tags, and
+  look up authors, which suits editorial and blog automation workflows.
+author:
+  name: Jonathan Gardner
+  github: jgardner04
+repository: https://github.com/jgardner04/Ghost-MCP-Server
+transport:
+  - stdio
+category: Productivity
+tags:
+  - ghost
+  - cms
+  - blogging
+  - publishing
+  - content
+  - editorial
+created_at: "2026-07-28T00:00:00.000Z"
+updated_at: "2026-07-28T00:00:00.000Z"
+tools:
+  - name: list_posts
+    description: List posts from the Ghost instance, optionally filtered by status.
+    input_schema:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Filter by post status (draft, published, scheduled)
+        limit:
+          type: integer
+          description: Maximum number of posts to return
+  - name: create_post
+    description: Create a new post, as a draft or published.
+    input_schema:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Post title
+        html:
+          type: string
+          description: Post body as HTML
+        status:
+          type: string
+          description: Post status (draft or published)
+      required:
+        - title
+  - name: update_post
+    description: Update an existing post by ID.
+    input_schema:
+      type: object
+      properties:
+        post_id:
+          type: string
+          description: Identifier of the post to update
+        title:
+          type: string
+          description: New title
+        html:
+          type: string
+          description: New body HTML
+      required:
+        - post_id
+env_vars:
+  - name: GHOST_API_URL
+    description: Base URL of the Ghost instance
+    required: true
+  - name: GHOST_ADMIN_API_KEY
+    description: Ghost Admin API key
+    required: true
+license: MIT

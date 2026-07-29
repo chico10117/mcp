@@ -1,0 +1,63 @@
+id: nomad
+name: HashiCorp Nomad MCP
+description: >
+  A Model Context Protocol server for HashiCorp Nomad that lets AI agents inspect and operate a
+  Nomad cluster. Supports listing jobs, allocations, and nodes, reading allocation logs, and
+  submitting or stopping jobs, which helps with debugging scheduling issues and running
+  day-to-day workload operations.
+author:
+  name: kocierik
+  github: kocierik
+repository: https://github.com/kocierik/mcp-nomad
+transport:
+  - stdio
+category: DevOps
+tags:
+  - nomad
+  - hashicorp
+  - orchestration
+  - scheduling
+  - jobs
+  - cluster
+created_at: "2026-07-28T00:00:00.000Z"
+updated_at: "2026-07-28T00:00:00.000Z"
+tools:
+  - name: list_jobs
+    description: List jobs registered in the Nomad cluster.
+    input_schema:
+      type: object
+      properties:
+        namespace:
+          type: string
+          description: Optional Nomad namespace
+  - name: get_allocation_logs
+    description: Read stdout or stderr logs for an allocation.
+    input_schema:
+      type: object
+      properties:
+        alloc_id:
+          type: string
+          description: Allocation identifier
+        task:
+          type: string
+          description: Task name within the allocation
+      required:
+        - alloc_id
+  - name: stop_job
+    description: Stop a running job.
+    input_schema:
+      type: object
+      properties:
+        job_id:
+          type: string
+          description: Job identifier to stop
+      required:
+        - job_id
+env_vars:
+  - name: NOMAD_ADDR
+    description: Address of the Nomad HTTP API (e.g. http://127.0.0.1:4646)
+    required: true
+  - name: NOMAD_TOKEN
+    description: Nomad ACL token
+    required: false
+license: MIT

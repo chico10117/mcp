@@ -1,0 +1,64 @@
+id: strapi
+name: Strapi MCP
+description: >
+  A Model Context Protocol server for Strapi headless CMS. Lets AI assistants list content types,
+  query and filter entries, and create or update content through the Strapi REST API, along with
+  media upload support, so agents can manage a Strapi project's content without leaving the
+  conversation.
+author:
+  name: misterboe
+  github: misterboe
+repository: https://github.com/misterboe/strapi-mcp-server
+transport:
+  - stdio
+category: Productivity
+tags:
+  - strapi
+  - cms
+  - headless-cms
+  - content
+  - rest-api
+  - publishing
+created_at: "2026-07-28T00:00:00.000Z"
+updated_at: "2026-07-28T00:00:00.000Z"
+tools:
+  - name: list_content_types
+    description: List the content types defined in the Strapi project.
+    input_schema:
+      type: object
+      properties: {}
+  - name: get_entries
+    description: Query entries for a content type with optional filters and pagination.
+    input_schema:
+      type: object
+      properties:
+        content_type:
+          type: string
+          description: Content type API ID
+        filters:
+          type: object
+          description: Optional Strapi filter object
+      required:
+        - content_type
+  - name: create_entry
+    description: Create a new entry for a content type.
+    input_schema:
+      type: object
+      properties:
+        content_type:
+          type: string
+          description: Content type API ID
+        data:
+          type: object
+          description: Field values for the new entry
+      required:
+        - content_type
+        - data
+env_vars:
+  - name: STRAPI_URL
+    description: Base URL of the Strapi instance
+    required: true
+  - name: STRAPI_API_TOKEN
+    description: Strapi API token with the required permissions
+    required: true
+license: MIT

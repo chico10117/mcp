@@ -1,0 +1,58 @@
+id: mobile-mcp
+name: Mobile MCP
+description: >
+  A Model Context Protocol server for mobile automation and scraping across iOS and Android,
+  working with emulators, simulators, and real devices. Exposes the device screen and accessibility
+  tree to agents so they can tap, swipe, type, take screenshots, and drive app flows, which makes
+  it useful for mobile QA, exploratory testing, and app automation.
+author:
+  name: Mobile Next
+  github: mobile-next
+repository: https://github.com/mobile-next/mobile-mcp
+transport:
+  - stdio
+category: Browser Automation
+tags:
+  - mobile
+  - ios
+  - android
+  - automation
+  - testing
+  - device-control
+created_at: "2026-07-28T00:00:00.000Z"
+updated_at: "2026-07-28T00:00:00.000Z"
+tools:
+  - name: list_devices
+    description: List available simulators, emulators, and connected physical devices.
+    input_schema:
+      type: object
+      properties: {}
+  - name: take_screenshot
+    description: Capture a screenshot of the current device screen.
+    input_schema:
+      type: object
+      properties:
+        device:
+          type: string
+          description: Target device identifier
+  - name: tap
+    description: Tap at given screen coordinates or on a named element.
+    input_schema:
+      type: object
+      properties:
+        x:
+          type: integer
+          description: X coordinate
+        y:
+          type: integer
+          description: Y coordinate
+        device:
+          type: string
+          description: Target device identifier
+install:
+  npm: "@mobilenext/mobile-mcp"
+  command: npx
+  args:
+    - "-y"
+    - "@mobilenext/mobile-mcp@latest"
+license: Apache-2.0

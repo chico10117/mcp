@@ -1,0 +1,65 @@
+id: quickbooks
+name: QuickBooks Online MCP
+description: >
+  Intuit's official MCP server for QuickBooks Online, exposing QBO accounting features as
+  callable tools. Lets AI assistants read and write customers, invoices, bills, payments, and
+  other entities, and pull financial reports such as profit and loss or balance sheet, so agents
+  can answer bookkeeping questions and automate accounting workflows against live QBO data.
+author:
+  name: Intuit
+  github: intuit
+repository: https://github.com/intuit/quickbooks-online-mcp-server
+transport:
+  - stdio
+  - http-streaming
+category: Productivity
+tags:
+  - quickbooks
+  - accounting
+  - finance
+  - invoicing
+  - reports
+  - intuit
+created_at: "2026-07-28T00:00:00.000Z"
+updated_at: "2026-07-28T00:00:00.000Z"
+tools:
+  - name: query_entities
+    description: Query QuickBooks Online entities such as customers, invoices, or bills.
+    input_schema:
+      type: object
+      properties:
+        entity:
+          type: string
+          description: Entity type to query (e.g. Customer, Invoice, Bill)
+        filter:
+          type: string
+          description: Optional query filter expression
+      required:
+        - entity
+  - name: run_report
+    description: Run a QuickBooks Online financial report.
+    input_schema:
+      type: object
+      properties:
+        report:
+          type: string
+          description: Report name (e.g. ProfitAndLoss, BalanceSheet)
+        start_date:
+          type: string
+          description: Report period start date
+        end_date:
+          type: string
+          description: Report period end date
+      required:
+        - report
+env_vars:
+  - name: QBO_CLIENT_ID
+    description: QuickBooks Online app client ID
+    required: true
+  - name: QBO_CLIENT_SECRET
+    description: QuickBooks Online app client secret
+    required: true
+  - name: QBO_REFRESH_TOKEN
+    description: OAuth 2.0 refresh token for the connected QBO company
+    required: true
+license: Apache-2.0

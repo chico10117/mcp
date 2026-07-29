@@ -1,0 +1,62 @@
+id: woocommerce
+name: WooCommerce MCP
+description: >
+  A Model Context Protocol server that connects AI assistants to a WooCommerce store over the
+  WordPress REST API. Provides tools to manage products and inventory, look up and update orders,
+  inspect customers, and pull sales reports, so agents can answer store questions and automate
+  ecommerce operations.
+author:
+  name: juanlurg
+  github: juanlurg
+repository: https://github.com/juanlurg/woocommerce-mcp
+transport:
+  - stdio
+category: Productivity
+tags:
+  - woocommerce
+  - wordpress
+  - ecommerce
+  - orders
+  - products
+  - inventory
+created_at: "2026-07-28T00:00:00.000Z"
+updated_at: "2026-07-28T00:00:00.000Z"
+tools:
+  - name: list_products
+    description: List store products with optional search and pagination.
+    input_schema:
+      type: object
+      properties:
+        search:
+          type: string
+          description: Optional product name search
+        per_page:
+          type: integer
+          description: Number of products per page
+  - name: list_orders
+    description: List store orders, optionally filtered by status.
+    input_schema:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Order status filter (e.g. processing, completed)
+  - name: get_sales_report
+    description: Retrieve a sales report for a given period.
+    input_schema:
+      type: object
+      properties:
+        period:
+          type: string
+          description: Reporting period (e.g. week, month, year)
+env_vars:
+  - name: WOOCOMMERCE_URL
+    description: Base URL of the WordPress/WooCommerce store
+    required: true
+  - name: WOOCOMMERCE_CONSUMER_KEY
+    description: WooCommerce REST API consumer key
+    required: true
+  - name: WOOCOMMERCE_CONSUMER_SECRET
+    description: WooCommerce REST API consumer secret
+    required: true
+license: MIT

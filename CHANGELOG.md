@@ -5,6 +5,17 @@ All notable changes to the OpenModels MCP Server Registry will be documented in 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.7.0] - 2026-07-28
+### Changed
+- **`anthropic`** — updated for the MCP 2026-07-28 spec release: stateless request/response core (serverless and edge deployable), versioned extensions framework covering MCP Apps and Tasks, and authorization hardened for production OAuth 2.0 / OIDC providers such as Entra and Okta. Added `http-streaming` transport, bumped to v2.0.0, and re-dated the entry so it surfaces as newly released.
+### Added
+- 8 new MCP servers from official vendors and maintained projects:
+  - `quickbooks` (Intuit official) and `consul` (HashiCorp official) for accounting and service mesh / service discovery.
+  - `nomad` for workload orchestration and `keycloak` for identity and user management.
+  - `strapi`, `ghost`, and `woocommerce` for headless CMS, publishing, and ecommerce operations.
+  - `mobile-mcp` for iOS/Android device automation and mobile QA.
+- Total MCP servers: 195 (from 187).
+
 ## [1.6.0] - 2026-07-25
 ### Added
 - 10 new MCP servers from established vendors and maintained open-source projects:

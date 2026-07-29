@@ -1,0 +1,71 @@
+id: keycloak
+name: Keycloak MCP
+description: >
+  An MCP server for Keycloak administration, enabling AI-assisted management of users and realms.
+  Lets agents create, look up, and disable users, assign roles and groups, and inspect realm
+  configuration through the Keycloak Admin API, which is useful for identity operations and
+  onboarding or offboarding workflows.
+author:
+  name: Christoph Englisch
+  github: ChristophEnglisch
+repository: https://github.com/ChristophEnglisch/keycloak-model-context-protocol
+transport:
+  - stdio
+category: Security
+tags:
+  - keycloak
+  - identity
+  - iam
+  - authentication
+  - user-management
+  - oauth
+created_at: "2026-07-28T00:00:00.000Z"
+updated_at: "2026-07-28T00:00:00.000Z"
+tools:
+  - name: list_realms
+    description: List the realms configured in the Keycloak instance.
+    input_schema:
+      type: object
+      properties: {}
+  - name: create_user
+    description: Create a user in a given realm.
+    input_schema:
+      type: object
+      properties:
+        realm:
+          type: string
+          description: Target realm name
+        username:
+          type: string
+          description: Username for the new user
+        email:
+          type: string
+          description: Email address
+      required:
+        - realm
+        - username
+  - name: delete_user
+    description: Delete a user from a realm.
+    input_schema:
+      type: object
+      properties:
+        realm:
+          type: string
+          description: Target realm name
+        user_id:
+          type: string
+          description: Identifier of the user to delete
+      required:
+        - realm
+        - user_id
+env_vars:
+  - name: KEYCLOAK_URL
+    description: Base URL of the Keycloak instance
+    required: true
+  - name: KEYCLOAK_ADMIN
+    description: Admin username
+    required: true
+  - name: KEYCLOAK_ADMIN_PASSWORD
+    description: Admin password
+    required: true
+license: MIT

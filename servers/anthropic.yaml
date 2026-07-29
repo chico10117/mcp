@@ -4,13 +4,19 @@ description: >
   Official Anthropic MCP server providing direct access to Claude models through
   the Model Context Protocol. Enables AI agents to invoke Claude for sub-tasks
   like summarization, analysis, and code generation within agentic workflows.
-  Supports streaming responses, system prompts, and multi-turn conversations.
+  Supports system prompts, multi-turn conversations, and token counting.
+  Updated for the MCP 2026-07-28 spec: a stateless request/response core that
+  runs on serverless and edge infrastructure, a versioned extensions framework
+  covering MCP Apps (interactive in-conversation UI) and Tasks (long-running
+  work), and authorization hardened to align with production OAuth 2.0 and OIDC
+  identity providers such as Entra and Okta.
 author:
   name: Anthropic
   github: anthropics
 repository: https://github.com/anthropics/anthropic-mcp-server
 transport:
   - stdio
+  - http-streaming
 category: AI
 tags:
   - anthropic
@@ -18,8 +24,12 @@ tags:
   - llm
   - inference
   - ai-gateway
-created_at: "2026-05-15T00:00:00.000Z"
-updated_at: "2026-06-01T00:00:00.000Z"
+  - mcp-apps
+  - tasks
+  - stateless
+  - oauth
+created_at: "2026-07-28T00:00:00.000Z"
+updated_at: "2026-07-28T00:00:00.000Z"
 tools:
   - name: create_message
     description: Send a message to Claude and receive a response. Supports system prompts, multi-turn context, and streaming.
@@ -76,5 +86,5 @@ env_vars:
     description: Anthropic API key for authentication
     required: true
 license: MIT
-version: "1.2.0"
+version: "2.0.0"
 stars: 4520
