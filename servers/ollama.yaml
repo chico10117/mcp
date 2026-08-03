@@ -1,0 +1,58 @@
+id: ollama
+name: Ollama MCP
+description: >
+  A self-contained MCP server for managing local Ollama models with no external dependencies.
+  Agents can list installed models, pull or remove them, start and stop the Ollama server, run
+  local completions, and use a model-advisor tool that recommends which locally available model
+  best fits a given task.
+author:
+  name: Paolo Dal Prato
+  github: paolodalprato
+repository: https://github.com/paolodalprato/ollama-mcp-server
+transport:
+  - stdio
+category: AI
+tags:
+  - ollama
+  - local-models
+  - open-weights
+  - inference
+  - self-hosted
+  - privacy
+created_at: "2026-08-03T00:00:00.000Z"
+updated_at: "2026-08-03T00:00:00.000Z"
+tools:
+  - name: list_local_models
+    description: List models currently installed in the local Ollama instance.
+    input_schema:
+      type: object
+      properties: {}
+  - name: pull_model
+    description: Download a model into the local Ollama instance.
+    input_schema:
+      type: object
+      properties:
+        model:
+          type: string
+          description: Model name to pull (e.g. llama3.1:8b)
+      required:
+        - model
+  - name: run_completion
+    description: Run a prompt against a local Ollama model.
+    input_schema:
+      type: object
+      properties:
+        model:
+          type: string
+          description: Local model name
+        prompt:
+          type: string
+          description: Prompt text
+      required:
+        - model
+        - prompt
+env_vars:
+  - name: OLLAMA_HOST
+    description: Address of the Ollama server (defaults to http://127.0.0.1:11434)
+    required: false
+license: MIT

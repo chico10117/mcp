@@ -1,0 +1,73 @@
+id: opik
+name: Opik MCP
+description: >
+  Comet's official MCP server for Opik, an open-source LLM evaluation and observability platform.
+  Connects an AI host directly to an Opik workspace so agents can read traces and spans, log
+  evaluation scores, manage prompt versions in the prompt library, and inspect project metrics
+  without leaving the editor.
+author:
+  name: Comet ML
+  github: comet-ml
+repository: https://github.com/comet-ml/opik-mcp
+transport:
+  - stdio
+category: AI
+tags:
+  - opik
+  - llm-evaluation
+  - observability
+  - tracing
+  - prompt-management
+  - comet
+created_at: "2026-08-03T00:00:00.000Z"
+updated_at: "2026-08-03T00:00:00.000Z"
+tools:
+  - name: list_traces
+    description: List traces for an Opik project, with optional filters.
+    input_schema:
+      type: object
+      properties:
+        project_name:
+          type: string
+          description: Opik project name
+        limit:
+          type: integer
+          description: Maximum number of traces to return
+      required:
+        - project_name
+  - name: get_prompt
+    description: Retrieve a prompt and its versions from the Opik prompt library.
+    input_schema:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Prompt name
+      required:
+        - name
+  - name: log_feedback_score
+    description: Attach a feedback or evaluation score to a trace.
+    input_schema:
+      type: object
+      properties:
+        trace_id:
+          type: string
+          description: Target trace identifier
+        name:
+          type: string
+          description: Score name
+        value:
+          type: number
+          description: Score value
+      required:
+        - trace_id
+        - name
+        - value
+env_vars:
+  - name: OPIK_API_KEY
+    description: Opik / Comet API key
+    required: true
+  - name: OPIK_WORKSPACE
+    description: Opik workspace name
+    required: false
+license: Apache-2.0

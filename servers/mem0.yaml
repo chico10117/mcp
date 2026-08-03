@@ -1,0 +1,68 @@
+id: mem0
+name: Mem0 Memory MCP
+description: >
+  A self-hosted MCP server that gives AI assistants persistent, searchable long-term memory built
+  on Mem0. Stores facts and preferences across sessions, retrieves them by semantic search, and can
+  back memories with a Neo4j knowledge graph plus smart chunking, so an agent keeps useful context
+  between conversations instead of starting cold.
+author:
+  name: Subhash Dasyam
+  github: subhashdasyam
+repository: https://github.com/subhashdasyam/mem0-server-mcp
+transport:
+  - stdio
+category: AI
+tags:
+  - mem0
+  - memory
+  - long-term-memory
+  - knowledge-graph
+  - personalization
+  - retrieval
+created_at: "2026-08-03T00:00:00.000Z"
+updated_at: "2026-08-03T00:00:00.000Z"
+tools:
+  - name: add_memory
+    description: Store a new memory for a given user or agent scope.
+    input_schema:
+      type: object
+      properties:
+        content:
+          type: string
+          description: Text to remember
+        user_id:
+          type: string
+          description: Scope the memory to a user or agent
+      required:
+        - content
+  - name: search_memory
+    description: Semantically search stored memories.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Search query
+        user_id:
+          type: string
+          description: Scope to search within
+      required:
+        - query
+  - name: delete_memory
+    description: Delete a stored memory by identifier.
+    input_schema:
+      type: object
+      properties:
+        memory_id:
+          type: string
+          description: Identifier of the memory to delete
+      required:
+        - memory_id
+env_vars:
+  - name: MEM0_API_KEY
+    description: Mem0 API key (for hosted mode)
+    required: false
+  - name: OPENAI_API_KEY
+    description: Embedding provider key used for memory indexing
+    required: false
+license: MIT

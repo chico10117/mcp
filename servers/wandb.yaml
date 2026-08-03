@@ -1,0 +1,59 @@
+id: wandb
+name: Weights & Biases MCP
+description: >
+  The official Weights & Biases MCP server for W&B Models and Weave, letting AI assistants query
+  and analyze experiment tracking data in natural language. Agents can look up runs and their
+  metrics, compare sweeps, inspect registered model artifacts, and dig into Weave traces to debug
+  LLM application behavior.
+author:
+  name: Weights & Biases
+  github: wandb
+repository: https://github.com/wandb/wandb-mcp-server
+transport:
+  - stdio
+category: AI
+tags:
+  - weights-and-biases
+  - experiment-tracking
+  - mlops
+  - weave
+  - observability
+  - evaluation
+created_at: "2026-08-03T00:00:00.000Z"
+updated_at: "2026-08-03T00:00:00.000Z"
+tools:
+  - name: query_wandb_runs
+    description: Query W&B runs in a project and return their configs and metrics.
+    input_schema:
+      type: object
+      properties:
+        entity:
+          type: string
+          description: W&B entity (user or team)
+        project:
+          type: string
+          description: Project name
+        filters:
+          type: object
+          description: Optional MongoDB-style filter on run fields
+      required:
+        - entity
+        - project
+  - name: query_weave_traces
+    description: Query Weave traces to inspect LLM calls, inputs, outputs, and evaluation scores.
+    input_schema:
+      type: object
+      properties:
+        project:
+          type: string
+          description: Weave project identifier
+        limit:
+          type: integer
+          description: Maximum number of traces to return
+      required:
+        - project
+env_vars:
+  - name: WANDB_API_KEY
+    description: Weights & Biases API key
+    required: true
+license: MIT

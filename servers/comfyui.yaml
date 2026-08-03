@@ -1,0 +1,55 @@
+id: comfyui
+name: ComfyUI MCP
+description: >
+  A lightweight MCP server for a local ComfyUI instance that lets AI agents generate and
+  iteratively refine images, audio, and video. Agents can submit workflows, override prompts and
+  sampler parameters, poll job status, and retrieve outputs, which makes conversational
+  iteration on a local diffusion pipeline practical.
+author:
+  name: Joe Norton
+  github: joenorton
+repository: https://github.com/joenorton/comfyui-mcp-server
+transport:
+  - stdio
+category: AI
+tags:
+  - comfyui
+  - image-generation
+  - diffusion
+  - video-generation
+  - local-models
+  - creative
+created_at: "2026-08-03T00:00:00.000Z"
+updated_at: "2026-08-03T00:00:00.000Z"
+tools:
+  - name: generate_image
+    description: Run a ComfyUI workflow to generate an image from a prompt.
+    input_schema:
+      type: object
+      properties:
+        prompt:
+          type: string
+          description: Positive prompt text
+        negative_prompt:
+          type: string
+          description: Negative prompt text
+        workflow:
+          type: string
+          description: Name of the workflow to run
+      required:
+        - prompt
+  - name: get_job_status
+    description: Check the status of a queued ComfyUI job and fetch outputs when ready.
+    input_schema:
+      type: object
+      properties:
+        prompt_id:
+          type: string
+          description: Job identifier returned when the workflow was queued
+      required:
+        - prompt_id
+env_vars:
+  - name: COMFYUI_URL
+    description: Base URL of the local ComfyUI instance (e.g. http://127.0.0.1:8188)
+    required: true
+license: MIT

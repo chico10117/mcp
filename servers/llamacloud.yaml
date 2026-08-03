@@ -1,0 +1,56 @@
+id: llamacloud
+name: LlamaCloud MCP
+description: >
+  LlamaIndex's official MCP server for LlamaCloud, letting agents query managed retrieval indexes
+  and extract structured data from documents. Each configured index is exposed as its own tool, so
+  an assistant can run semantic search over a specific knowledge base and pull parsed fields out of
+  PDFs and other files.
+author:
+  name: LlamaIndex
+  github: run-llama
+repository: https://github.com/run-llama/llamacloud-mcp
+transport:
+  - stdio
+category: AI
+tags:
+  - llamaindex
+  - rag
+  - retrieval
+  - document-parsing
+  - vector-index
+  - extraction
+created_at: "2026-08-03T00:00:00.000Z"
+updated_at: "2026-08-03T00:00:00.000Z"
+tools:
+  - name: query_index
+    description: Run a semantic query against a managed LlamaCloud index.
+    input_schema:
+      type: object
+      properties:
+        index_name:
+          type: string
+          description: Name of the LlamaCloud index to query
+        query:
+          type: string
+          description: Natural-language query
+      required:
+        - index_name
+        - query
+  - name: extract_from_file
+    description: Extract structured data from a document using a LlamaCloud extraction agent.
+    input_schema:
+      type: object
+      properties:
+        file_path:
+          type: string
+          description: Path to the document to parse
+        schema:
+          type: object
+          description: Target schema describing the fields to extract
+      required:
+        - file_path
+env_vars:
+  - name: LLAMA_CLOUD_API_KEY
+    description: LlamaCloud API key
+    required: true
+license: MIT

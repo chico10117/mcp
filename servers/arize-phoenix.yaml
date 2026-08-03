@@ -1,0 +1,56 @@
+id: arize-phoenix
+name: Arize Phoenix MCP
+description: >
+  Arize AI's Phoenix, an open-source AI observability and evaluation platform, exposes a remote MCP
+  endpoint that connects agents directly to a Phoenix instance. Lets assistants query OpenTelemetry
+  traces and spans from LLM applications, inspect datasets and experiments, review evaluation
+  results, and investigate latency or quality regressions.
+author:
+  name: Arize AI
+  github: Arize-ai
+repository: https://github.com/Arize-ai/phoenix
+transport:
+  - http-streaming
+  - stdio
+category: AI
+tags:
+  - phoenix
+  - arize
+  - observability
+  - tracing
+  - evaluation
+  - opentelemetry
+created_at: "2026-08-03T00:00:00.000Z"
+updated_at: "2026-08-03T00:00:00.000Z"
+tools:
+  - name: query_spans
+    description: Query spans and traces recorded from an LLM application.
+    input_schema:
+      type: object
+      properties:
+        project_name:
+          type: string
+          description: Phoenix project name
+        filter_condition:
+          type: string
+          description: Optional filter expression over span attributes
+      required:
+        - project_name
+  - name: list_experiments
+    description: List experiments and their evaluation results for a dataset.
+    input_schema:
+      type: object
+      properties:
+        dataset_name:
+          type: string
+          description: Dataset name
+      required:
+        - dataset_name
+env_vars:
+  - name: PHOENIX_COLLECTOR_ENDPOINT
+    description: Base URL of the Phoenix instance
+    required: true
+  - name: PHOENIX_API_KEY
+    description: API key for authenticated Phoenix deployments
+    required: false
+license: Elastic-2.0

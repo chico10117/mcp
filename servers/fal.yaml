@@ -1,0 +1,65 @@
+id: fal
+name: fal.ai MCP
+description: >
+  An MCP server for fal.ai's hosted generative model catalog, letting assistants create images,
+  video, music, and audio from natural language. Agents can pick a model, submit a generation
+  request with parameters, poll long-running jobs, and retrieve the resulting media URLs directly
+  in the conversation.
+author:
+  name: luminarylane
+  github: luminarylane
+repository: https://github.com/luminarylane/fal-mcp-server
+transport:
+  - stdio
+category: AI
+tags:
+  - fal
+  - image-generation
+  - video-generation
+  - audio-generation
+  - inference
+  - creative
+created_at: "2026-08-03T00:00:00.000Z"
+updated_at: "2026-08-03T00:00:00.000Z"
+tools:
+  - name: generate_image
+    description: Generate an image with a fal.ai model.
+    input_schema:
+      type: object
+      properties:
+        model:
+          type: string
+          description: fal.ai model endpoint identifier
+        prompt:
+          type: string
+          description: Prompt describing the image
+      required:
+        - prompt
+  - name: generate_video
+    description: Generate a video from a text prompt or source image.
+    input_schema:
+      type: object
+      properties:
+        prompt:
+          type: string
+          description: Prompt describing the video
+        image_url:
+          type: string
+          description: Optional source image for image-to-video
+      required:
+        - prompt
+  - name: check_job
+    description: Poll the status of a queued generation job and return output URLs.
+    input_schema:
+      type: object
+      properties:
+        request_id:
+          type: string
+          description: Identifier of the queued request
+      required:
+        - request_id
+env_vars:
+  - name: FAL_KEY
+    description: fal.ai API key
+    required: true
+license: MIT

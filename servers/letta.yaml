@@ -1,0 +1,69 @@
+id: letta
+name: Letta MCP
+description: >
+  An MCP server for managing a Letta (formerly MemGPT) server and communicating with its stateful
+  agents. Lets an assistant list and create agents, send them messages, and inspect or edit their
+  persistent memory blocks, which is useful for orchestrating long-lived agents that retain context
+  across sessions.
+author:
+  name: Oculair Media
+  github: oculairmedia
+repository: https://github.com/oculairmedia/Letta-MCP-server
+transport:
+  - stdio
+  - sse
+category: AI
+tags:
+  - letta
+  - memgpt
+  - agents
+  - stateful-agents
+  - memory
+  - orchestration
+created_at: "2026-08-03T00:00:00.000Z"
+updated_at: "2026-08-03T00:00:00.000Z"
+tools:
+  - name: list_agents
+    description: List agents registered on the Letta server.
+    input_schema:
+      type: object
+      properties: {}
+  - name: send_message
+    description: Send a message to a Letta agent and return its reply.
+    input_schema:
+      type: object
+      properties:
+        agent_id:
+          type: string
+          description: Target agent identifier
+        message:
+          type: string
+          description: Message content
+      required:
+        - agent_id
+        - message
+  - name: update_memory_block
+    description: Read or update a persistent memory block on an agent.
+    input_schema:
+      type: object
+      properties:
+        agent_id:
+          type: string
+          description: Target agent identifier
+        label:
+          type: string
+          description: Memory block label (e.g. human, persona)
+        value:
+          type: string
+          description: New value for the memory block
+      required:
+        - agent_id
+        - label
+env_vars:
+  - name: LETTA_BASE_URL
+    description: Base URL of the Letta server
+    required: true
+  - name: LETTA_PASSWORD
+    description: Letta server password or token
+    required: false
+license: MIT

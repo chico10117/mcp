@@ -5,6 +5,16 @@ All notable changes to the OpenModels MCP Server Registry will be documented in 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.8.0] - 2026-08-03
+### Added
+- 11 new AI-focused MCP servers, expanding the `AI` category from 10 to 21 entries:
+  - **Inference & local models**: `groq` (official Groq — fast completions, vision, speech, batch) and `ollama` (local open-weight model management with a model advisor).
+  - **Evaluation & observability**: `wandb` (official W&B Models + Weave), `opik` (official Comet), `confident-ai` (official, the platform behind DeepEval), and `arize-phoenix` (official Arize, remote MCP over OpenTelemetry traces).
+  - **Retrieval**: `llamacloud` (official LlamaIndex — managed indexes and document extraction).
+  - **Agent memory**: `mem0` (persistent semantic memory, optional Neo4j graph) and `letta` (stateful MemGPT-style agents and memory blocks).
+  - **Generative media**: `fal` (fal.ai image/video/audio generation) and `comfyui` (local ComfyUI workflow control).
+- Total MCP servers: 206 (from 195).
+
 ## [1.7.0] - 2026-07-28
 ### Changed
 - **`anthropic`** — updated for the MCP 2026-07-28 spec release: stateless request/response core (serverless and edge deployable), versioned extensions framework covering MCP Apps and Tasks, and authorization hardened for production OAuth 2.0 / OIDC providers such as Entra and Okta. Added `http-streaming` transport, bumped to v2.0.0, and re-dated the entry so it surfaces as newly released.

@@ -1,0 +1,52 @@
+id: confident-ai
+name: Confident AI MCP
+description: >
+  Confident AI's official MCP server, connecting AI tools to the platform behind DeepEval for
+  evaluating, observing, and iterating on LLM quality. Agents can trigger and read evaluation runs,
+  inspect metric scores and failing test cases, manage golden datasets, and review production
+  traces to close the loop between eval results and code changes.
+author:
+  name: Confident AI
+  github: confident-ai
+repository: https://github.com/confident-ai/confident-mcp-server
+transport:
+  - stdio
+category: AI
+tags:
+  - deepeval
+  - llm-evaluation
+  - testing
+  - metrics
+  - observability
+  - regression-testing
+created_at: "2026-08-03T00:00:00.000Z"
+updated_at: "2026-08-03T00:00:00.000Z"
+tools:
+  - name: list_test_runs
+    description: List evaluation test runs and their aggregate metric scores.
+    input_schema:
+      type: object
+      properties:
+        limit:
+          type: integer
+          description: Maximum number of test runs to return
+  - name: get_failing_test_cases
+    description: Retrieve failing test cases for a test run, including metric reasons.
+    input_schema:
+      type: object
+      properties:
+        test_run_id:
+          type: string
+          description: Identifier of the test run
+      required:
+        - test_run_id
+  - name: list_datasets
+    description: List golden datasets available in the workspace.
+    input_schema:
+      type: object
+      properties: {}
+env_vars:
+  - name: CONFIDENT_API_KEY
+    description: Confident AI API key
+    required: true
+license: Apache-2.0
