@@ -1,0 +1,67 @@
+id: jupyter
+name: Jupyter MCP Server
+description: >
+  Open-source MCP server for working with Jupyter notebooks and JupyterHub. Lets agents list
+  and switch notebooks, read and edit cells, execute code, inspect kernel output, and return
+  multimodal results such as plots and images. Supports local Jupyter deployments as well as
+  optional sandbox backends for isolated code execution.
+author:
+  name: Datalayer
+  github: datalayer
+repository: https://github.com/datalayer/jupyter-mcp-server
+transport:
+  - stdio
+category: Development
+tags:
+  - jupyter
+  - notebooks
+  - data-science
+  - code-execution
+  - python
+  - multimodal
+created_at: "2026-08-22T00:00:00.000Z"
+updated_at: "2026-08-22T00:00:00.000Z"
+tools:
+  - name: list_notebooks
+    description: List notebooks available on the connected Jupyter server and report their status.
+    input_schema:
+      type: object
+  - name: use_notebook
+    description: Connect to, create, or switch the active Jupyter notebook.
+    input_schema:
+      type: object
+  - name: read_notebook
+    description: Read notebook cell source content in a brief or detailed representation.
+    input_schema:
+      type: object
+  - name: insert_cell
+    description: Insert a code or Markdown cell at a specified notebook position.
+    input_schema:
+      type: object
+  - name: execute_cell
+    description: Execute a notebook cell and return text, image, plot, or other supported output.
+    input_schema:
+      type: object
+  - name: execute_code
+    description: Execute code in the active Jupyter kernel or selected sandbox backend.
+    input_schema:
+      type: object
+prompts:
+  - name: jupyter-cite
+    description: Cite specific cells from a selected notebook in an MCP client conversation.
+    arguments: []
+install:
+  command: uvx
+  args:
+    - jupyter-mcp-server@latest
+env_vars:
+  - name: JUPYTER_URL
+    description: URL of the Jupyter Server or JupyterHub instance to connect to.
+    required: true
+  - name: JUPYTER_TOKEN
+    description: Authentication token for the configured Jupyter deployment, when required.
+    required: false
+  - name: ALLOW_IMG_OUTPUT
+    description: Whether notebook image and plot outputs may be returned to the MCP client.
+    required: false
+license: BSD-3-Clause

@@ -5,6 +5,12 @@ All notable changes to the OpenModels MCP Server Registry will be documented in 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.9.0] - 2026-08-22
+### Added
+- `jupyter` — notebook discovery, cell editing, code execution, and multimodal output for Jupyter and JupyterHub.
+### Changed
+- Total MCP servers: 207 (from 206).
+
 ## [1.8.0] - 2026-08-03
 ### Added
 - 11 new AI-focused MCP servers, expanding the `AI` category from 10 to 21 entries:

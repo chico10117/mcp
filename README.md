@@ -6,7 +6,7 @@ A community-maintained registry of MCP (Model Context Protocol) servers — stru
 
 | Metric | Count |
 |--------|-------|
-| Servers | 51 |
+| Servers | 207 |
 | Categories | 11 |
 | Transport types | 3 (stdio, sse, http-streaming) |
 
@@ -44,6 +44,7 @@ mcp/
 │   ├── grafana.yaml
 │   ├── huggingface.yaml
 │   ├── jira.yaml
+│   ├── jupyter.yaml
 │   ├── kubernetes.yaml
 │   ├── linear.yaml
 │   ├── memory.yaml
@@ -87,7 +88,7 @@ mcp/
 ├── CHANGELOG.md             # Version history
 ├── LICENSE                  # MIT
 ├── README.md                # This file
-└── VERSION                  # Current version (0.5.0)
+└── VERSION                  # Current version (1.9.0)
 ```
 
 ## Quick Start
@@ -159,7 +160,10 @@ created_at: "2024-11-25T00:00:00.000Z"
 updated_at: "2026-05-21T00:00:00.000Z"
 ```
 
-## Servers
+## Selected servers
+
+The table below highlights representative entries. See the [`servers/`](servers/) directory for
+the complete 207-server registry.
 
 | Server | Category | Author | Transport |
 |--------|----------|--------|-----------|
@@ -181,6 +185,7 @@ updated_at: "2026-05-21T00:00:00.000Z"
 | [Grafana](servers/grafana.yaml) | DevOps | Grafana Labs | stdio, sse |
 | [Hugging Face](servers/huggingface.yaml) | AI | Hugging Face | stdio, http-streaming |
 | [Jira (Atlassian)](servers/jira.yaml) | Productivity | Atlassian | stdio, http-streaming |
+| [Jupyter](servers/jupyter.yaml) | Development | Datalayer | stdio |
 | [Kubernetes](servers/kubernetes.yaml) | DevOps | Marc Nuri | stdio, http-streaming |
 | [Linear](servers/linear.yaml) | Productivity | Linear | stdio |
 | [Memory](servers/memory.yaml) | AI | Anthropic | stdio |
