@@ -5,6 +5,12 @@ All notable changes to the OpenModels MCP Server Registry will be documented in 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.10.0] - 2026-08-27
+### Added
+- `modelscope` — ModelScope's official server for model, dataset, Studio, paper, and MCP discovery plus supported image-generation workflows. The entry uses the published `uvx modelscope-mcp-server` stdio installation and also records the server's self-hosted HTTP/SSE transports.
+### Changed
+- Total MCP servers: 208 (from 207).
+
 ## [1.9.0] - 2026-08-22
 ### Added
 - `jupyter` — notebook discovery, cell editing, code execution, and multimodal output for Jupyter and JupyterHub.

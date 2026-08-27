@@ -6,7 +6,7 @@ A community-maintained registry of MCP (Model Context Protocol) servers — stru
 
 | Metric | Count |
 |--------|-------|
-| Servers | 207 |
+| Servers | 208 |
 | Categories | 11 |
 | Transport types | 3 (stdio, sse, http-streaming) |
 

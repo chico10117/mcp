@@ -1,0 +1,92 @@
+id: modelscope
+name: ModelScope MCP Server
+description: >
+  ModelScope's official MCP server for discovering models, datasets, studios, research papers,
+  and MCP servers across the ModelScope ecosystem. It can retrieve resource details and generate
+  images through supported ModelScope services, giving agents a structured interface to the hub
+  without scraping catalog pages. Supports local stdio operation through the published Python
+  package and optional HTTP or SSE when self-hosted.
+author:
+  name: ModelScope
+  github: modelscope
+repository: https://github.com/modelscope/modelscope-mcp-server
+transport:
+  - stdio
+  - sse
+  - http-streaming
+category: AI
+tags:
+  - modelscope
+  - models
+  - datasets
+  - research
+  - model-hub
+  - image-generation
+  - machine-learning
+created_at: "2026-08-27T00:00:00.000Z"
+updated_at: "2026-08-27T00:00:00.000Z"
+tools:
+  - name: get_current_user
+    description: Return information about the ModelScope user associated with the configured token.
+    input_schema:
+      type: object
+  - name: search_models
+    description: Search the ModelScope model catalog using a free-text query and filters.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Model name, task, architecture, or other search terms.
+      required:
+        - query
+  - name: search_datasets
+    description: Search datasets published in the ModelScope hub.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Dataset name, task, modality, or other search terms.
+      required:
+        - query
+  - name: search_studios
+    description: Discover ModelScope Studio applications by keyword.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Studio or application search terms.
+      required:
+        - query
+  - name: search_papers
+    description: Search research papers indexed by ModelScope.
+    input_schema:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Paper title, topic, author, or keyword query.
+      required:
+        - query
+  - name: generate_image
+    description: Generate an image through a supported ModelScope image-generation service.
+    input_schema:
+      type: object
+      properties:
+        prompt:
+          type: string
+          description: Text description of the image to generate.
+      required:
+        - prompt
+install:
+  command: uvx
+  args:
+    - modelscope-mcp-server
+env_vars:
+  - name: MODELSCOPE_API_TOKEN
+    description: ModelScope access token used for authenticated hub and generation requests.
+    required: true
+license: Apache-2.0
+version: "0.2.1"
