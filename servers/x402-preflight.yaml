@@ -5,7 +5,9 @@ description: >
   The free inspection tool observes the challenge, price, network, asset,
   receiver, discovery metadata, CORS, and operational signals without accepting
   buyer payment credentials. Paid audit and remediation tools require explicit
-  caller-authorized x402 payment.
+  caller-authorized x402 payment. The published mcp-remote install supports
+  discovery and the free inspection tool only; paid calls require a direct
+  x402-compatible client that can approve, sign, and retry the payment.
 author:
   name: Chiko
   github: chico10117
@@ -22,7 +24,7 @@ tags:
   - mcp
   - endpoint-audit
 created_at: "2026-09-01T00:49:03.753557Z"
-updated_at: "2026-09-01T00:49:03.753557Z"
+updated_at: "2026-09-03T23:16:07Z"
 tools:
   - name: inspect_x402_endpoint
     description: >
