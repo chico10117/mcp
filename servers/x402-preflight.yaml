@@ -24,7 +24,7 @@ tags:
   - mcp
   - endpoint-audit
 created_at: "2026-09-01T00:49:03.753557Z"
-updated_at: "2026-09-03T23:16:07Z"
+updated_at: "2026-09-04T20:13:48Z"
 tools:
   - name: inspect_x402_endpoint
     description: >
@@ -137,5 +137,5 @@ install:
   args:
     - "-y"
     - mcp-remote
-    - https://x402-wallet-readiness-service.vercel.app/mcp
-version: "1.0.0"
+    - https://x402.chikocorp.com/mcp
+version: "1.0.1"
